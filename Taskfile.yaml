@@ -1,0 +1,25 @@
+# https://taskfile.dev
+
+version: "3"
+
+includes:
+  bastion-sessions:
+    taskfile: bastion-sessions/taskfile.yaml
+  # terragrunt:
+  #   taskfile: tasks/Terragrunt.taskfile.yaml
+  # dependencies:
+  #   # dir: tasks/
+  #   taskfile: tasks/Dependencies-{{ OS }}.taskfile.yaml
+
+silent: true
+
+tasks:
+  default:
+    cmds:
+      - task -l
+      # - |
+      #   echo
+      #   echo 'Please use the following env vars to change the default behavior:
+      #     TG_REFRESH=true       # invalidate cache
+      #     TG_YOLO=true          # auto-approve
+      #   '

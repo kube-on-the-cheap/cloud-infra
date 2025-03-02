@@ -1,0 +1,12 @@
+# OKE private control plane access
+
+Run the script located at `${session_script_path}` to establish a SOCKS5 proxy tunnel to a remote bastion session with a per-session key.
+The session will expire in ${session_ttl} seconds.
+
+To access the remote OKE control plane (via `kubectl` or any other client), use the generated `KUBECONFIG` for the private endpoint with:
+
+```shell
+export HTTPS_PROXY=socks5://127.0.0.1:${proxy_port}
+```
+
+an `.envrc` file ready for use has been generated in ${session_data_dir}.

@@ -1,0 +1,61 @@
+# variable "tag_namespace" {
+#   type        = object({ name : string, description : string })
+#   description = "An object describing the Tag Namespace required info"
+# }
+
+# variable "tags" {
+#   type = map(object({
+#     description : string,
+#     allowed_values : list(string)
+#   }))
+#   description = "A map of object to identify a tag name and its description and allowed values"
+# }
+
+locals {
+  defined_tags = {
+    Scope = {
+      description    = "Terraform scope"
+      allowed_values = ["Budget", "Networking", "Container", "Storage", "Metatada"]
+    }
+  }
+}
+
+resource "oci_identity_tag_namespace" "oke_tag_namespace" {
+  compartment_id = oci_identity_compartment.oke.id
+  description    = "Namespaces for IaC well-known tags"
+  name           = "Terraform"
+  is_retired     = false
+}
+
+resource "oci_identity_tag" "oke_tags" {
+  for_each = local.defined_tags
+
+  tag_namespace_id = oci_identity_tag_namespace.oke_tag_namespace.id
+  name             = each.key
+  description      = each.value.description
+
+  is_cost_tracking = false
+  # If we have allowed_values, set a dynamic validator. Otherwise it takes any parameter, including empty string.
+  dynamic "validator" {
+    for_each = { for k, v in each.value : k => v if k == "allowed_values" && length(v) > 0 }
+
+    content {
+      validator_type = "ENUM"
+      values         = validator.value
+    }
+  }
+  is_retired = false
+}
+
+# resource "oci_identity_policy" "allow_tag_namespace" {
+#   compartment_id = var.oci_tenancy_id
+
+#   name        = "allow_all_instances_tag_namespace_${replace(lower(var.tag_namespace.name), "-", "_")}"
+#   description = "Policy to allow all instances to use the ${var.tag_namespace.name} Tag Namespace"
+#   statements = [
+#     "allow dynamic-group ${var.oci_iam_dynamic_group_all_instances_k3s} to use tag-namespaces in compartment id ${var.oci_compartment_id} where target.tag-namespace.name='${var.tag_namespace.name}'",
+#     "allow service compute to use tag-namespaces in compartment id ${var.oci_compartment_id} where target.tag-namespace.name='${var.tag_namespace.name}'"
+#   ]
+
+#   freeform_tags = var.shared_freeform_tags
+# }

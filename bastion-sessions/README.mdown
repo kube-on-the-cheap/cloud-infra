@@ -1,0 +1,56 @@
+# OKE Bastion Sessions
+
+Here you can establish a temporary session to one of the Bastions too access the OKE control plane via a SOCKS5 proxy and/or worker nodes via a SSH `ProxyCommand` directly.
+
+The sessions are ephemeral and last **2 hours**. In order to create a new session, please call the `Taskfile` with:
+
+```
+❯ task
+task: Available tasks for this project:
+* control-plane:       Create a control plane bastion session
+* workers:             Create a workers bastion session
+```
+
+For both access, the `bastion-access-key` is ephemeral and recreated with every session.
+
+## Workers
+
+The workers access is managed by a `MANAGED_SSH` session established from the Bastion to the Oracle Cloud Agent's Bastion plugin. The username is fixed as `opc` and the SSH key `nodes_key` is set at nodepool creation.
+
+Every script points to the specific session for the bastion that's tied to the subnet for every specific node.
+
+```txt
+.
+├── README.mdown
+└── workers
+    ├── .ssh
+    │   ├── bastion-access-key
+    │   ├── bastion-access-key.pub
+    │   ├── nodes_key
+    │   └── nodes_key.pub
+    ├── open_bastion_proxy_session_eu-frankfurt-1-ad-1.sh
+    ├── open_bastion_proxy_session_eu-frankfurt-1-ad-2.sh
+    └── README.mdown
+```
+
+## Control Plane
+
+The control plane's access is maintained by a `DYNAMIC_PORT_FORWARDING` session that creates a SOCKS5 proxy that can be used to tunnel HTTPS traffic. By setting an `HTTPS_PROXY` env var, one can tunnel the traffic destined to the private endpoint through the Bastion. The exports are maintained through an `.envrc` file.
+
+> :warning: Please note that every command ran in the `control-plane` directory will try to tunnel the connection through the proxy!
+
+The helper script will establish the tunnel connection in the background, leaving the shell open for running any command that requires a proper `KUBECONFIG` set. Please also note that OKE access requires the `oci` cli installed to obtain a temporary access token.
+
+```txt
+.
+├── README.mdown
+└── control-plane
+    ├── .envrc
+    ├── .kube
+    │   └── config
+    ├── .ssh
+    │   ├── bastion-access-key
+    │   └── bastion-access-key.pub
+    ├── open_bastion_proxy_session.sh
+    └── README.mdown
+```

@@ -1,0 +1,11 @@
+# OKE private worker access
+
+In `${session_data_dir}` there's a collection of bash scripts:
+
+%{ for path in session_script_paths ~}
+- `${ path }`
+%{ endfor ~}
+
+to open an SSH session through the Bastion proxy specific for each AD to the node hosted there.
+
+The script will verify if any of the required keys (session and node) has been provided, and if not it will make an assumption that it's in the SSH agent and will try to verify the identity list is not empty.

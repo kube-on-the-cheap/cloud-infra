@@ -1,0 +1,35 @@
+{
+  "bastion_ocids": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "control_plane": "string",
+        "workers": [
+          "object",
+          {
+            "eu-frankfurt-1-ad-1": "string",
+            "eu-frankfurt-1-ad-2": "string"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "control_plane": "ocid1.bastion.oc1.eu-frankfurt-1.amaaaaaa1u91b3trh77jmvlaca49jmb5c8v1xb9ftihd1mj0n9sq7rf1vg5d",
+      "workers": {
+        "eu-frankfurt-1-ad-1": "ocid1.bastion.oc1.eu-frankfurt-1.amaaaaaatz4es5zaph64qynbj7nnaxp9442kwym2yn1lxvhf2iz0sw9eobsn",
+        "eu-frankfurt-1-ad-2": "ocid1.bastion.oc1.eu-frankfurt-1.amaaaaaae1uih9usb70nivhqbt0zadsmitk06wx1if9ygbmf9c58wrgkj4z5"
+      }
+    }
+  },
+  "oke_compartment_ocid": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ocid1.compartment.oc1..aaaaaaaady386x21f0u2oy51a7x2max6seym1p30y6s8fmcu2h2mnr9shrz5"
+  },
+  "oke_node_pool_ocid": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ocid1.nodepool.oc1.eu-frankfurt-1.aaaaaaaat04wy8yedw2y1v8o3329xqqycr9lvzm2b7j0wbo0hiz0ukou9yt7"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "vantage_setup_info": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "vantage_tenancy_id": "string",
+        "vantage_user_id": "string"
+      }
+    ],
+    "value": {
+      "vantage_tenancy_id": "ocid1.tenancy.oc1..aaaaaaaa9e4dle75dpzxh8zh10ktuqpriid74nhk9fdjxvouyybwvv1ojs8e",
+      "vantage_user_id": "ocid1.user.oc1..aaaaaaaaofja0envr1qis85nhrj4bcijq3rr75npiljtsd29l5andmtbgzkx"
+    }
+  }
+}

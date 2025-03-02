@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+cat <<EOF
+** Opening an SSH session through the proxy to the node.
+
+%{ if (ssh_session_key_path == "") || (ssh_node_key_path == "")  ~}
+** No path provided for:
+   %{ if ssh_session_key_path == "" ~} - bastion's SSH private key %{~ endif }
+   %{ if ssh_node_key_path == "" ~} - nodes' SSH private key %{~ endif }
+it's assumed present in the ssh-agent. Identites present:
+EOF
+ssh-add -l
+if [ "$?" -ne 0 ]; then
+  echo "!! No identities found in the ssh-agent. Exiting."
+  exit 1
+fi
+%{~ endif }
+echo
+ssh %{ if ssh_node_key_path != "" ~} -i ${ssh_node_key_path} %{ endif ~} -o ProxyCommand="ssh %{ if ssh_session_key_path != "" ~} -i ${ssh_session_key_path} %{ endif ~} -W %h:%p -p 22 ${bastion_user_name}@host.bastion.${region}.oci.oraclecloud.com" -p 22 ${target_resource_operating_system_user_name}@${target_resource_private_ip_address}
