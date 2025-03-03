@@ -15,19 +15,22 @@ function _stopme() {
 }
 
 if nc -vz 127.0.0.1 ${proxy_port} &>/dev/null; then
-  echo "!! Looks like the local port is already open, can't continue"
-  exit 1
+  echo "++ Looks like the proxy is already running. To stop it, please issue a 'kill $(lsof -ti :${proxy_port})'."
+  echo "   Exiting now."
+  exit 0
 else
-  ssh %{ if ssh_session_key_path != "" ~} -i ${ssh_session_key_path} %{ endif ~} -N -D 127.0.0.1:${proxy_port} -p 22 ${ssh_username}@host.bastion.${region}.oci.oraclecloud.com &
+  nohup ssh %{ if ssh_session_key_path != "" ~} -i ${ssh_session_key_path} %{ endif ~} -N -D 127.0.0.1:${proxy_port} -p 22 ${ssh_username}@host.bastion.${region}.oci.oraclecloud.com &>/dev/null &
+  disown
 fi
 sleep 3
 if nc -vz 127.0.0.1 ${proxy_port} &>/dev/null; then
   echo
   echo "** SOCKS5 proxy to the bastion host running on port ${proxy_port} with PID $!. Session available for ${session_ttl}s."
-  echo "   To stop from foreground, hit CTRL+C. If running in the background, 'kill %%'."
+  echo "   To stop the process, run 'kill $!'."
   echo
   echo
-  sleep ${session_ttl}
+  # sleep ${session_ttl}
+  exit 0
 else
-  echo "!! Uh-oh, something's broken"
+  echo "!! Uh-oh, something's broken. Proxy process not running."
 fi
