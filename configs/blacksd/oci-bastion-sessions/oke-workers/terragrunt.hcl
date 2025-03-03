@@ -7,7 +7,8 @@ include "general" {
 }
 
 dependency "oci-oke" {
-  config_path = "../../oci-oke"
+  config_path  = "../../oci-oke"
+  mock_outputs = jsondecode(file("../../oci-oke/output-values.mock.json"))
 }
 
 inputs = {
