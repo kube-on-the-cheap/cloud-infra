@@ -14,12 +14,14 @@ terraform {
     execute  = ["nc", "-v", "-z", "127.0.0.1", "8000"]
   }
 
-  extra_arguments "use_https_proxy" {
-    commands = ["plan", "apply", "refresh", "import"]
-    env_vars = {
-      KUBE_PROXY_URL = "socks5://127.0.0.1:8000"
-    }
-  }
+  # INFO: not needed anymore, using the proxy_url KUBECONFIG directive
+  #
+  # extra_arguments "use_https_proxy" {
+  #   commands = ["plan", "apply", "refresh", "import"]
+  #   env_vars = {
+  #     KUBE_PROXY_URL = "socks5://127.0.0.1:8000"
+  #   }
+  # }
 }
 
 # INFO: this dependency is here for tracking, but it's kinda moot since we rely on the proxy

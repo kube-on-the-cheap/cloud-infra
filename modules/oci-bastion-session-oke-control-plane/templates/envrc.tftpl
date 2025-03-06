@@ -1,4 +1,3 @@
-# A better form would be to use the proxy-url directive, but I don't like messing with a generated KUBECONFIG
-# see https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#proxy
-export HTTPS_PROXY="socks5://127.0.0.1:${proxy_port}"
+# INFO: if in need, use the HTTPS_PROXY env var to tunnel all https traffic to the proxy
+# export HTTPS_PROXY="socks5://127.0.0.1:${proxy_port}"
 export KUBECONFIG="$PWD/.kube/config"

@@ -21,6 +21,7 @@ inputs = {
   gcp_region         = local.gcp.region
   session_data_dir   = "${get_parent_terragrunt_dir()}/../bastion-sessions"
   ssh_nodes_key_path = ".ssh/nodes_key" # INFO: This is the path to the SSH key for the OKE worker nodes; it's created in the `oci-oke` module and consumed in the `oci-oke-bastion-session-workers` module
+  proxy_port         = 8000
 }
 
 terraform_version_constraint  = "~> 1.10.0"

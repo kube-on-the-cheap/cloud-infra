@@ -42,16 +42,3 @@ data "kubernetes_namespace" "kube_system" {
     name = "kube-system"
   }
 }
-
-# check "kube_get_namespace" {
-#   data "kubernetes_namespace" "kube_system" {
-#     metadata {
-#       name = "kube-system"
-#     }
-#   }
-
-#   assert {
-#     condition     = one(data.kubernetes_namespace.kube_system.metadata.*.uid) != null
-#     error_message = "Unable to get the kube-system namespace. Check the connection to the API Server and/or the permissions for the user in your kubeconfig."
-#   }
-# }

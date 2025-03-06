@@ -93,8 +93,29 @@ data "oci_containerengine_cluster_kube_config" "this" {
   endpoint   = "PRIVATE_ENDPOINT"
 }
 
+variable "proxy_port" {
+  description = "The port the SOCKS5 proxy will listen on"
+  type        = number
+}
+
+locals {
+  kubeconfig = yamldecode(data.oci_containerengine_cluster_kube_config.this.content)
+
+  # INFO: apologies for the ugly expression, but this makes sure to keep any key even if there's
+  #       more in the future
+  cluster_with_proxy = { for k, v in one(local.kubeconfig.clusters) : k =>
+    k == "cluster" ? merge(v, { proxy-url = format("socks5://127.0.0.1:%s", var.proxy_port) }) : v
+  }
+
+  # NOTE: favoring the JSON encoding over the default YAML one for the kubeconfig, as Terraform's
+  #       output is atrocious, see https://github.com/hashicorp/terraform/issues/23322
+  kubeconfig_with_proxy = jsonencode(
+    merge(local.kubeconfig, { clusters = [local.cluster_with_proxy] })
+  )
+}
+
 resource "local_file" "kubeconfig" {
-  content              = data.oci_containerengine_cluster_kube_config.this.content
+  content              = local.kubeconfig_with_proxy
   filename             = "${var.session_data_dir}/control-plane/.kube/config"
   directory_permission = 0755
   file_permission      = 0600

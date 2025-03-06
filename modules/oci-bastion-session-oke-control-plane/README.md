@@ -40,6 +40,7 @@ TODO: detail the SOCKS method
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_bastion_ocid"></a> [bastion\_ocid](#input\_bastion\_ocid) | The Bastion OCID | `string` | n/a | yes |
+| <a name="input_proxy_port"></a> [proxy\_port](#input\_proxy\_port) | The port the SOCKS5 proxy will listen on | `number` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The OCI region name | `string` | n/a | yes |
 | <a name="input_session_data_dir"></a> [session\_data\_dir](#input\_session\_data\_dir) | The path where to store files with the session data | `string` | n/a | yes |
 | <a name="input_ssh_public_key"></a> [ssh\_public\_key](#input\_ssh\_public\_key) | The SSH public key, in OpenSSH format. If not provided, an ephemeral key will be generated for this session. | `string` | `""` | no |
