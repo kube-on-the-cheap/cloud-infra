@@ -10,13 +10,19 @@ remote_state {
 }
 
 locals {
+  project_details = {
+    name       = "Kube, on the cheap"
+    tagline    = "A lab project for the parsimonious Kubernetes administrator"
+    short_form = "kube-on-the-cheap"
+  }
   gcp = {
     region     = "europe-west3"
-    project_id = "kube-on-the-cheap"
+    project_id = local.project_details.short_form
   }
 }
 
 inputs = {
+  project_name       = local.project_details.name
   gcp_project_id     = local.gcp.project_id
   gcp_region         = local.gcp.region
   session_data_dir   = "${get_parent_terragrunt_dir()}/../bastion-sessions"

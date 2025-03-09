@@ -75,6 +75,8 @@ TODO: explain the subnetting logic.
 | [oci_identity_policy.allow_oke_mek](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
 | [oci_identity_policy.allow_oke_nek](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
 | [oci_identity_policy.allow_oke_nodes_update_self](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.allow_oke_workers_externalsecrets_key](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
+| [oci_kms_key.oke_external_secrets_key](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_key) | resource |
 | [oci_kms_key.oke_master_encryption_key](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_key) | resource |
 | [oci_kms_key.oke_node_encryption_key](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_key) | resource |
 | [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_vault) | resource |
@@ -92,7 +94,6 @@ TODO: explain the subnetting logic.
 | <a name="input_session_data_dir"></a> [session\_data\_dir](#input\_session\_data\_dir) | The path where to store files with the session data | `string` | n/a | yes |
 | <a name="input_ssh_nodes_key_path"></a> [ssh\_nodes\_key\_path](#input\_ssh\_nodes\_key\_path) | The path, relative to the `session_data_dir`, to store the SSH key pair for the OKE worker nodes | `string` | n/a | yes |
 | <a name="input_tenancy_ocid"></a> [tenancy\_ocid](#input\_tenancy\_ocid) | The OCI Tenancy ID | `string` | n/a | yes |
-| <a name="input_oci_keys"></a> [oci\_keys](#input\_oci\_keys) | A map of key names and their types to create | `map(string)` | `{}` | no |
 | <a name="input_oke_k8s_cluster_version"></a> [oke\_k8s\_cluster\_version](#input\_oke\_k8s\_cluster\_version) | The Kubernetes version to run in the control plane | `string` | `"1.31.1"` | no |
 | <a name="input_oke_k8s_workers_version"></a> [oke\_k8s\_workers\_version](#input\_oke\_k8s\_workers\_version) | The Kubernetes version to run on the workers | `string` | `"1.31.1"` | no |
 
@@ -100,7 +101,9 @@ TODO: explain the subnetting logic.
 
 | Name | Description | Value | Sensitive |
 |------|-------------|-------|:---------:|
-| <a name="output_bastion_ocids"></a> [bastion\_ocids](#output\_bastion\_ocids) | The Bastion OCIDs | <pre>{<br/>  "control_plane": "ocid1.bastion.oc1.eu-frankfurt-1.amaaaaaa1u91b3trh77jmvlaca49jmb5c8v1xb9ftihd1mj0n9sq7rf1vg5d",<br/>  "workers": {<br/>    "eu-frankfurt-1-ad-1": "ocid1.bastion.oc1.eu-frankfurt-1.amaaaaaatz4es5zaph64qynbj7nnaxp9442kwym2yn1lxvhf2iz0sw9eobsn",<br/>    "eu-frankfurt-1-ad-2": "ocid1.bastion.oc1.eu-frankfurt-1.amaaaaaae1uih9usb70nivhqbt0zadsmitk06wx1if9ygbmf9c58wrgkj4z5"<br/>  }<br/>}</pre> | no |
-| <a name="output_oke_compartment_ocid"></a> [oke\_compartment\_ocid](#output\_oke\_compartment\_ocid) | The OKE compartmnent's OCID | `"ocid1.compartment.oc1..aaaaaaaady386x21f0u2oy51a7x2max6seym1p30y6s8fmcu2h2mnr9shrz5"` | no |
-| <a name="output_oke_node_pool_ocid"></a> [oke\_node\_pool\_ocid](#output\_oke\_node\_pool\_ocid) | The OKE node pool's ID | `"ocid1.nodepool.oc1.eu-frankfurt-1.aaaaaaaat04wy8yedw2y1v8o3329xqqycr9lvzm2b7j0wbo0hiz0ukou9yt7"` | no |
+| <a name="output_bastion_ocids"></a> [bastion\_ocids](#output\_bastion\_ocids) | The Bastion OCIDs | <pre>{<br/>  "control_plane": "ocid1.bastion.oc1.eu-frankfurt-1.amaaaaaa2un2xg5chceeg7zawourh0ybm4735f01n9zl6th5mz4p2264k4x3",<br/>  "workers": {<br/>    "eu-frankfurt-1-ad-1": "ocid1.bastion.oc1.eu-frankfurt-1.amaaaaaatl59rjr0x9qe4c3bbjktxac34iy1ern22tux7jqzbvgowkkutf2h",<br/>    "eu-frankfurt-1-ad-2": "ocid1.bastion.oc1.eu-frankfurt-1.amaaaaaaoe110rd48phjoxsj9oossvo0qxwqdkeql4amj1qip6jvtu4to6cj"<br/>  }<br/>}</pre> | no |
+| <a name="output_oke_compartment_ocid"></a> [oke\_compartment\_ocid](#output\_oke\_compartment\_ocid) | The OKE compartmnent's OCID | `"ocid1.compartment.oc1..aaaaaaaap9id58ahum3bensydeksqv4aie2v60lm0z4fu4y7yox3gamt5fa0"` | no |
+| <a name="output_oke_external_secrets_key_ocid"></a> [oke\_external\_secrets\_key\_ocid](#output\_oke\_external\_secrets\_key\_ocid) | The key ID for the OKE ExternalSecrets encryption key | `"ocid1.key.oc1.eu-frankfurt-1.ent2pnqxaabs2.up5va3cmyxrl66bqbjkyzs04qj8x7tbwx7rvv2cr6elhd6394xb4hlp8d52v"` | no |
+| <a name="output_oke_node_pool_ocid"></a> [oke\_node\_pool\_ocid](#output\_oke\_node\_pool\_ocid) | The OKE node pool's ID | `"ocid1.nodepool.oc1.eu-frankfurt-1.aaaaaaaa6iic3qcpq6rr0yzaioeui6gmpmzhw4f06qplmrssctgg32bfhl4u"` | no |
+| <a name="output_oke_vault_ocid"></a> [oke\_vault\_ocid](#output\_oke\_vault\_ocid) | The OCID of the OKE Vault | `"ocid1.vault.oc1.eu-frankfurt-1.ent2pnqxaabs2.qeuwa56wsc513q7yjjqosnt4d4266puk1qtthids49v9kcoza5nvnvyjptg1"` | no |
 <!-- END_TF_DOCS -->

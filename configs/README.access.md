@@ -32,3 +32,16 @@ and your user has the `roles/serviceusage.serviceUsageAdmin` role (from the Cons
 Oracle Cloud is used for the Compute and Storage resources.
 
 To gain access, you don't need to have `oci-cli` installed, but you do need a `~/.oci/config` file set up. This is due to the fact that (always at the time of writing) the Terraform provider cannot set a custom config file location. To properly blame the Oracle Cloud SDK, see here https://docs.oracle.com/en-us/iaas/Content/dev/terraform/configuring.htm.
+
+## DigitalOcean
+
+You'll need:
+* a token for the TF Provider access to DO's APIs
+
+  1. Go to https://cloud.digitalocean.com/account/api/tokens and create a `Full access` token for your CLI; give it a 30 days expiry window and a meaningful name such as "*doctl cli*".
+  2. Invoke then `doctl auth init` and paste the value there. Done.
+
+* a second token used by the external DNS operator to control the domain records
+
+  1. Go to https://cloud.digitalocean.com/account/api/tokens and create a new token with Custom Scopes, select the CRUD operations in the "domain" scope. Give it a meaningful name like "*externaldns*" and a 1y expiry time.
+  2. Create a YAML file named `do_tokens.sops.yaml` and use the token as value for a key `externaldns`. Do yourself a favor and add scopes and expiry date in the comments, other than setting it as the variable value for expiry. Encrypt it with SOPS, and make sure comments are encrypted as well. Done.

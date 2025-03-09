@@ -18,7 +18,8 @@
     "terraform-ls@0.36.4",
     "terraform@1.10.2",
     "terragrunt@0.71.2",
-    "trivy@0.59.1"
+    "trivy@0.59.1",
+    "doctl@1.122.0"
   ],
   "shell": {
     "init_hook": [
