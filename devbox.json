@@ -19,7 +19,8 @@
     "terraform@1.10.2",
     "terragrunt@0.71.2",
     "trivy@0.59.1",
-    "doctl@1.122.0"
+    "doctl@1.122.0",
+    "go-task@3.41.0"
   ],
   "shell": {
     "init_hook": [

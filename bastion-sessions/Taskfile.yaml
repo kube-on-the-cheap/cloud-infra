@@ -1,0 +1,49 @@
+# https://taskfile.dev
+
+version: "3"
+
+# TODO: find out why .envrc is not being sourced
+env:
+  TF_VAR_tenancy_ocid:
+    sh: jc --ini <$HOME/.oci/config | jq -r .DEFAULT.tenancy
+  TF_VAR_region:
+    sh: jc --ini <$HOME/.oci/config | jq -r .DEFAULT.region
+
+silent: true
+
+tasks:
+  default:
+    cmds:
+      - task --list
+
+  control-plane:
+    desc: "Open a proxy session to the control plane"
+    deps:
+      - task: bastion-control-plane
+    cmds:
+      - "{{ .USER_WORKING_DIR }}/bastion-sessions/control-plane/open_bastion_proxy_session.sh"
+
+  workers:
+    desc: "Open an SSH session to one of the workers. Use the AD variable to specify the worker to connect to."
+    requires:
+      vars:
+        - name: AD
+          enum: [1, 2]
+    deps:
+      - task: bastion-workers
+    cmds:
+      - cmd: "{{ .USER_WORKING_DIR }}/bastion-sessions/workers/open_bastion_proxy_session_eu-frankfurt-1-ad-{{ .AD }}.sh"
+        ignore_error: true
+
+  bastion-*:
+    desc: "Create a bastion session to either the control plane or the workers"
+    vars:
+      BASTION_TYPE: "{{ index .MATCH 0 }}"
+    requires:
+      vars:
+        - name: BASTION_TYPE
+          enum: [control-plane, workers]
+    dir: "{{ .USER_WORKING_DIR }}/configs/blacksd/oci-bastion-sessions/oke-{{ .BASTION_TYPE }}/"
+    cmds:
+      - terragrunt apply -auto-approve
+      - echo "Now you can set your working directory to $PWD/{{ .BASTION_TYPE }} and start using the session. Please refer to the README.md file for more informations."
