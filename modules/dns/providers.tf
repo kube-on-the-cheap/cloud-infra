@@ -13,6 +13,10 @@ terraform {
       source  = "digitalocean/digitalocean"
       version = "~>2.49"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~>5.1"
+    }
   }
   backend "gcs" {}
 }
@@ -33,4 +37,7 @@ provider "oci" {
 }
 
 provider "digitalocean" {
+}
+
+provider "cloudflare" {
 }

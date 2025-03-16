@@ -8,6 +8,10 @@ variable "project_name" {
   description = "The DigitalOcean project name to create the domain in"
 }
 
+locals {
+  subdomain = "cloud"
+}
+
 resource "digitalocean_project" "kotc" {
   name        = var.project_name
   description = "All resources for KOTC cluster on DigitalOcean"
@@ -23,7 +27,7 @@ resource "digitalocean_project_resources" "kotc" {
 }
 
 resource "digitalocean_domain" "cloud" {
-  name = format("cloud.%s", var.parent_domain)
+  name = "${local.subdomain}.${var.parent_domain}"
 }
 
 data "digitalocean_records" "cloud_ns" {

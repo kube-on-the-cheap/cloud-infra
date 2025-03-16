@@ -9,6 +9,7 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 
 | Name | Version |
 |------|---------|
+| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | ~>5.1 |
 | <a name="requirement_digitalocean"></a> [digitalocean](#requirement\_digitalocean) | ~>2.49 |
 | <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>6.26 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | ~>0.13 |
@@ -17,25 +18,29 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 
 | Name | Version |
 |------|---------|
+| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | 5.1.0 |
 | <a name="provider_digitalocean"></a> [digitalocean](#provider\_digitalocean) | 2.49.1 |
-| <a name="provider_oci"></a> [oci](#provider\_oci) | 6.29.0 |
+| <a name="provider_oci"></a> [oci](#provider\_oci) | 6.30.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
+| [cloudflare_dns_record.cloud_delegation](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/dns_record) | resource |
+| [cloudflare_zone.parent_domain](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/zone) | resource |
 | [digitalocean_domain.cloud](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/domain) | resource |
 | [digitalocean_project.kotc](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/project) | resource |
 | [digitalocean_project_resources.kotc](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/project_resources) | resource |
-| [oci_vault_secret.externaldns](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/vault_secret) | resource |
+| [oci_vault_secret.do_zone_mgmt](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/vault_secret) | resource |
 | [digitalocean_records.cloud_ns](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/data-sources/records) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_do_token_expiry_date"></a> [do\_token\_expiry\_date](#input\_do\_token\_expiry\_date) | The date the DigitalOcean API token expires, in RFC 3339 format (2017-11-22T01:00:00Z) | `string` | n/a | yes |
-| <a name="input_do_token_externaldns"></a> [do\_token\_externaldns](#input\_do\_token\_externaldns) | The DigitalOcean API token to use for the ExternalDNS provider | `string` | n/a | yes |
+| <a name="input_cf_account_id"></a> [cf\_account\_id](#input\_cf\_account\_id) | The Cloudflare Account ID | `string` | n/a | yes |
+| <a name="input_do_token_zone_mgmt"></a> [do\_token\_zone\_mgmt](#input\_do\_token\_zone\_mgmt) | The DigitalOcean API token to use for the ExternalDNS provider | `string` | n/a | yes |
+| <a name="input_do_token_zone_mgmt_expiry_date"></a> [do\_token\_zone\_mgmt\_expiry\_date](#input\_do\_token\_zone\_mgmt\_expiry\_date) | The date the DigitalOcean API token expires, in RFC 3339 format (2017-11-22T01:00:00Z) | `string` | n/a | yes |
 | <a name="input_externalsecrets_key_id"></a> [externalsecrets\_key\_id](#input\_externalsecrets\_key\_id) | The OCID of the OKE ExternalSecrets encryption key | `string` | n/a | yes |
 | <a name="input_externalsecrets_vault_id"></a> [externalsecrets\_vault\_id](#input\_externalsecrets\_vault\_id) | The OCID of the vault containing the OKE ExternalSecrets encryption key | `string` | n/a | yes |
 | <a name="input_oke_compartment_id"></a> [oke\_compartment\_id](#input\_oke\_compartment\_id) | The OCID of the compartment to create the OKE resources in | `string` | n/a | yes |
@@ -47,4 +52,5 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 | Name | Description | Value | Sensitive |
 |------|-------------|-------|:---------:|
 | <a name="output_cloud_domain_ns"></a> [cloud\_domain\_ns](#output\_cloud\_domain\_ns) | The nameservers for the delegated zone. Add these records as NS type records in the parent domain to perform zone delegation. | `"null"` | no |
+| <a name="output_do_token"></a> [do\_token](#output\_do\_token) | n/a | `"null"` | no |
 <!-- END_TF_DOCS -->
