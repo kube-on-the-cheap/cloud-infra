@@ -28,7 +28,7 @@ tasks:
     requires:
       vars:
         - name: AD
-          enum: [1, 2]
+          enum: ["1", "2"]
     deps:
       - task: bastion-workers
     cmds:
@@ -46,4 +46,4 @@ tasks:
     dir: "{{ .USER_WORKING_DIR }}/configs/blacksd/oci-bastion-sessions/oke-{{ .BASTION_TYPE }}/"
     cmds:
       - terragrunt apply -auto-approve
-      - echo "Now you can set your working directory to $PWD/{{ .BASTION_TYPE }} and start using the session. Please refer to the README.md file for more informations."
+      - echo "Now you can set your working directory to {{ .USER_WORKING_DIR }}/{{ .BASTION_TYPE }} and start using the session. Please refer to the README.md file for more informations."

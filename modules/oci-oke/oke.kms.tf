@@ -90,7 +90,7 @@ resource "oci_identity_policy" "allow_oke_nek" {
   description = "Policy to allow nodes and volumes to in Compartment '${oci_identity_compartment.oke.name}' to use the Node Encryption Key"
   statements = [
     "Allow service blockstorage to use keys in compartment id ${oci_identity_compartment.oke.id} where target.key.id = '${oci_kms_key.oke_node_encryption_key.id}'",
-    "Allow any-user to use key-delegates in compartment id ${oci_identity_compartment.oke.id} where ALL {request.principal.type='nodepool', target.key.id = '${oci_kms_key.oke_node_encryption_key.id}'}"
+    "Allow any-user to use key-delegate in compartment id ${oci_identity_compartment.oke.id} where ALL {request.principal.type='nodepool', target.key.id = '${oci_kms_key.oke_node_encryption_key.id}'}"
     # "Allow dynamic-group id ${oci_identity_dynamic_group.all_oke_clusters.id} to use keys in compartment '${oci_identity_compartment.oke.name}' where target.key.id = '${oci_kms_key.oke_node_encryption_key.id}'"
   ]
 }
@@ -116,14 +116,16 @@ resource "oci_kms_key" "oke_external_secrets_key" {
 
 # NOTE: I know, it would be nice to have a per-workload permissions model, but that requires an Enhanced-type OKE cluster, and that's not cheap!
 # INFO: Useful reference: https://docs.oracle.com/en-us/iaas/Content/Identity/policyreference/keypolicyreference.htm#Details_for_the_Vault_Service
-resource "oci_identity_policy" "allow_oke_workers_externalsecrets_key" {
+resource "oci_identity_policy" "allow_oke_workers_externalsecrets" {
   compartment_id = oci_identity_compartment.oke.id
 
-  name        = "allow_nodes_use_externalsecrets_key"
-  description = "Policy to allow nodes Compartment '${oci_identity_compartment.oke.name}' to use the ExternalSecrets encryption key"
+  name        = "allow_nodes_externalsecrets"
+  description = "Policy to allow nodes Compartment '${oci_identity_compartment.oke.name}' to use the ExternalSecrets encryption key and access secrets for read (sync) and write (create)"
   statements = [
-    "Allow dynamic-group ${oci_identity_dynamic_group.all_oke_workers.name} to read secret-family in compartment id ${oci_identity_compartment.oke.id}",                                                                         # INFO: Needed for secret access
-    "Allow dynamic-group ${oci_identity_dynamic_group.all_oke_workers.name} to use key-delegates in compartment id ${oci_identity_compartment.oke.id} where ALL {target.key.id = '${oci_kms_key.oke_external_secrets_key.id}'}", # INFO: Needed for decrypt
+    "Allow dynamic-group ${oci_identity_dynamic_group.all_oke_workers.name} to read secret-family in compartment id ${oci_identity_compartment.oke.id}",                                                                # INFO: Needed for secret read on a broader set of items
+    "Allow dynamic-group ${oci_identity_dynamic_group.all_oke_workers.name} to use vaults in compartment id ${oci_identity_compartment.oke.id} where ALL {target.vault.id = '${oci_kms_vault.this.id}'}",               # INFO: Needed for PushSecrets create privileges
+    "Allow dynamic-group ${oci_identity_dynamic_group.all_oke_workers.name} to manage secrets in compartment id ${oci_identity_compartment.oke.id}",                                                                    # INFO: Needed for PushSecrets create privileges
+    "Allow dynamic-group ${oci_identity_dynamic_group.all_oke_workers.name} to use keys in compartment id ${oci_identity_compartment.oke.id} where ALL {target.key.id = '${oci_kms_key.oke_external_secrets_key.id}'}", # INFO: Needed for encrypt/decrypt operations
   ]
 }
 
