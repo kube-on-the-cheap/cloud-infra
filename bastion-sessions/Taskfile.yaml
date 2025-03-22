@@ -21,6 +21,7 @@ tasks:
     deps:
       - task: bastion-control-plane
     cmds:
+      - sync; sleep 7
       - "{{ .USER_WORKING_DIR }}/bastion-sessions/control-plane/open_bastion_proxy_session.sh"
 
   workers:

@@ -89,13 +89,13 @@ TODO: explain the subnetting logic.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_oke_k8s_cluster_version"></a> [oke\_k8s\_cluster\_version](#input\_oke\_k8s\_cluster\_version) | The Kubernetes version to run in the control plane | `string` | n/a | yes |
+| <a name="input_oke_k8s_workers_version"></a> [oke\_k8s\_workers\_version](#input\_oke\_k8s\_workers\_version) | The Kubernetes version to run on the workers | `string` | n/a | yes |
 | <a name="input_proxy_port"></a> [proxy\_port](#input\_proxy\_port) | The port the SOCKS5 proxy will listen on | `number` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The OCI region name | `string` | n/a | yes |
 | <a name="input_session_data_dir"></a> [session\_data\_dir](#input\_session\_data\_dir) | The path where to store files with the session data | `string` | n/a | yes |
 | <a name="input_ssh_nodes_key_path"></a> [ssh\_nodes\_key\_path](#input\_ssh\_nodes\_key\_path) | The path, relative to the `session_data_dir`, to store the SSH key pair for the OKE worker nodes | `string` | n/a | yes |
 | <a name="input_tenancy_ocid"></a> [tenancy\_ocid](#input\_tenancy\_ocid) | The OCI Tenancy ID | `string` | n/a | yes |
-| <a name="input_oke_k8s_cluster_version"></a> [oke\_k8s\_cluster\_version](#input\_oke\_k8s\_cluster\_version) | The Kubernetes version to run in the control plane | `string` | `"1.31.1"` | no |
-| <a name="input_oke_k8s_workers_version"></a> [oke\_k8s\_workers\_version](#input\_oke\_k8s\_workers\_version) | The Kubernetes version to run on the workers | `string` | `"1.31.1"` | no |
 
 ## Outputs
 

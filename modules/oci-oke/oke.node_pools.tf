@@ -1,7 +1,6 @@
 variable "oke_k8s_workers_version" {
   description = "The Kubernetes version to run on the workers"
   type        = string
-  default     = "1.31.1"
 }
 
 variable "ssh_nodes_key_path" {
@@ -83,7 +82,7 @@ resource "oci_containerengine_node_pool" "dishonoredcheques" {
     user_data = base64encode(<<-EOT
 #!/bin/bash
 # Update the instance config to enable the Bastion plugin
-pip3 install --user oci-cli
+dnf install --assumeyes python36-oci-cli
 echo '{"areAllPluginsDisabled":false,"isManagementDisabled":false,"isMonitoringDisabled":false,"pluginsConfig":[{"desiredState":"ENABLED","name":"Bastion"}]}' > ./agent_config.json
 export OCI_CLI_AUTH=instance_principal
 oci compute instance update --instance-id $(oci-instanceid) --agent-config file://./agent_config.json --force
@@ -109,7 +108,7 @@ EOT
   node_source_details {
     image_id                = local.oke_node_images[0].image_id
     source_type             = "IMAGE"
-    boot_volume_size_in_gbs = 50 # minimum size
+    boot_volume_size_in_gbs = 100 # NOTE: Free Tier gives 200 GB of volume storage, but a maximum of 2 volumes. So, no attached volumes, unfortunately.
   }
   ssh_public_key = tls_private_key.node_key.public_key_openssh
 

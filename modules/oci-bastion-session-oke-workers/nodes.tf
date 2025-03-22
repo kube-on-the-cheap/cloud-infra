@@ -9,6 +9,6 @@ data "oci_containerengine_node_pool" "this" {
 
 locals {
   node_ocids = {
-    for n in data.oci_containerengine_node_pool.this.nodes : lower(split(":", n.availability_domain)[1]) => n.id
+    for n in data.oci_containerengine_node_pool.this.nodes : lower(split(":", n.availability_domain)[1]) => n.id if n.state == "ACTIVE"
   }
 }

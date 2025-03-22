@@ -5,7 +5,6 @@ locals {
 variable "oke_k8s_cluster_version" {
   description = "The Kubernetes version to run in the control plane"
   type        = string
-  default     = "1.31.1"
 }
 
 resource "oci_containerengine_cluster" "freeloader" {
