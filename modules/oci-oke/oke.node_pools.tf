@@ -108,7 +108,7 @@ EOT
   node_source_details {
     image_id                = local.oke_node_images[0].image_id
     source_type             = "IMAGE"
-    boot_volume_size_in_gbs = 100 # NOTE: Free Tier gives 200 GB of volume storage, but a maximum of 2 volumes. So, no attached volumes, unfortunately.
+    boot_volume_size_in_gbs = 50 # NOTE: Free Tier gives 200 GB of volume storage, so we can use the 50 GB minimum for boot volume and the rest with the provisioned `oci-bv` StorageClass. https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm#blockvolume
   }
   ssh_public_key = tls_private_key.node_key.public_key_openssh
 
