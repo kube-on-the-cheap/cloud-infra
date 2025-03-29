@@ -1,0 +1,16 @@
+{
+  "tailscale_oauth": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "secret_key": "string",
+        "secret_name": "string"
+      }
+    ],
+    "value": {
+      "secret_key": "tailscale_key",
+      "secret_name": "TailscaleSecretName"
+    }
+  }
+}
