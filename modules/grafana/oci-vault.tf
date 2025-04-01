@@ -25,7 +25,7 @@ resource "oci_vault_secret" "alloy_token" {
   secret_content {
     content_type = "BASE64"
     content      = base64encode(grafana_cloud_access_policy_token.alloy.token)
-    name         = "alloy_token"
+    name         = "alloy-token"
     stage        = "CURRENT" # INFO: can be CURRENT or PENDING
   }
 
