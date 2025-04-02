@@ -5,7 +5,10 @@ provider "registry.terraform.io/grafana/grafana" {
   version     = "3.22.1"
   constraints = "~> 3.22"
   hashes = [
+    "h1:QJ3U50bvVCXCYjSHZ07l3f1v7GJBeVF5jGPfc7NBpO8=",
     "h1:TRKB8kS32nZ+Y8npefOfAH8CdhHtrveU/YAv7kahODc=",
+    "h1:aoS5W2stbLwTHH7QtDZMgst8b5JkSqbRX2Vs/PGj8WU=",
+    "h1:uUzzVni4o5ec7vSIiiA92zrE0ehuechy6uwoB2wTDoo=",
     "zh:0e09ac1cf9c229060e03cd22c80802074dca71cb1bae8dc512dfe9bb0a255701",
     "zh:0e41b0dbe31f9f04e4d5b694413be5d5474de504397eb07f9a5d779272d69a6a",
     "zh:3163ed0d3547eda99b47bce8aef4124c56ec59f2e6bf2f6502603167b2ac627f",
@@ -32,7 +35,10 @@ provider "registry.terraform.io/grafana/grafana" {
 provider "registry.terraform.io/hashicorp/time" {
   version = "0.13.0"
   hashes = [
+    "h1:6KqF4CQjyQVTzP2pO3taa86AJ2uBcEachsrTjNYLkfg=",
     "h1:DfKaZ++JsRBLWrRFgSvvmRKrj8N94EQH9LzaRG0cAJ8=",
+    "h1:W2XSd8unrfQsFLBCqtOZf8GywZTU7FOgAI95YmIwxQw=",
+    "h1:iwR4JouIoeVPDabb8XCqsiaZlZ28IcB3tDD9MuPeSXE=",
     "zh:3776dd78ef3053562ccb2f8916d5d3f21a28f05e78859f0f1e4510525f891ecb",
     "zh:541ca0b56f808c15d208b9396f149563b133223c4b66cdefbcfe2d8f1c23497e",
     "zh:67ed315f3572eb20ce6778423b14fbb6faba3090f454bc20ec4146489b4738c0",
@@ -53,6 +59,9 @@ provider "registry.terraform.io/oracle/oci" {
   constraints = "~> 6.26"
   hashes = [
     "h1:EPQLhie8bF/+94fw+zLiRxOqQs+HSKNEaUVaDbi35u4=",
+    "h1:RNethc66J9NA49iju5d26VjqrRytAos2KkJD0QB7WB0=",
+    "h1:cRTNP0ASzBQzSyWLBvCX7dpftKBNioWtQBIhsdDrGHM=",
+    "h1:sqG0zvv+eKn9ztUuTAEBIeHDWvrobJPoBjAYCIIUjLo=",
     "zh:060e04504ad2209103bed6efcd76a8962f08b29852add461da9df3dfa4200e2e",
     "zh:1c7a3a1bae8623aa862669b7bb0cb9763a59b0f9ea59950bebdd2a36e7ab2933",
     "zh:20cffea226a6ffeb3b98c3398e9e12107b5359b3ec2d0631f9f3166da87a40b2",
