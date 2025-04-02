@@ -38,7 +38,26 @@ data "digitalocean_records" "cloud_ns" {
   }
 }
 
+variable "grafana_cloud_slug" {
+  description = "Grafana Cloud slug used to create the corresponding Stack."
+  type        = string
+}
+
+resource "digitalocean_record" "grafana" {
+  domain = digitalocean_domain.cloud.name
+  type   = "CNAME"
+  ttl    = 1800
+  name   = "grafana"
+  value  = "${var.grafana_cloud_slug}.grafana.net."
+}
+
+
 output "cloud_domain_ns" {
   value       = [for r in data.digitalocean_records.cloud_ns.records : r.value]
-  description = "The nameservers for the delegated zone. Add these records as NS type records in the parent domain to perform zone delegation."
+  description = "Nameservers for the delegated zone. Add these records as NS type records in the parent domain to perform zone delegation."
+}
+
+output "cloud_domain_host_grafana" {
+  value       = digitalocean_record.grafana.fqdn
+  description = "Grafana Cloud custom domain's FQDN."
 }

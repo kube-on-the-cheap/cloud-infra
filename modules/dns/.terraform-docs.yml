@@ -25,7 +25,7 @@ output:
 
 output-values:
   enabled: true
-  from: ../../configs/blacksd/oci-oke/output-values.mock.json
+  from: ../../configs/blacksd/dns/output-values.mock.json
 
 sort:
   enabled: true

@@ -1,10 +1,11 @@
-variable "gc_stack_slug" {
+variable "grafana_cloud_slug" {
+  description = "Grafana Cloud slug used to create the corresponding Stack."
   type        = string
-  description = "The Grafana Cloud org slug"
+  default     = null
 }
 
 # NOTE: available at https://grafana.com/api/stack-regions
-variable "gc_region" {
+variable "grafana_cloud_region" {
   description = "The region to run the Grafana Cloud stack in"
   default     = "prod-eu-west-2" # AWS Germany
 }

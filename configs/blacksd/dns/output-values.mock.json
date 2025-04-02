@@ -1,0 +1,37 @@
+{
+  "cloud_domain_host_grafana": {
+    "sensitive": false,
+    "type": "string",
+    "value": "grafana.cloud.domain.com"
+  },
+  "cloud_domain_ns": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "ns1.cloudflare.com",
+      "ns2.cloudflare.com",
+      "ns3.cloudflare.com"
+    ]
+  },
+  "do_token": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "secret_key": "string",
+        "secret_name": "string"
+      }
+    ],
+    "value": {
+      "secret_key": "equinix-token",
+      "secret_name": "EquinixCloudZoneManagement"
+    }
+  }
+}

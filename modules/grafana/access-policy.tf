@@ -3,7 +3,7 @@
 # }
 
 resource "grafana_cloud_access_policy" "alloy" {
-  region       = var.gc_region
+  region       = var.grafana_cloud_region
   name         = "alloy"
   display_name = "Alloy Policy"
 
@@ -31,7 +31,7 @@ resource "time_rotating" "three_years" {
 }
 
 resource "grafana_cloud_access_policy_token" "alloy" {
-  region           = var.gc_region
+  region           = var.grafana_cloud_region
   access_policy_id = grafana_cloud_access_policy.alloy.policy_id
   name             = "alloy-token"
   display_name     = "Alloy Token"

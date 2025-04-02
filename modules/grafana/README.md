@@ -20,6 +20,7 @@ You can choose to limit the execution to a subset of IP address.
 
 | Name | Version |
 |------|---------|
+| <a name="requirement_dns"></a> [dns](#requirement\_dns) | 3.4.2 |
 | <a name="requirement_grafana"></a> [grafana](#requirement\_grafana) | ~>3.22 |
 | <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>6.26 |
 
@@ -27,7 +28,8 @@ You can choose to limit the execution to a subset of IP address.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_grafana"></a> [grafana](#provider\_grafana) | 3.22.1 |
+| <a name="provider_dns"></a> [dns](#provider\_dns) | 3.4.2 |
+| <a name="provider_grafana"></a> [grafana](#provider\_grafana) | 3.22.2 |
 | <a name="provider_oci"></a> [oci](#provider\_oci) | 6.32.0 |
 | <a name="provider_time"></a> [time](#provider\_time) | 0.13.0 |
 
@@ -40,6 +42,7 @@ You can choose to limit the execution to a subset of IP address.
 | [grafana_cloud_stack.this](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/cloud_stack) | resource |
 | [oci_vault_secret.alloy_token](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/vault_secret) | resource |
 | [time_rotating.three_years](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/rotating) | resource |
+| [dns_cname_record_set.cloud_domain_cname](https://registry.terraform.io/providers/hashicorp/dns/3.4.2/docs/data-sources/cname_record_set) | data source |
 
 ## Inputs
 
@@ -47,9 +50,10 @@ You can choose to limit the execution to a subset of IP address.
 |------|-------------|------|---------|:--------:|
 | <a name="input_externalsecrets_key_id"></a> [externalsecrets\_key\_id](#input\_externalsecrets\_key\_id) | The OCID of the OKE ExternalSecrets encryption key | `string` | n/a | yes |
 | <a name="input_externalsecrets_vault_id"></a> [externalsecrets\_vault\_id](#input\_externalsecrets\_vault\_id) | The OCID of the vault containing the OKE ExternalSecrets encryption key | `string` | n/a | yes |
-| <a name="input_gc_stack_slug"></a> [gc\_stack\_slug](#input\_gc\_stack\_slug) | The Grafana Cloud org slug | `string` | n/a | yes |
 | <a name="input_oke_compartment_id"></a> [oke\_compartment\_id](#input\_oke\_compartment\_id) | The OCID of the compartment to create the OKE resources in | `string` | n/a | yes |
-| <a name="input_gc_region"></a> [gc\_region](#input\_gc\_region) | The region to run the Grafana Cloud stack in | `string` | `"prod-eu-west-2"` | no |
+| <a name="input_cloud_domain_host_grafana"></a> [cloud\_domain\_host\_grafana](#input\_cloud\_domain\_host\_grafana) | The custom URL to set. Must already point to <grafana\_cloud\_slug>.grafana.net. | `string` | `""` | no |
+| <a name="input_grafana_cloud_region"></a> [grafana\_cloud\_region](#input\_grafana\_cloud\_region) | The region to run the Grafana Cloud stack in | `string` | `"prod-eu-west-2"` | no |
+| <a name="input_grafana_cloud_slug"></a> [grafana\_cloud\_slug](#input\_grafana\_cloud\_slug) | Grafana Cloud slug used to create the corresponding Stack. | `string` | `null` | no |
 
 ## Outputs
 
