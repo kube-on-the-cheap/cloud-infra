@@ -1,3 +1,5 @@
 file://*
 # Oracle, it's not cool returning a 403 for unknown User-Agents
 https://blogs.oracle.com/cloud-infrastructure/post/*
+# Ignoring authenticated requests
+https://grafana.com/api/stack-regions

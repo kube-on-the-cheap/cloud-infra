@@ -1,0 +1,7 @@
+{
+  "alloy_token": {
+    "sensitive": true,
+    "type": "string",
+    "value": "glc_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0IiwibmFtZSI6Ik1vY2sgT29uIiwiaWF0IjoxNzI0NTcwMzkxfQ.VB0POLK_cNMijO0tDinXN3Z9C2Zy3l0MPtBqs-af_48"
+  }
+}

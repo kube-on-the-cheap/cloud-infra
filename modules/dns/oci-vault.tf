@@ -44,7 +44,7 @@ resource "oci_vault_secret" "do_zone_mgmt" {
   secret_content {
     content_type = "BASE64"
     content      = base64encode(var.do_token_zone_mgmt)
-    name         = "do_token"
+    name         = "do-token"
     stage        = "CURRENT" # INFO: can be CURRENT or PENDING
   }
   secret_rules {
