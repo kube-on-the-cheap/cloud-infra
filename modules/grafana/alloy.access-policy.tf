@@ -36,5 +36,4 @@ resource "grafana_cloud_access_policy_token" "alloy" {
   name             = "alloy-token"
   display_name     = "Alloy Token"
   expires_at       = time_rotating.three_years.rotation_rfc3339
-
 }

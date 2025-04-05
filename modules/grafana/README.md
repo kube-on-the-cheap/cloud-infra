@@ -38,7 +38,9 @@ You can choose to limit the execution to a subset of IP address.
 | Name | Type |
 |------|------|
 | [grafana_cloud_access_policy.alloy](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/cloud_access_policy) | resource |
+| [grafana_cloud_access_policy.vantage](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/cloud_access_policy) | resource |
 | [grafana_cloud_access_policy_token.alloy](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/cloud_access_policy_token) | resource |
+| [grafana_cloud_access_policy_token.vantage](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/cloud_access_policy_token) | resource |
 | [grafana_cloud_stack.this](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/cloud_stack) | resource |
 | [oci_vault_secret.alloy_token](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/vault_secret) | resource |
 | [time_rotating.three_years](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/rotating) | resource |
@@ -60,4 +62,5 @@ You can choose to limit the execution to a subset of IP address.
 | Name | Description | Value | Sensitive |
 |------|-------------|-------|:---------:|
 | <a name="output_alloy_token"></a> [alloy\_token](#output\_alloy\_token) | n/a | `<sensitive>` | yes |
+| <a name="output_vantage-token"></a> [vantage-token](#output\_vantage-token) | The Vantage API token to read metrics | `"null"` | no |
 <!-- END_TF_DOCS -->
