@@ -37,6 +37,7 @@ TODO: explain the subnetting logic.
 | [oci_core_internet_gateway.oke](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_internet_gateway) | resource |
 | [oci_core_nat_gateway.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_nat_gateway) | resource |
 | [oci_core_network_security_group.k8s_api_endpoint](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group) | resource |
+| [oci_core_network_security_group.lb](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group) | resource |
 | [oci_core_network_security_group.oke_workers](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group) | resource |
 | [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_node_path_type_3](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
 | [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_node_path_type_4](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
@@ -72,6 +73,7 @@ TODO: explain the subnetting logic.
 | [oci_identity_compartment.oke](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_compartment) | resource |
 | [oci_identity_dynamic_group.all_oke_clusters](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_dynamic_group) | resource |
 | [oci_identity_dynamic_group.all_oke_workers](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_dynamic_group) | resource |
+| [oci_identity_policy.allow_lb_manage_nsg](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
 | [oci_identity_policy.allow_oke_mek](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
 | [oci_identity_policy.allow_oke_nek](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
 | [oci_identity_policy.allow_oke_nodes_update_self](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
@@ -105,5 +107,6 @@ TODO: explain the subnetting logic.
 | <a name="output_oke_compartment_ocid"></a> [oke\_compartment\_ocid](#output\_oke\_compartment\_ocid) | The OKE compartmnent's OCID | `"ocid1.compartment.oc1..aaaaaaaap9id58ahum3bensydeksqv4aie2v60lm0z4fu4y7yox3gamt5fa0"` | no |
 | <a name="output_oke_external_secrets_key_ocid"></a> [oke\_external\_secrets\_key\_ocid](#output\_oke\_external\_secrets\_key\_ocid) | The key ID for the OKE ExternalSecrets encryption key | `"ocid1.key.oc1.eu-frankfurt-1.ent2pnqxaabs2.up5va3cmyxrl66bqbjkyzs04qj8x7tbwx7rvv2cr6elhd6394xb4hlp8d52v"` | no |
 | <a name="output_oke_node_pool_ocid"></a> [oke\_node\_pool\_ocid](#output\_oke\_node\_pool\_ocid) | The OKE node pool's ID | `"ocid1.nodepool.oc1.eu-frankfurt-1.aaaaaaaa6iic3qcpq6rr0yzaioeui6gmpmzhw4f06qplmrssctgg32bfhl4u"` | no |
+| <a name="output_oke_nsg_lb_id"></a> [oke\_nsg\_lb\_id](#output\_oke\_nsg\_lb\_id) | The ID of the NSG controlled by the Load Balancers | `"null"` | no |
 | <a name="output_oke_vault_ocid"></a> [oke\_vault\_ocid](#output\_oke\_vault\_ocid) | The OCID of the OKE Vault | `"ocid1.vault.oc1.eu-frankfurt-1.ent2pnqxaabs2.qeuwa56wsc513q7yjjqosnt4d4266puk1qtthids49v9kcoza5nvnvyjptg1"` | no |
 <!-- END_TF_DOCS -->
