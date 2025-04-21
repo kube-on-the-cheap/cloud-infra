@@ -1,15 +1,9 @@
 # object-storage
 
 <!-- BEGIN_TF_DOCS -->
-# Secrets
+# Object Storage
 
-This module is about creating a secrets deployment module for resources that
-
-1. Don't have a proper Terraform provider; this would be the preferred way to manage their lifecycle, but if it doesn't exist (and my lab use case isn't big enough to warrant a contribution) it's just best to create the secret manually, encrypt it here and ship it to Vault
-2. Don't have any connection to existing other resources from the same scope; it's fine to have a secret shipped to Vault in a module that does other things for the same part of the infra, but if there is no module, it's just best to collect all single-purpose secrets in a single place
-
-See:
-* the lack of support for GitHub Apps, [issue ref.](https://github.com/integrations/terraform-provider-github/issues/509)
+This module is about creating Object Storage buckets, in Oracle Cloud and (future implementation) Google Cloud
 
 ## Requirements
 
@@ -55,7 +49,7 @@ See:
 
 | Name | Description | Value | Sensitive |
 |------|-------------|-------|:---------:|
-| <a name="output_object_storage_compartment_ocid"></a> [object\_storage\_compartment\_ocid](#output\_object\_storage\_compartment\_ocid) | The Object Storage compartmnent's OCID | `"null"` | no |
-| <a name="output_s3_buckets_credentials_secret_names"></a> [s3\_buckets\_credentials\_secret\_names](#output\_s3\_buckets\_credentials\_secret\_names) | The OCI Vault secret name and keys for all S3-compatible credentials | `"null"` | no |
-| <a name="output_s3_credentials"></a> [s3\_credentials](#output\_s3\_credentials) | S3 Compatibility Layer credentials | `"null"` | no |
+| <a name="output_object_storage_compartment_ocid"></a> [object\_storage\_compartment\_ocid](#output\_object\_storage\_compartment\_ocid) | The Object Storage compartmnent's OCID | `"ocid1.compartment.oc1..aaaaaaaafdhn4u7r4g97ffh5gnxxakovn80f350220w7nqdjx9o0fgsb8o1e"` | no |
+| <a name="output_s3_buckets_credentials_secret_names"></a> [s3\_buckets\_credentials\_secret\_names](#output\_s3\_buckets\_credentials\_secret\_names) | The OCI Vault secret name and keys for all S3-compatible credentials | <pre>{<br/>  "velero": {<br/>    "secret_key": "s3_credentials",<br/>    "secret_name": "S3CredentialsVelero"<br/>  }<br/>}</pre> | no |
+| <a name="output_s3_credentials"></a> [s3\_credentials](#output\_s3\_credentials) | S3 Compatibility Layer credentials | `<sensitive>` | yes |
 <!-- END_TF_DOCS -->

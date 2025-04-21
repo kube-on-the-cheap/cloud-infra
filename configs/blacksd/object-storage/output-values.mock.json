@@ -1,0 +1,49 @@
+{
+  "object_storage_compartment_ocid": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ocid1.compartment.oc1..aaaaaaaafdhn4u7r4g97ffh5gnxxakovn80f350220w7nqdjx9o0fgsb8o1e"
+  },
+  "s3_buckets_credentials_secret_names": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "velero": [
+          "object",
+          {
+            "secret_key": "string",
+            "secret_name": "string"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "velero": {
+        "secret_key": "s3_credentials",
+        "secret_name": "S3CredentialsVelero"
+      }
+    }
+  },
+  "s3_credentials": {
+    "sensitive": true,
+    "type": [
+      "object",
+      {
+        "velero": [
+          "object",
+          {
+            "ACCESS_KEY": "string",
+            "SECRET_KEY": "string"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "velero": {
+        "ACCESS_KEY": "u8lyzshhy0xv7brkau8869jqwal1r4e2ezn4upk3",
+        "SECRET_KEY": "FAKEeKz2QhOMq7GuT1tfV8NJWLEqubRwLeBiK99rFAKE"
+      }
+    }
+  }
+}

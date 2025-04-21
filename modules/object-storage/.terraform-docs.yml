@@ -25,7 +25,7 @@ output:
 
 output-values:
   enabled: true
-  from: docs/output-values.json
+  from: ../../configs/blacksd/object-storage/output-values.mock.json
 
 sort:
   enabled: true
