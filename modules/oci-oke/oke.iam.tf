@@ -15,3 +15,8 @@ resource "oci_identity_dynamic_group" "all_oke_workers" {
   description   = "Dynamic group containing all OKE worker nodes running in the '${oci_identity_compartment.oke.name}' Compartment"
   matching_rule = "ALL {instance.compartment.id = '${oci_identity_compartment.oke.id}'}"
 }
+
+output "oke_iam_dynamic_group_workers_name" {
+  value       = oci_identity_dynamic_group.all_oke_workers.name
+  description = "All OKE workers in the dedicated compartment"
+}

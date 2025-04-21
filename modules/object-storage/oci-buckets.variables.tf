@@ -1,16 +1,18 @@
 variable "oci_buckets" {
+  description = "A map of a buckets to create in Oracle Cloud. Bucket name is the key."
   type = map(object({
     # Standard, Archive
-    storage_tier : string
+    storage_tier : string,
     # Disabled, Enabled, Suspended
-    versioning : string
-    access_type : optional(string, "NoPublicAccess")
+    versioning : string,
+    access_type : optional(string, "NoPublicAccess"),
     auto_tiering : optional(string, "Disabled"),
     object_events_enabled : optional(bool, false),
     retention : optional(string),
-    create_s3_access_key : optional(bool, false)
+    create_s3_access_key : optional(bool, false),
+    store_s3_credentials_in_vault : optional(bool, true),
+    grant_oke_workers_access : optional(bool, false)
   }))
-  description = "A list of a buckets to create"
 
   # https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/managingbuckets.htm#bucketnames
   validation {
@@ -19,47 +21,23 @@ variable "oci_buckets" {
   }
   validation {
     condition     = alltrue([for bucket_params in values(var.oci_buckets) : contains(["Standard", "Archive"], bucket_params.storage_tier)])
-    error_message = "Storage tier must be either 'Standard' or 'Archive'. "
+    error_message = "Storage tier must be either 'Standard' or 'Archive'."
   }
   validation {
     condition     = alltrue([for bucket_params in values(var.oci_buckets) : contains(["Disabled", "Enabled", "Suspended"], bucket_params.versioning)])
-    error_message = "Versioning must be either 'Disabled', 'Enabled' or 'Suspended'. "
+    error_message = "Versioning must be either 'Disabled', 'Enabled' at creation, 'Suspended' is allowed on updates. "
   }
-  # validation {
-  #   condition     = retention
-  #   error_message = "Check that the retention is in format <amount><unit>"
-  # }
-  # validation {
-  #   condition     = access_type
-  #   error_message = "The type of public access enabled on this bucket. NoPublicAccess, ObjectRead, ObjectReadWithoutList"
-  # }
-  # validation {
-  #   condition     = auto_tiering
-  #   error_message = "Disabled or Enabled"
-  # }
+  validation {
+    condition     = alltrue([for bucket_params in values(var.oci_buckets) : contains(["NoPublicAccess", "ObjectRead", "ObjectReadWithoutList"], bucket_params.access_type)])
+    error_message = "The type of public access enabled on this bucket. Allowed values are 'NoPublicAccess', 'ObjectRead', 'ObjectReadWithoutList'."
+  }
+  validation {
+    condition     = alltrue([for bucket_params in values(var.oci_buckets) : contains(["InfrequentAccess", "Disabled"], bucket_params.auto_tiering)])
+    error_message = "Auto-tiering for bucket objects. Can be 'Disabled' or 'InfrequentAccess'."
+  }
 }
 
 variable "oke_iam_dynamic_group_workers_name" {
   type        = string
   description = "The OKE IAM dynamic group name for workers"
 }
-
-# variable "bucket_versioning" {
-#   type        = string
-#   description = "Bucket versioning status"
-#   validation {
-#     condition     = contains(["Disabled", "Enabled", "Suspended"], var.bucket_versioning)
-#     error_message = "Storage tier must be either \"Disabled\", \"Enabled\", \"Suspended\". "
-#   }
-# }
-
-# variable "bucket_create_s3_access_key" {
-#   type        = bool
-#   description = "(optional) describe your variable"
-#   default     = false
-# }
-
-# variable "oci_kms_id" {
-#   type        = string
-#   description = "The OCI KMS master encryption key id to use."
-# }

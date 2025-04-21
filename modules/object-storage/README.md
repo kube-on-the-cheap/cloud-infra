@@ -36,13 +36,17 @@ See:
 | [oci_kms_key.object_storage_encription_key](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_key) | resource |
 | [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_vault) | resource |
 | [oci_objectstorage_bucket.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/objectstorage_bucket) | resource |
+| [oci_vault_secret.s3_buckets_credentials](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/vault_secret) | resource |
 | [oci_objectstorage_namespace.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/data-sources/objectstorage_namespace) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_oci_buckets"></a> [oci\_buckets](#input\_oci\_buckets) | A list of a buckets to create | <pre>map(object({<br/>    # Standard, Archive<br/>    storage_tier : string<br/>    # Disabled, Enabled, Suspended<br/>    versioning : string<br/>    access_type : optional(string, "NoPublicAccess")<br/>    auto_tiering : optional(string, "Disabled"),<br/>    object_events_enabled : optional(bool, false),<br/>    retention : optional(string),<br/>    create_s3_access_key : optional(bool, false)<br/>  }))</pre> | n/a | yes |
+| <a name="input_externalsecrets_key_id"></a> [externalsecrets\_key\_id](#input\_externalsecrets\_key\_id) | The OCID of the OKE ExternalSecrets encryption key | `string` | n/a | yes |
+| <a name="input_externalsecrets_vault_id"></a> [externalsecrets\_vault\_id](#input\_externalsecrets\_vault\_id) | The OCID of the vault containing the OKE ExternalSecrets encryption key | `string` | n/a | yes |
+| <a name="input_oci_buckets"></a> [oci\_buckets](#input\_oci\_buckets) | A map of a buckets to create in Oracle Cloud. Bucket name is the key. | <pre>map(object({<br/>    # Standard, Archive<br/>    storage_tier : string,<br/>    # Disabled, Enabled, Suspended<br/>    versioning : string,<br/>    access_type : optional(string, "NoPublicAccess"),<br/>    auto_tiering : optional(string, "Disabled"),<br/>    object_events_enabled : optional(bool, false),<br/>    retention : optional(string),<br/>    create_s3_access_key : optional(bool, false),<br/>    store_s3_credentials_in_vault : optional(bool, true),<br/>    grant_oke_workers_access : optional(bool, false)<br/>  }))</pre> | n/a | yes |
+| <a name="input_oke_compartment_id"></a> [oke\_compartment\_id](#input\_oke\_compartment\_id) | The OCID of the compartment to create the OKE resources in | `string` | n/a | yes |
 | <a name="input_oke_iam_dynamic_group_workers_name"></a> [oke\_iam\_dynamic\_group\_workers\_name](#input\_oke\_iam\_dynamic\_group\_workers\_name) | The OKE IAM dynamic group name for workers | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The OCI region name | `string` | n/a | yes |
 | <a name="input_tenancy_ocid"></a> [tenancy\_ocid](#input\_tenancy\_ocid) | The OCI Tenancy ID | `string` | n/a | yes |
@@ -52,5 +56,6 @@ See:
 | Name | Description | Value | Sensitive |
 |------|-------------|-------|:---------:|
 | <a name="output_object_storage_compartment_ocid"></a> [object\_storage\_compartment\_ocid](#output\_object\_storage\_compartment\_ocid) | The Object Storage compartmnent's OCID | `"null"` | no |
+| <a name="output_s3_buckets_credentials_secret_names"></a> [s3\_buckets\_credentials\_secret\_names](#output\_s3\_buckets\_credentials\_secret\_names) | The OCI Vault secret name and keys for all S3-compatible credentials | `"null"` | no |
 | <a name="output_s3_credentials"></a> [s3\_credentials](#output\_s3\_credentials) | S3 Compatibility Layer credentials | `"null"` | no |
 <!-- END_TF_DOCS -->

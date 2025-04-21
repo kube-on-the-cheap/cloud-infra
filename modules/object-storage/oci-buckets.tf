@@ -1,5 +1,5 @@
 data "oci_objectstorage_namespace" "this" {
-  compartment_id = oci_identity_compartment.object_storage.id
+  compartment_id = var.tenancy_ocid
 }
 
 resource "oci_objectstorage_bucket" "this" {
@@ -27,15 +27,27 @@ resource "oci_objectstorage_bucket" "this" {
 
       duration {
         #Required
-        time_amount = regex("\\d+", retention_rules.value)
-        time_unit   = regex("\\D+", retention_rules.value)
+        time_amount = trimspace(regex("\\d+", retention_rules.value))
+        time_unit   = upper(trimspace(regex("\\D+", retention_rules.value)))
       }
     }
   }
 
-  versioning = each.value.object_events_enabled
+  versioning = each.value.versioning
 
   depends_on = [
     oci_identity_policy.objecstorage_allow_kms_access
+  ]
+}
+
+resource "oci_identity_policy" "allow_oke_workers_buckets" {
+  count = anytrue([for _, bucket_params in var.oci_buckets : bucket_params.grant_oke_workers_access]) ? 1 : 0
+
+  compartment_id = oci_identity_compartment.object_storage.id
+
+  name        = "allow_nodes_buckets"
+  description = "Policy to allow OKE nodes in group '${var.oke_iam_dynamic_group_workers_name}' to access Buckets"
+  statements = [for bucket_name, bucket_params in var.oci_buckets :
+    "Allow dynamic-group ${var.oke_iam_dynamic_group_workers_name} to use buckets in compartment id ${oci_identity_compartment.object_storage.id} where all { target.bucket.name='${bucket_name}' }" if bucket_params.grant_oke_workers_access
   ]
 }
