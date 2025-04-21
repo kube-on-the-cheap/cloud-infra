@@ -55,6 +55,7 @@ repos:
           - --args=-platform=darwin_amd64
           - --args=-platform=linux_arm64
           - --args=-platform=darwin_arm64
+          - --hook-config=--mode=always-regenerate-lockfile
       - id: terraform_validate
         args:
           - --tf-init-args=-backend=false
