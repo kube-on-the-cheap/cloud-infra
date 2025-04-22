@@ -27,8 +27,13 @@ resource "oci_vault_secret" "s3_buckets_credentials" {
   secret_content {
     content_type = "BASE64"
     content = base64encode(jsonencode({
-      ACCESS_KEY = oci_identity_customer_secret_key.bucket_secret_key[each.key].id
-      SECRET_KEY = oci_identity_customer_secret_key.bucket_secret_key[each.key].key
+      AccessKey = {
+        UserName        = each.key
+        Status          = title(lower(oci_identity_customer_secret_key.bucket_secret_key[each.key].state))
+        CreateDate      = oci_identity_customer_secret_key.bucket_secret_key[each.key].time_created
+        AccessKeyId     = oci_identity_customer_secret_key.bucket_secret_key[each.key].id
+        SecretAccessKey = oci_identity_customer_secret_key.bucket_secret_key[each.key].key
+      }
     }))
     name  = "s3_credentials"
     stage = "CURRENT" # INFO: can be CURRENT or PENDING
