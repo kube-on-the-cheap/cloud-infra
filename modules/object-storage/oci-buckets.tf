@@ -20,7 +20,7 @@ resource "oci_objectstorage_bucket" "this" {
   object_events_enabled = each.value.object_events_enabled
 
   dynamic "retention_rules" {
-    for_each = [each.value.retention]
+    for_each = each.value.retention != null ? [each.value.retention] : []
 
     content {
       display_name = "Keep objects for ${retention_rules.value}"
@@ -39,6 +39,50 @@ resource "oci_objectstorage_bucket" "this" {
     oci_identity_policy.objecstorage_allow_kms_access
   ]
 }
+
+resource "oci_identity_policy" "objecstorage_allow_lifecycle_rules" {
+  compartment_id = var.tenancy_ocid
+
+  name        = "allow_object_storage_lifecycle_rules"
+  description = "Policy to allow Object Storage service to implement lifecycle rule actions"
+  statements = [
+    "allow service objectstorage-${var.region} to manage object-family in compartment id ${oci_identity_compartment.object_storage.id}"
+  ]
+}
+
+resource "oci_objectstorage_object_lifecycle_policy" "this" {
+  for_each = var.oci_buckets
+
+  bucket    = each.key
+  namespace = data.oci_objectstorage_namespace.this.namespace
+
+  rules {
+    action      = "ABORT"
+    is_enabled  = true
+    name        = "Cancel multi-part uploads after 7 days"
+    time_amount = 7
+    time_unit   = "DAYS"
+    target      = "multipart-uploads"
+  }
+
+  dynamic "rules" {
+    for_each = each.value.lifecycle != null ? [each.value.lifecycle] : []
+
+    content {
+      action      = upper(trimspace(split(",", rules.value)[1]))
+      is_enabled  = true
+      name        = "Delete objects older than ${trimspace(split(",", rules.value)[0])}"
+      time_amount = trimspace(regex("\\d+", split(",", rules.value)[0]))
+      time_unit   = upper(trimspace(regex("\\D+", split(",", rules.value)[0])))
+      target      = "objects"
+    }
+  }
+
+  depends_on = [
+    oci_identity_policy.objecstorage_allow_lifecycle_rules
+  ]
+}
+
 
 resource "oci_identity_policy" "allow_oke_workers_buckets" {
   count = anytrue([for _, bucket_params in var.oci_buckets : bucket_params.grant_oke_workers_access]) ? 1 : 0

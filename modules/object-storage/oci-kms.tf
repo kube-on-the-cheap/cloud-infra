@@ -51,7 +51,7 @@ resource "oci_identity_policy" "objecstorage_allow_kms_access" {
   compartment_id = var.tenancy_ocid
 
   name        = "allow_object_storage_key_access"
-  description = "Policy to allow bucket Object Storage service to access KMS key ID used for bucket encryption"
+  description = "Policy to allow Object Storage service to access KMS key ID used for bucket encryption"
   statements = [
     "allow service objectstorage-${var.region} to use keys in compartment id ${oci_identity_compartment.object_storage.id} where target.key.id = '${oci_kms_key.object_storage_encription_key.id}'"
   ]

@@ -27,10 +27,12 @@ This module is about creating Object Storage buckets, in Oracle Cloud and (futur
 | [oci_identity_policy.allow_oke_workers_externalsecrets_vault_object_storage](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
 | [oci_identity_policy.allow_user_bucket_access](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
 | [oci_identity_policy.objecstorage_allow_kms_access](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.objecstorage_allow_lifecycle_rules](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
 | [oci_identity_user.bucket_user](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_user) | resource |
 | [oci_kms_key.object_storage_encription_key](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_key) | resource |
 | [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_vault) | resource |
 | [oci_objectstorage_bucket.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/objectstorage_bucket) | resource |
+| [oci_objectstorage_object_lifecycle_policy.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/objectstorage_object_lifecycle_policy) | resource |
 | [oci_vault_secret.s3_buckets_credentials](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/vault_secret) | resource |
 | [oci_objectstorage_namespace.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/data-sources/objectstorage_namespace) | data source |
 
@@ -38,7 +40,7 @@ This module is about creating Object Storage buckets, in Oracle Cloud and (futur
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_oci_buckets"></a> [oci\_buckets](#input\_oci\_buckets) | A map of a buckets to create in Oracle Cloud. Bucket name is the key. | <pre>map(object({<br/>    # Standard, Archive<br/>    storage_tier : string,<br/>    # Disabled, Enabled, Suspended<br/>    versioning : string,<br/>    access_type : optional(string, "NoPublicAccess"),<br/>    auto_tiering : optional(string, "Disabled"),<br/>    object_events_enabled : optional(bool, false),<br/>    retention : optional(string),<br/>    create_s3_access_key : optional(bool, false),<br/>    store_s3_credentials_in_vault : optional(bool, true),<br/>    grant_oke_workers_access : optional(bool, false)<br/>  }))</pre> | n/a | yes |
+| <a name="input_oci_buckets"></a> [oci\_buckets](#input\_oci\_buckets) | A map of a buckets to create in Oracle Cloud. Bucket name is the key. | <pre>map(object({<br/>    # Standard, Archive<br/>    storage_tier : string,<br/>    # Disabled, Enabled, Suspended<br/>    versioning : string,<br/>    access_type : optional(string, "NoPublicAccess"),<br/>    auto_tiering : optional(string, "Disabled"),<br/>    object_events_enabled : optional(bool, false),<br/>    retention : optional(string),<br/>    lifecycle : optional(string),<br/>    create_s3_access_key : optional(bool, false),<br/>    store_s3_credentials_in_vault : optional(bool, true),<br/>    grant_oke_workers_access : optional(bool, false)<br/>  }))</pre> | n/a | yes |
 | <a name="input_oke_iam_dynamic_group_workers_name"></a> [oke\_iam\_dynamic\_group\_workers\_name](#input\_oke\_iam\_dynamic\_group\_workers\_name) | The OKE IAM dynamic group name for workers | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The OCI region name | `string` | n/a | yes |
 | <a name="input_tenancy_ocid"></a> [tenancy\_ocid](#input\_tenancy\_ocid) | The OCI Tenancy ID | `string` | n/a | yes |

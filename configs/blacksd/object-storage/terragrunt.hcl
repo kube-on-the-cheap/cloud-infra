@@ -19,9 +19,9 @@ inputs = {
   # https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm#objectstorage
   oci_buckets = {
     "velero" = {
-      storage_tier         = "Archive"
+      storage_tier         = "Standard"
       versioning           = "Disabled"
-      retention            = "90 days"
+      lifecycle            = "90 days, delete"
       create_s3_access_key = true
     }
   }
