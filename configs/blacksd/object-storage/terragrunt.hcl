@@ -21,7 +21,8 @@ inputs = {
     "velero" = {
       storage_tier         = "Standard"
       versioning           = "Disabled"
-      lifecycle            = "90 days, delete"
+      auto_tiering         = "InfrequentAccess"
+      lifecycle            = "60 days, delete"
       create_s3_access_key = true
     }
   }
