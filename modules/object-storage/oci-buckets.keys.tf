@@ -17,8 +17,8 @@ resource "oci_identity_policy" "allow_user_bucket_access" {
   name        = "allow_${oci_identity_user.bucket_user[each.key].name}_write_bucket_${each.key}"
   description = "Policy to allow S3 access for user ${oci_identity_user.bucket_user[each.key].name} to access bucket ${each.key}"
   statements = [
-    "Allow any-user to use buckets in compartment id ${oci_identity_compartment.object_storage.id} where all { target.bucket.name='${each.key}', request.user.id ='${oci_identity_user.bucket_user[each.key].name}' }",
-    "Allow any-user to manage objects in compartment id ${oci_identity_compartment.object_storage.id} where all { target.bucket.name='${each.key}', request.user.id ='${oci_identity_user.bucket_user[each.key].name}' }"
+    "Allow any-user to use buckets in compartment id ${oci_identity_compartment.object_storage.id} where all { target.bucket.name='${each.key}', request.user.id ='${oci_identity_user.bucket_user[each.key].id}' }",
+    "Allow any-user to manage objects in compartment id ${oci_identity_compartment.object_storage.id} where all { target.bucket.name='${each.key}', request.user.id ='${oci_identity_user.bucket_user[each.key].id}' }"
   ]
 
   # freeform_tags = { "IAM-UserInfo.UserType" = "robot" }

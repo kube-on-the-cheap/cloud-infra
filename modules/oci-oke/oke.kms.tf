@@ -116,10 +116,10 @@ resource "oci_kms_key" "oke_external_secrets_key" {
 
 # NOTE: I know, it would be nice to have a per-workload permissions model, but that requires an Enhanced-type OKE cluster, and that's not cheap!
 # INFO: Useful reference: https://docs.oracle.com/en-us/iaas/Content/Identity/policyreference/keypolicyreference.htm#Details_for_the_Vault_Service
-resource "oci_identity_policy" "allow_oke_workers_externalsecrets" {
+resource "oci_identity_policy" "allow_oke_workers_externalsecrets_vault_oke" {
   compartment_id = oci_identity_compartment.oke.id
 
-  name        = "allow_nodes_externalsecrets"
+  name        = "allow_nodes_externalsecrets_vault_oke"
   description = "Policy to allow nodes Compartment '${oci_identity_compartment.oke.name}' to use the ExternalSecrets encryption key and access secrets for read (sync) and write (create)"
   statements = [
     "Allow dynamic-group ${oci_identity_dynamic_group.all_oke_workers.name} to read secret-family in compartment id ${oci_identity_compartment.oke.id}",                                                                # INFO: Needed for secret read on a broader set of items

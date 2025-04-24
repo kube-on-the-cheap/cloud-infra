@@ -51,8 +51,21 @@ resource "oci_identity_policy" "objecstorage_allow_kms_access" {
   compartment_id = var.tenancy_ocid
 
   name        = "allow_object_storage_key_access"
-  description = "Policy to allow bucket Object Storage service to access KMS key ID used for bucket encryption"
+  description = "Policy to allow Object Storage service to access KMS key ID used for bucket encryption"
   statements = [
     "allow service objectstorage-${var.region} to use keys in compartment id ${oci_identity_compartment.object_storage.id} where target.key.id = '${oci_kms_key.object_storage_encription_key.id}'"
+  ]
+}
+
+resource "oci_identity_policy" "allow_oke_workers_externalsecrets_vault_object_storage" {
+  compartment_id = oci_identity_compartment.object_storage.id
+
+  name        = "allow_nodes_externalsecrets_vault_oke"
+  description = "Policy to allow OKE nodes in group '${var.oke_iam_dynamic_group_workers_name}' to use the ExternalSecrets encryption key and access secrets for read (sync) and write (create)"
+  statements = [
+    "Allow dynamic-group ${var.oke_iam_dynamic_group_workers_name} to read secret-family in compartment id ${oci_identity_compartment.object_storage.id}",                                                                     # INFO: Needed for secret read on a broader set of items
+    "Allow dynamic-group ${var.oke_iam_dynamic_group_workers_name} to use vaults in compartment id ${oci_identity_compartment.object_storage.id} where ALL {target.vault.id = '${oci_kms_vault.this.id}'}",                    # INFO: Needed for PushSecrets create privileges
+    "Allow dynamic-group ${var.oke_iam_dynamic_group_workers_name} to manage secrets in compartment id ${oci_identity_compartment.object_storage.id}",                                                                         # INFO: Needed for PushSecrets create privileges
+    "Allow dynamic-group ${var.oke_iam_dynamic_group_workers_name} to use keys in compartment id ${oci_identity_compartment.object_storage.id} where ALL {target.key.id = '${oci_kms_key.object_storage_encription_key.id}'}", # INFO: Needed for encrypt/decrypt operations
   ]
 }

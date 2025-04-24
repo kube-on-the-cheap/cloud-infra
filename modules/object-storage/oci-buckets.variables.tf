@@ -9,6 +9,7 @@ variable "oci_buckets" {
     auto_tiering : optional(string, "Disabled"),
     object_events_enabled : optional(bool, false),
     retention : optional(string),
+    lifecycle : optional(string),
     create_s3_access_key : optional(bool, false),
     store_s3_credentials_in_vault : optional(bool, true),
     grant_oke_workers_access : optional(bool, false)
@@ -34,6 +35,16 @@ variable "oci_buckets" {
   validation {
     condition     = alltrue([for bucket_params in values(var.oci_buckets) : contains(["InfrequentAccess", "Disabled"], bucket_params.auto_tiering)])
     error_message = "Auto-tiering for bucket objects. Can be 'Disabled' or 'InfrequentAccess'."
+  }
+  # INFO: I'm sorry for this monstrosity, but it's easier than the alternatives
+  validation {
+    condition = alltrue([
+      for bucket_params in values(var.oci_buckets) : (
+        length(try(split(",", bucket_params.lifecycle)[0], "")) > 0 &&
+        length(try(split(",", bucket_params.lifecycle)[1], "")) > 1
+      ) if bucket_params.lifecycle != null
+    ])
+    error_message = "If the lifecycle rule is not null, it should be composed by '<quantity><time duration>,<action>'. Space trimming and casing will be adjusted."
   }
 }
 
