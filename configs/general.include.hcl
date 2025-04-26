@@ -19,17 +19,20 @@ locals {
     region     = "europe-west3"
     project_id = local.project_details.short_form
   }
+  domain_name = "blacksd.tech"
 }
 
 inputs = {
   project_name       = local.project_details.name
   gcp_project_id     = local.gcp.project_id
   gcp_region         = local.gcp.region
-  grafana_cloud_slug = "blacksd"
   session_data_dir   = "${get_parent_terragrunt_dir()}/../bastion-sessions"
   ssh_nodes_key_path = ".ssh/nodes_key" # INFO: This is the path to the SSH key for the OKE worker nodes; it's created in the `oci-oke` module and consumed in the `oci-oke-bastion-session-workers` module
   proxy_port         = 8000
-  email_domain_name  = "oci.cloud.blacksd.tech"
+
+  domain_name          = local.domain_name
+  cloud_domain_name    = format("cloud.%s", local.domain_name)
+  email_subdomain_name = format("mail.cloud.%s", local.domain_name)
 }
 
 terraform_version_constraint  = "~> 1.10.0"

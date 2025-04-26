@@ -1,12 +1,12 @@
 
-variable "email_domain_name" {
+variable "email_subdomain_name" {
   type        = string
   description = "The email domain name."
 }
 
 resource "oci_email_email_domain" "this" {
   compartment_id = oci_identity_compartment.email.id
-  name           = var.email_domain_name
+  name           = var.email_subdomain_name
 
   # defined_tags = {"Operations.CostCenter"= "42"}
   description = "The email domain used to send transactional notification."
@@ -34,9 +34,15 @@ resource "tls_private_key" "dkim_key" {
   rsa_bits  = 2048
 }
 
+resource "random_string" "selector" {
+  length  = 6
+  special = false
+  upper   = false
+}
+
 resource "oci_email_dkim" "this" {
   email_domain_id = oci_email_email_domain.this.id
-  name            = "trnsct-202504"
+  name            = format("trnsct-%s", random_string.selector.result)
   description     = "Configuration for transactional email"
   private_key     = tls_private_key.dkim_key.private_key_pem
 }

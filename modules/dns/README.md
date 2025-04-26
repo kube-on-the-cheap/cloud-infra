@@ -35,7 +35,6 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 | [digitalocean_record.email_delegation](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/record) | resource |
 | [digitalocean_record.email_dkim](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/record) | resource |
 | [digitalocean_record.email_spf](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/record) | resource |
-| [digitalocean_record.grafana](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/record) | resource |
 | [oci_vault_secret.do_zone_mgmt](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/vault_secret) | resource |
 | [digitalocean_records.cloud_ns](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/data-sources/records) | data source |
 | [digitalocean_records.email_ns](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/data-sources/records) | data source |
@@ -45,22 +44,21 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cf_account_id"></a> [cf\_account\_id](#input\_cf\_account\_id) | The Cloudflare Account ID | `string` | n/a | yes |
+| <a name="input_cloud_domain_name"></a> [cloud\_domain\_name](#input\_cloud\_domain\_name) | The domain used to host cloud resources | `any` | n/a | yes |
 | <a name="input_do_token_zone_mgmt"></a> [do\_token\_zone\_mgmt](#input\_do\_token\_zone\_mgmt) | The DigitalOcean API token to use for the ExternalDNS provider | `string` | n/a | yes |
 | <a name="input_do_token_zone_mgmt_expiry_date"></a> [do\_token\_zone\_mgmt\_expiry\_date](#input\_do\_token\_zone\_mgmt\_expiry\_date) | The date the DigitalOcean API token expires, in RFC 3339 format (2017-11-22T01:00:00Z) | `string` | n/a | yes |
+| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The parent domain to delegate the subdomain to | `string` | n/a | yes |
 | <a name="input_email_dkim_cname"></a> [email\_dkim\_cname](#input\_email\_dkim\_cname) | The CNAME to configure to set up DKIM in the domain. | <pre>object({<br/>    selector = string<br/>    dst      = string<br/>  })</pre> | n/a | yes |
-| <a name="input_email_domain_name"></a> [email\_domain\_name](#input\_email\_domain\_name) | The email domain name. | `string` | n/a | yes |
 | <a name="input_email_spf_txt"></a> [email\_spf\_txt](#input\_email\_spf\_txt) | The TXT record to configure to set up SPF in the domain. | `any` | n/a | yes |
+| <a name="input_email_subdomain_name"></a> [email\_subdomain\_name](#input\_email\_subdomain\_name) | The email domain name. | `string` | n/a | yes |
 | <a name="input_externalsecrets_key_id"></a> [externalsecrets\_key\_id](#input\_externalsecrets\_key\_id) | The OCID of the OKE ExternalSecrets encryption key | `string` | n/a | yes |
 | <a name="input_externalsecrets_vault_id"></a> [externalsecrets\_vault\_id](#input\_externalsecrets\_vault\_id) | The OCID of the vault containing the OKE ExternalSecrets encryption key | `string` | n/a | yes |
-| <a name="input_grafana_cloud_slug"></a> [grafana\_cloud\_slug](#input\_grafana\_cloud\_slug) | Grafana Cloud slug used to create the corresponding Stack. | `string` | n/a | yes |
 | <a name="input_oke_compartment_id"></a> [oke\_compartment\_id](#input\_oke\_compartment\_id) | The OCID of the compartment to create the OKE resources in | `string` | n/a | yes |
-| <a name="input_parent_domain"></a> [parent\_domain](#input\_parent\_domain) | The parent domain to delegate the subdomain to | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | The DigitalOcean project name to create the domain in | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description | Value | Sensitive |
 |------|-------------|-------|:---------:|
-| <a name="output_cloud_domain_host_grafana"></a> [cloud\_domain\_host\_grafana](#output\_cloud\_domain\_host\_grafana) | Grafana Cloud custom domain's FQDN. | `"grafana.cloud.domain.com"` | no |
 | <a name="output_do_token"></a> [do\_token](#output\_do\_token) | n/a | <pre>{<br/>  "secret_key": "equinix-token",<br/>  "secret_name": "EquinixCloudZoneManagement"<br/>}</pre> | no |
 <!-- END_TF_DOCS -->

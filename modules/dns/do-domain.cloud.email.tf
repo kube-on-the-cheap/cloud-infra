@@ -1,4 +1,4 @@
-variable "email_domain_name" {
+variable "email_subdomain_name" {
   type        = string
   description = "The email domain name."
 }
@@ -6,7 +6,13 @@ variable "email_domain_name" {
 ## Domain creation and delegation
 
 resource "digitalocean_domain" "email" {
-  name = var.email_domain_name
+  name = var.email_subdomain_name
+  lifecycle {
+    precondition {
+      condition     = strcontains(var.email_subdomain_name, var.cloud_domain_name)
+      error_message = "The email domain must be part of the cloud domain."
+    }
+  }
 }
 
 data "digitalocean_records" "email_ns" {
@@ -22,7 +28,7 @@ resource "digitalocean_record" "email_delegation" {
 
   domain = digitalocean_domain.cloud.id
   type   = "NS"
-  name   = "oci" # FIXME: this sucks, should be a parameter
+  name   = trim(trimsuffix(var.email_subdomain_name, var.cloud_domain_name), ".")
   value  = format("%s.", data.digitalocean_records.email_ns.records[count.index].value)
 }
 
@@ -52,6 +58,6 @@ variable "email_dkim_cname" {
 resource "digitalocean_record" "email_dkim" {
   domain = digitalocean_domain.email.id
   type   = "CNAME"
-  name   = format("%s._domainkey.%s.", var.email_dkim_cname.selector, var.email_domain_name)
+  name   = format("%s._domainkey.%s.", var.email_dkim_cname.selector, var.email_subdomain_name)
   value  = var.email_dkim_cname.dst
 }

@@ -1,3 +1,8 @@
+variable "project_name" {
+  type        = string
+  description = "The DigitalOcean project name to create the domain in"
+}
+
 resource "digitalocean_project" "kotc" {
   name        = var.project_name
   description = "All resources for KOTC cluster on DigitalOcean"
