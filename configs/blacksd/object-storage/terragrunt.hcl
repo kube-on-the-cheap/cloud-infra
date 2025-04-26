@@ -13,7 +13,6 @@ dependency "oci-oke" {
 
 inputs = {
   # Grant access
-  oke_compartment_id                 = dependency.oci-oke.outputs.oke_compartment_ocid
   oke_iam_dynamic_group_workers_name = dependency.oci-oke.outputs.oke_iam_dynamic_group_workers_name
 
   # https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm#objectstorage

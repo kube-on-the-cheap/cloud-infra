@@ -29,11 +29,16 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 | [cloudflare_dns_record.cloud_delegation](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/dns_record) | resource |
 | [cloudflare_zone.parent_domain](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/zone) | resource |
 | [digitalocean_domain.cloud](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/domain) | resource |
+| [digitalocean_domain.email](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/domain) | resource |
 | [digitalocean_project.kotc](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/project) | resource |
 | [digitalocean_project_resources.kotc](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/project_resources) | resource |
+| [digitalocean_record.email_delegation](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/record) | resource |
+| [digitalocean_record.email_dkim](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/record) | resource |
+| [digitalocean_record.email_spf](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/record) | resource |
 | [digitalocean_record.grafana](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/record) | resource |
 | [oci_vault_secret.do_zone_mgmt](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/vault_secret) | resource |
 | [digitalocean_records.cloud_ns](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/data-sources/records) | data source |
+| [digitalocean_records.email_ns](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/data-sources/records) | data source |
 
 ## Inputs
 
@@ -42,6 +47,9 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 | <a name="input_cf_account_id"></a> [cf\_account\_id](#input\_cf\_account\_id) | The Cloudflare Account ID | `string` | n/a | yes |
 | <a name="input_do_token_zone_mgmt"></a> [do\_token\_zone\_mgmt](#input\_do\_token\_zone\_mgmt) | The DigitalOcean API token to use for the ExternalDNS provider | `string` | n/a | yes |
 | <a name="input_do_token_zone_mgmt_expiry_date"></a> [do\_token\_zone\_mgmt\_expiry\_date](#input\_do\_token\_zone\_mgmt\_expiry\_date) | The date the DigitalOcean API token expires, in RFC 3339 format (2017-11-22T01:00:00Z) | `string` | n/a | yes |
+| <a name="input_email_dkim_cname"></a> [email\_dkim\_cname](#input\_email\_dkim\_cname) | The CNAME to configure to set up DKIM in the domain. | <pre>object({<br/>    selector = string<br/>    dst      = string<br/>  })</pre> | n/a | yes |
+| <a name="input_email_domain_name"></a> [email\_domain\_name](#input\_email\_domain\_name) | The email domain name. | `string` | n/a | yes |
+| <a name="input_email_spf_txt"></a> [email\_spf\_txt](#input\_email\_spf\_txt) | The TXT record to configure to set up SPF in the domain. | `any` | n/a | yes |
 | <a name="input_externalsecrets_key_id"></a> [externalsecrets\_key\_id](#input\_externalsecrets\_key\_id) | The OCID of the OKE ExternalSecrets encryption key | `string` | n/a | yes |
 | <a name="input_externalsecrets_vault_id"></a> [externalsecrets\_vault\_id](#input\_externalsecrets\_vault\_id) | The OCID of the vault containing the OKE ExternalSecrets encryption key | `string` | n/a | yes |
 | <a name="input_grafana_cloud_slug"></a> [grafana\_cloud\_slug](#input\_grafana\_cloud\_slug) | Grafana Cloud slug used to create the corresponding Stack. | `string` | n/a | yes |
@@ -54,6 +62,5 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 | Name | Description | Value | Sensitive |
 |------|-------------|-------|:---------:|
 | <a name="output_cloud_domain_host_grafana"></a> [cloud\_domain\_host\_grafana](#output\_cloud\_domain\_host\_grafana) | Grafana Cloud custom domain's FQDN. | `"grafana.cloud.domain.com"` | no |
-| <a name="output_cloud_domain_ns"></a> [cloud\_domain\_ns](#output\_cloud\_domain\_ns) | Nameservers for the delegated zone. Add these records as NS type records in the parent domain to perform zone delegation. | <pre>[<br/>  "ns1.cloudflare.com",<br/>  "ns2.cloudflare.com",<br/>  "ns3.cloudflare.com"<br/>]</pre> | no |
 | <a name="output_do_token"></a> [do\_token](#output\_do\_token) | n/a | <pre>{<br/>  "secret_key": "equinix-token",<br/>  "secret_name": "EquinixCloudZoneManagement"<br/>}</pre> | no |
 <!-- END_TF_DOCS -->

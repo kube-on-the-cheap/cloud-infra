@@ -1,3 +1,8 @@
+variable "email_domain_name" {
+  type        = string
+  description = "The email domain name."
+}
+
 resource "oci_identity_user" "bucket_user" {
   for_each = { for bucket_name, bucket_params in var.oci_buckets : bucket_name => bucket_params if bucket_params.create_s3_access_key }
 
@@ -5,7 +10,7 @@ resource "oci_identity_user" "bucket_user" {
   description    = "Robot user to access bucket ${each.key} via S3 Compatibility APIs"
   name           = format("s3_user_%s", each.key)
 
-  email = "s3_user+${each.key}@internal.blacksd.tech"
+  email = format("s3_user+%s@%s", each.key, var.email_domain_name)
   # freeform_tags = { "IAM-UserInfo.UserType" = "robot" }
 }
 

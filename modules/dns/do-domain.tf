@@ -12,20 +12,6 @@ locals {
   subdomain = "cloud"
 }
 
-resource "digitalocean_project" "kotc" {
-  name        = var.project_name
-  description = "All resources for KOTC cluster on DigitalOcean"
-  purpose     = "DNS Management"
-  environment = "Production"
-}
-
-resource "digitalocean_project_resources" "kotc" {
-  project = digitalocean_project.kotc.id
-  resources = [
-    digitalocean_domain.cloud.urn
-  ]
-}
-
 resource "digitalocean_domain" "cloud" {
   name = "${local.subdomain}.${var.parent_domain}"
 }
@@ -51,11 +37,12 @@ resource "digitalocean_record" "grafana" {
   value  = "${var.grafana_cloud_slug}.grafana.net."
 }
 
-
-output "cloud_domain_ns" {
-  value       = [for r in data.digitalocean_records.cloud_ns.records : r.value]
-  description = "Nameservers for the delegated zone. Add these records as NS type records in the parent domain to perform zone delegation."
-}
+# INFO: not really required, since we do delegation with a resource
+#
+# output "cloud_domain_ns" {
+#   value       = [for r in data.digitalocean_records.cloud_ns.records : r.value]
+#   description = "Nameservers for the delegated zone. Add these records as NS type records in the parent domain to perform zone delegation."
+# }
 
 output "cloud_domain_host_grafana" {
   value       = digitalocean_record.grafana.fqdn

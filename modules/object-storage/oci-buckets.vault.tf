@@ -1,18 +1,3 @@
-# variable "oke_compartment_id" {
-#   description = "The OCID of the compartment to create the OKE resources in"
-#   type        = string
-# }
-
-# variable "externalsecrets_key_id" {
-#   description = "The OCID of the OKE ExternalSecrets encryption key"
-#   type        = string
-# }
-
-# variable "externalsecrets_vault_id" {
-#   description = "The OCID of the vault containing the OKE ExternalSecrets encryption key"
-#   type        = string
-# }
-
 resource "oci_vault_secret" "s3_buckets_credentials" {
   for_each = { for bucket_name, bucket_params in var.oci_buckets : bucket_name => bucket_params if bucket_params.create_s3_access_key && bucket_params.store_s3_credentials_in_vault }
 
