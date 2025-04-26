@@ -12,8 +12,8 @@ dependency "oci-oke" {
 }
 
 dependency "email" {
-  config_path = "../email"
-  # mock_outputs = jsondecode(file("../oci-oke/output-values.mock.json"))
+  config_path  = "../email"
+  mock_outputs = jsondecode(file("../email/output-values.mock.json"))
 }
 
 inputs = {

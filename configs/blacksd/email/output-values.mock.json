@@ -9,8 +9,8 @@
       }
     ],
     "value": {
-      "dst": "selector-rand0m.mail.my.domain.dkim.fra1.oracleemaildelivery.com.",
-      "selector": "selector-rand0m"
+      "dst": "selector-r4nd0m.mail.my.domain.dkim.fra1.oracleemaildelivery.com.",
+      "selector": "selector-r4nd0m"
     }
   },
   "email_submission_credentials_user_sender": {
@@ -36,12 +36,12 @@
     ],
     "value": {
       "http": {
-        "access_key_id": "so1067ndyj7tgafqjm9zfvb4u37t82soj5n54ksl",
-        "secret_access_key": "uuCkK0ykA1mzp5V53lco1foXNpMlZA9s8rDIHN43yjuO"
+        "access_key_id": "9xxozhuvzmwfqfda7wm2jrr249zkr2j4g5if6e4c",
+        "secret_access_key": "HntyyRquEnZfBpJrmXiPPdTReIghOIaeZXEmYkjQ"
       },
       "smtp": {
-        "password": "LtZ6uiec8IWugiHAU4BLUQEc",
-        "username": "ocid1.user.oc1..aaaaaaaaeridcze3dng1wnxt449plh8rmomeno2p37y5axdgfd6t34r0xmdr@ocid1.tenancy.oc1..aaaaaaaancwey7z1qlog44w83om1271flrrw3gmls6qbn10x2473ofy6q8dj.9v.com"
+        "password": "ZyRXwLJoRQqdvMZPVWzChjjV",
+        "username": "ocid1.user.oc1..aaaaaaaa1phpgzxtti5db87fkzrv99iwnqc51vby4jyobuxt5jh7hqmvyivl@ocid1.tenancy.oc1..aaaaaaaamfyrv3ahgraq7g0euux372onabs51ckmmzdojl9lnvf4b2cyybrf.9v.com"
       }
     }
   },
@@ -70,6 +70,47 @@
       },
       "smtp": {
         "endpoint": "smtp.email.eu-frankfurt-1.oci.oraclecloud.com"
+      }
+    }
+  },
+  "email_vault": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "spec": [
+          "object",
+          {
+            "provider": [
+              "object",
+              {
+                "oracle": [
+                  "object",
+                  {
+                    "compartment": "string",
+                    "encryptionKey": "string",
+                    "principalType": "string",
+                    "region": "string",
+                    "vault": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "value": {
+      "spec": {
+        "provider": {
+          "oracle": {
+            "compartment": "ocid1.compartment.oc1..aaaaaaaanp72xpoq7fcpw8krcr4i2d2se5jspzgj2izvnfyvsdq43qmqfpy5",
+            "encryptionKey": "ocid1.key.oc1.eu-frankfurt-1.uqd6ladtctfiv.kgyzcv0nmueyl1lls31mwbuctvb2chreos5yaql9av7no1b1sscfcz1d7506",
+            "principalType": "InstancePrincipal",
+            "region": "eu-frankfurt-1",
+            "vault": "ocid1.vault.oc1.eu-frankfurt-1.czrs4579k16lh.f1344zj67j739cwo5ka4d3qibagj099s2fckletlhlct2en1leerfqxr1s8k"
+          }
+        }
       }
     }
   },

@@ -64,3 +64,21 @@ resource "oci_identity_policy" "allow_oke_workers_externalsecrets_vault_email" {
     "Allow dynamic-group ${var.oke_iam_dynamic_group_workers_name} to use keys in compartment id ${oci_identity_compartment.email.id} where ALL {target.key.id = '${oci_kms_key.email_encription_key.id}'}", # INFO: Needed for encrypt/decrypt operations
   ]
 }
+
+output "email_vault" {
+  # NOTE: not using yamlencode because it's atrocious
+  description = "Parameters to configure a [Cluster]SecretStore"
+  value = {
+    "spec" : {
+      "provider" : {
+        "oracle" : {
+          "vault" : oci_kms_vault.this.id
+          "region" : var.region
+          "compartment" : oci_identity_compartment.email.id
+          "encryptionKey" : oci_kms_key.email_encription_key.id
+          "principalType" : "InstancePrincipal"
+        }
+      }
+    }
+  }
+}

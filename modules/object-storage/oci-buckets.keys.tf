@@ -1,4 +1,4 @@
-variable "email_domain_name" {
+variable "email_subdomain_name" {
   type        = string
   description = "The email domain name."
 }
@@ -10,7 +10,7 @@ resource "oci_identity_user" "bucket_user" {
   description    = "Robot user to access bucket ${each.key} via S3 Compatibility APIs"
   name           = format("s3_user_%s", each.key)
 
-  email = format("s3_user+%s@%s", each.key, var.email_domain_name)
+  email = format("s3_user+%s@%s", each.key, var.email_subdomain_name)
   # freeform_tags = { "IAM-UserInfo.UserType" = "robot" }
 }
 
