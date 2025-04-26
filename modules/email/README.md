@@ -7,21 +7,27 @@ This module configures email delivery for Oracle Cloud Infrastructure.
 
 It builds a domain for delivery, creates the necessary user and permissions to enable email submission using APIs and SMTP and stores credentials in Oracle Vault.
 
+## SMTP test
+
 ```bash
-SMTP_SERVER=$(terragrunt output -json | jq -r '.email_submission_endpoints.value.smtp')
-SMTP_USERNAME=$(terragrunt output -json | jq -r '.smtp_credentials.value.mailer.username')
-SMTP_PASSWORD=$(terragrunt output -json | jq -r '.smtp_credentials.value.mailer.password')
+SMTP_SERVER=$(terragrunt output -json | jq -r '.email_submission_endpoints.value.smtp.endpoint')
+SMTP_USERNAME=$(terragrunt output -json | jq -r '.email_submission_credentials_user_sender.value.username')
+SMTP_PASSWORD=$(terragrunt output -json | jq -r '.email_submission_credentials_user_sender.value.password')
 
-AUTHORIZED_SENDER="do-not-reply@oci.cloud.blacksd.tech"
+AUTHORIZED_SENDER="<authorized_sender>@mail.cloud.blacksd.tech"
 
-nix run nixpkgs#swaks -- --pipeline -tls --to 'valid-recipient@gmail.com' \
+nix run nixpkgs#swaks -- --pipeline -tls --to '<valid_recipient>@gmail.com' \
 --server ${SMTP_SERVER} --port 587 \
 --from ${AUTHORIZED_SENDER} \
 --auth-user ${SMTP_USERNAME} \
 --auth-password ${SMTP_PASSWORD} \
 --header 'Subject: Test Email from Oracle Cloud' \
---body 'Sample text'
+--body 'This is a test mail from Oracle Cloud.'
 ```
+
+## API test
+
+TODO: but will probably use [this API call](https://docs.public.oneportal.content.oci.oraclecloud.com/en-us/iaas/api/#/en/emaildeliverysubmission/20220926/EmailSubmittedResponse/SubmitEmail)
 
 ## Requirements
 
@@ -57,6 +63,7 @@ nix run nixpkgs#swaks -- --pipeline -tls --to 'valid-recipient@gmail.com' \
 | [oci_identity_user_group_membership.sender_group_membership](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/identity_user_group_membership) | resource |
 | [oci_kms_key.email_encription_key](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/kms_key) | resource |
 | [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/kms_vault) | resource |
+| [oci_vault_secret.sender_credentials](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/vault_secret) | resource |
 | [random_string.selector](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 | [tls_private_key.dkim_key](https://registry.terraform.io/providers/hashicorp/tls/4.1.0/docs/resources/private_key) | resource |
 | [oci_email_configuration.this](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/data-sources/email_configuration) | data source |
@@ -75,7 +82,7 @@ nix run nixpkgs#swaks -- --pipeline -tls --to 'valid-recipient@gmail.com' \
 | Name | Description | Value | Sensitive |
 |------|-------------|-------|:---------:|
 | <a name="output_dkim_cname"></a> [dkim\_cname](#output\_dkim\_cname) | The CNAME to configure to set up DKIM in the domain. | `"null"` | no |
+| <a name="output_email_submission_credentials_user_sender"></a> [email\_submission\_credentials\_user\_sender](#output\_email\_submission\_credentials\_user\_sender) | Credentials to use for submitting emails with user 'sender'. | `"null"` | no |
 | <a name="output_email_submission_endpoints"></a> [email\_submission\_endpoints](#output\_email\_submission\_endpoints) | The addresses where to send emails. | `"null"` | no |
-| <a name="output_smtp_credentials"></a> [smtp\_credentials](#output\_smtp\_credentials) | n/a | `"null"` | no |
 | <a name="output_spf_txt"></a> [spf\_txt](#output\_spf\_txt) | The TXT record to configure to set up SPF in the domain. | `"null"` | no |
 <!-- END_TF_DOCS -->

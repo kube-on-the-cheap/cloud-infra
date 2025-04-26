@@ -18,11 +18,19 @@ data "oci_email_configuration" "this" {
   compartment_id = var.tenancy_ocid
 }
 
+locals {
+  assembled_endpoints = {
+    "http" : {
+      "endpoint" : data.oci_email_configuration.this.http_submit_endpoint
+    },
+    "smtp" : {
+      "endpoint" : data.oci_email_configuration.this.smtp_submit_endpoint
+    }
+  }
+}
+
 # Outputs
 output "email_submission_endpoints" {
   description = "The addresses where to send emails."
-  value = {
-    "http" : data.oci_email_configuration.this.http_submit_endpoint,
-    "smtp" : data.oci_email_configuration.this.smtp_submit_endpoint
-  }
+  value       = local.assembled_endpoints
 }
