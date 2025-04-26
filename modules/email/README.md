@@ -81,8 +81,8 @@ TODO: but will probably use [this API call](https://docs.public.oneportal.conten
 
 | Name | Description | Value | Sensitive |
 |------|-------------|-------|:---------:|
-| <a name="output_dkim_cname"></a> [dkim\_cname](#output\_dkim\_cname) | The CNAME to configure to set up DKIM in the domain. | `"null"` | no |
-| <a name="output_email_submission_credentials_user_sender"></a> [email\_submission\_credentials\_user\_sender](#output\_email\_submission\_credentials\_user\_sender) | Credentials to use for submitting emails with user 'sender'. | `"null"` | no |
-| <a name="output_email_submission_endpoints"></a> [email\_submission\_endpoints](#output\_email\_submission\_endpoints) | The addresses where to send emails. | `"null"` | no |
-| <a name="output_spf_txt"></a> [spf\_txt](#output\_spf\_txt) | The TXT record to configure to set up SPF in the domain. | `"null"` | no |
+| <a name="output_dkim_cname"></a> [dkim\_cname](#output\_dkim\_cname) | The CNAME to configure to set up DKIM in the domain. | <pre>{<br/>  "dst": "selector-rand0m.mail.my.domain.dkim.fra1.oracleemaildelivery.com.",<br/>  "selector": "selector-rand0m"<br/>}</pre> | no |
+| <a name="output_email_submission_credentials_user_sender"></a> [email\_submission\_credentials\_user\_sender](#output\_email\_submission\_credentials\_user\_sender) | Credentials to use for submitting emails with user 'sender'. | `<sensitive>` | yes |
+| <a name="output_email_submission_endpoints"></a> [email\_submission\_endpoints](#output\_email\_submission\_endpoints) | The addresses where to send emails. | <pre>{<br/>  "http": {<br/>    "endpoint": "cell9.submit.email.eu-frankfurt-1.oci.oraclecloud.com"<br/>  },<br/>  "smtp": {<br/>    "endpoint": "smtp.email.eu-frankfurt-1.oci.oraclecloud.com"<br/>  }<br/>}</pre> | no |
+| <a name="output_spf_txt"></a> [spf\_txt](#output\_spf\_txt) | The TXT record to configure to set up SPF in the domain. | `"v=spf1 include:eu.rp.oracleemaildelivery.com ~all"` | no |
 <!-- END_TF_DOCS -->
