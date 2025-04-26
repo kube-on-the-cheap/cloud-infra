@@ -1,0 +1,122 @@
+{
+  "dkim_cname": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "dst": "string",
+        "selector": "string"
+      }
+    ],
+    "value": {
+      "dst": "selector-r4nd0m.mail.my.domain.dkim.fra1.oracleemaildelivery.com.",
+      "selector": "selector-r4nd0m"
+    }
+  },
+  "email_submission_credentials_user_sender": {
+    "sensitive": true,
+    "type": [
+      "object",
+      {
+        "http": [
+          "object",
+          {
+            "access_key_id": "string",
+            "secret_access_key": "string"
+          }
+        ],
+        "smtp": [
+          "object",
+          {
+            "password": "string",
+            "username": "string"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "http": {
+        "access_key_id": "9xxozhuvzmwfqfda7wm2jrr249zkr2j4g5if6e4c",
+        "secret_access_key": "HntyyRquEnZfBpJrmXiPPdTReIghOIaeZXEmYkjQ"
+      },
+      "smtp": {
+        "password": "ZyRXwLJoRQqdvMZPVWzChjjV",
+        "username": "ocid1.user.oc1..aaaaaaaa1phpgzxtti5db87fkzrv99iwnqc51vby4jyobuxt5jh7hqmvyivl@ocid1.tenancy.oc1..aaaaaaaamfyrv3ahgraq7g0euux372onabs51ckmmzdojl9lnvf4b2cyybrf.9v.com"
+      }
+    }
+  },
+  "email_submission_endpoints": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "http": [
+          "object",
+          {
+            "endpoint": "string"
+          }
+        ],
+        "smtp": [
+          "object",
+          {
+            "endpoint": "string"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "http": {
+        "endpoint": "cell9.submit.email.eu-frankfurt-1.oci.oraclecloud.com"
+      },
+      "smtp": {
+        "endpoint": "smtp.email.eu-frankfurt-1.oci.oraclecloud.com"
+      }
+    }
+  },
+  "email_vault": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "spec": [
+          "object",
+          {
+            "provider": [
+              "object",
+              {
+                "oracle": [
+                  "object",
+                  {
+                    "compartment": "string",
+                    "encryptionKey": "string",
+                    "principalType": "string",
+                    "region": "string",
+                    "vault": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "value": {
+      "spec": {
+        "provider": {
+          "oracle": {
+            "compartment": "ocid1.compartment.oc1..aaaaaaaanp72xpoq7fcpw8krcr4i2d2se5jspzgj2izvnfyvsdq43qmqfpy5",
+            "encryptionKey": "ocid1.key.oc1.eu-frankfurt-1.uqd6ladtctfiv.kgyzcv0nmueyl1lls31mwbuctvb2chreos5yaql9av7no1b1sscfcz1d7506",
+            "principalType": "InstancePrincipal",
+            "region": "eu-frankfurt-1",
+            "vault": "ocid1.vault.oc1.eu-frankfurt-1.czrs4579k16lh.f1344zj67j739cwo5ka4d3qibagj099s2fckletlhlct2en1leerfqxr1s8k"
+          }
+        }
+      }
+    }
+  },
+  "spf_txt": {
+    "sensitive": false,
+    "type": "string",
+    "value": "v=spf1 include:eu.rp.oracleemaildelivery.com ~all"
+  }
+}

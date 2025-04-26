@@ -40,6 +40,7 @@ This module is about creating Object Storage buckets, in Oracle Cloud and (futur
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_email_subdomain_name"></a> [email\_subdomain\_name](#input\_email\_subdomain\_name) | The email domain name. | `string` | n/a | yes |
 | <a name="input_oci_buckets"></a> [oci\_buckets](#input\_oci\_buckets) | A map of a buckets to create in Oracle Cloud. Bucket name is the key. | <pre>map(object({<br/>    # Standard, Archive<br/>    storage_tier : string,<br/>    # Disabled, Enabled, Suspended<br/>    versioning : string,<br/>    access_type : optional(string, "NoPublicAccess"),<br/>    auto_tiering : optional(string, "Disabled"),<br/>    object_events_enabled : optional(bool, false),<br/>    retention : optional(string),<br/>    lifecycle : optional(string),<br/>    create_s3_access_key : optional(bool, false),<br/>    store_s3_credentials_in_vault : optional(bool, true),<br/>    grant_oke_workers_access : optional(bool, false)<br/>  }))</pre> | n/a | yes |
 | <a name="input_oke_iam_dynamic_group_workers_name"></a> [oke\_iam\_dynamic\_group\_workers\_name](#input\_oke\_iam\_dynamic\_group\_workers\_name) | The OKE IAM dynamic group name for workers | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The OCI region name | `string` | n/a | yes |

@@ -11,9 +11,18 @@ dependency "oci-oke" {
   mock_outputs = jsondecode(file("../oci-oke/output-values.mock.json"))
 }
 
+dependency "email" {
+  config_path  = "../email"
+  mock_outputs = jsondecode(file("../email/output-values.mock.json"))
+}
+
 inputs = {
   # Zone details
   parent_domain = "blacksd.tech"
+
+  # Email
+  email_dkim_cname = dependency.email.outputs.dkim_cname
+  email_spf_txt    = dependency.email.outputs.spf_txt
 
   # Token used for DNZ zone management
   do_token_zone_mgmt             = lookup(yamldecode(sops_decrypt_file("do_token.sops.yaml")), "do_token")
