@@ -21,8 +21,12 @@ tasks:
     deps:
       - task: bastion-control-plane
     cmds:
+      - echo "** Running the proxy tunnel now..."
       - sync; sleep 7
       - "{{ .USER_WORKING_DIR }}/bastion-sessions/control-plane/open_bastion_proxy_session.sh"
+      - echo "   Please set your working directory to"
+      - echo "     {{ .USER_WORKING_DIR }}/bastion-sessions/control-plane"
+      - echo
 
   workers:
     desc: "Open an SSH session to one of the workers. Use the AD variable to specify the worker to connect to."
@@ -37,7 +41,7 @@ tasks:
         ignore_error: true
 
   bastion-*:
-    desc: "Create a bastion session to either the control plane or the workers"
+    # desc: "Create a bastion session to either the control plane or the workers"
     vars:
       BASTION_TYPE: "{{ index .MATCH 0 }}"
     requires:
@@ -47,4 +51,9 @@ tasks:
     dir: "{{ .USER_WORKING_DIR }}/configs/blacksd/oci-bastion-sessions/oke-{{ .BASTION_TYPE }}/"
     cmds:
       - terragrunt apply -auto-approve
-      - echo "Now you can set your working directory to {{ .USER_WORKING_DIR }}/{{ .BASTION_TYPE }} and start using the session. Please refer to the README.md file for more informations."
+      - echo '** Proxy session configured!'
+      - echo
+      - echo "   The SSH session to the proxy may be interrupted for inactivity. To resume it, run:"
+      - echo "     {{ .USER_WORKING_DIR }}/bastion-sessions/{{ .BASTION_TYPE }}/open_bastion_proxy_session*.sh"
+      - echo "   Please refer to the README.md file for more informations."
+      - echo
