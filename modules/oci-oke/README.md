@@ -11,7 +11,7 @@ TODO: explain the subnetting logic.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_oci"></a> [oci](#requirement\_oci) | 6.26.0 |
+| <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>7.27 |
 
 ## Providers
 
@@ -28,64 +28,64 @@ TODO: explain the subnetting logic.
 | [local_file.kubeconfig](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [local_file.nodes_pub_key](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [local_sensitive_file.nodes_pvt_key](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/sensitive_file) | resource |
-| [oci_bastion_bastion.control_plane](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/bastion_bastion) | resource |
-| [oci_bastion_bastion.nodes](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/bastion_bastion) | resource |
-| [oci_containerengine_cluster.freeloader](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/containerengine_cluster) | resource |
-| [oci_containerengine_node_pool.dishonoredcheques](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/containerengine_node_pool) | resource |
-| [oci_core_default_route_table.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_default_route_table) | resource |
-| [oci_core_default_security_list.vcn_oke](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_default_security_list) | resource |
-| [oci_core_internet_gateway.oke](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_internet_gateway) | resource |
-| [oci_core_nat_gateway.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_nat_gateway) | resource |
-| [oci_core_network_security_group.k8s_api_endpoint](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group) | resource |
-| [oci_core_network_security_group.lb](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group) | resource |
-| [oci_core_network_security_group.oke_workers](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group) | resource |
-| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_node_path_type_3](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_node_path_type_4](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_node_proxymux](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_nodes_apiserver](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_pods_apiserver](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_pods_proxymux](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.in_oke_workers_k8s_endpoint](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.in_oke_workers_nodes](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.in_oke_workers_path_type_3](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.in_oke_workers_path_type_4](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.in_oke_workers_pods](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_k8s_api_endpoint_node_path_type_3](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_k8s_api_endpoint_node_path_type_4](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_k8s_api_endpoint_oci_services](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_k8s_api_endpoint_pods](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_k8s_api_endpoint_workers](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_oke_workers_k8s_api_endpoint](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_oke_workers_k8s_api_proxymux](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_oke_workers_node_path_type_3](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_oke_workers_node_path_type_4](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_oke_workers_oci_services](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_oke_workers_pods](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_network_security_group_security_rule.out_oke_workers_workers](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_network_security_group_security_rule) | resource |
-| [oci_core_route_table.oke_public_lb_route_table](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_route_table) | resource |
-| [oci_core_security_list.additional_lb](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_security_list) | resource |
-| [oci_core_service_gateway.private_oci_access](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_service_gateway) | resource |
-| [oci_core_subnet.ad_lbs](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_subnet) | resource |
-| [oci_core_subnet.ad_nodes](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_subnet) | resource |
-| [oci_core_subnet.regional_control_plane](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_subnet) | resource |
-| [oci_core_subnet.regional_pods](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_subnet) | resource |
-| [oci_core_vcn.oke](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/core_vcn) | resource |
-| [oci_identity_compartment.oke](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_compartment) | resource |
-| [oci_identity_dynamic_group.all_oke_clusters](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_dynamic_group) | resource |
-| [oci_identity_dynamic_group.all_oke_workers](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_dynamic_group) | resource |
-| [oci_identity_policy.allow_lb_manage_nsg](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
-| [oci_identity_policy.allow_oke_mek](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
-| [oci_identity_policy.allow_oke_nek](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
-| [oci_identity_policy.allow_oke_nodes_update_self](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
-| [oci_identity_policy.allow_oke_workers_externalsecrets_vault_oke](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
-| [oci_kms_key.oke_external_secrets_key](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_key) | resource |
-| [oci_kms_key.oke_master_encryption_key](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_key) | resource |
-| [oci_kms_key.oke_node_encryption_key](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_key) | resource |
-| [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_vault) | resource |
+| [oci_bastion_bastion.control_plane](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/bastion_bastion) | resource |
+| [oci_bastion_bastion.nodes](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/bastion_bastion) | resource |
+| [oci_containerengine_cluster.freeloader](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/containerengine_cluster) | resource |
+| [oci_containerengine_node_pool.dishonoredcheques](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/containerengine_node_pool) | resource |
+| [oci_core_default_route_table.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_default_route_table) | resource |
+| [oci_core_default_security_list.vcn_oke](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_default_security_list) | resource |
+| [oci_core_internet_gateway.oke](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_internet_gateway) | resource |
+| [oci_core_nat_gateway.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_nat_gateway) | resource |
+| [oci_core_network_security_group.k8s_api_endpoint](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group) | resource |
+| [oci_core_network_security_group.lb](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group) | resource |
+| [oci_core_network_security_group.oke_workers](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group) | resource |
+| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_node_path_type_3](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_node_path_type_4](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_node_proxymux](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_nodes_apiserver](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_pods_apiserver](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.in_k8s_api_endpoint_pods_proxymux](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.in_oke_workers_k8s_endpoint](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.in_oke_workers_nodes](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.in_oke_workers_path_type_3](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.in_oke_workers_path_type_4](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.in_oke_workers_pods](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_k8s_api_endpoint_node_path_type_3](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_k8s_api_endpoint_node_path_type_4](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_k8s_api_endpoint_oci_services](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_k8s_api_endpoint_pods](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_k8s_api_endpoint_workers](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_oke_workers_k8s_api_endpoint](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_oke_workers_k8s_api_proxymux](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_oke_workers_node_path_type_3](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_oke_workers_node_path_type_4](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_oke_workers_oci_services](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_oke_workers_pods](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_network_security_group_security_rule.out_oke_workers_workers](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_network_security_group_security_rule) | resource |
+| [oci_core_route_table.oke_public_lb_route_table](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_route_table) | resource |
+| [oci_core_security_list.additional_lb](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_security_list) | resource |
+| [oci_core_service_gateway.private_oci_access](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_service_gateway) | resource |
+| [oci_core_subnet.ad_lbs](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_subnet) | resource |
+| [oci_core_subnet.ad_nodes](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_subnet) | resource |
+| [oci_core_subnet.regional_control_plane](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_subnet) | resource |
+| [oci_core_subnet.regional_pods](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_subnet) | resource |
+| [oci_core_vcn.oke](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_vcn) | resource |
+| [oci_identity_compartment.oke](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_compartment) | resource |
+| [oci_identity_dynamic_group.all_oke_clusters](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_dynamic_group) | resource |
+| [oci_identity_dynamic_group.all_oke_workers](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_dynamic_group) | resource |
+| [oci_identity_policy.allow_lb_manage_nsg](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.allow_oke_mek](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.allow_oke_nek](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.allow_oke_nodes_update_self](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.allow_oke_workers_externalsecrets_vault_oke](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_kms_key.oke_external_secrets_key](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/kms_key) | resource |
+| [oci_kms_key.oke_master_encryption_key](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/kms_key) | resource |
+| [oci_kms_key.oke_node_encryption_key](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/kms_key) | resource |
+| [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/kms_vault) | resource |
 | [tls_private_key.node_key](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
-| [oci_containerengine_cluster_kube_config.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/data-sources/containerengine_cluster_kube_config) | data source |
-| [oci_containerengine_node_pool_option.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/data-sources/containerengine_node_pool_option) | data source |
-| [oci_core_services.all_services](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/data-sources/core_services) | data source |
+| [oci_containerengine_cluster_kube_config.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/data-sources/containerengine_cluster_kube_config) | data source |
+| [oci_containerengine_node_pool_option.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/data-sources/containerengine_node_pool_option) | data source |
+| [oci_core_services.all_services](https://registry.terraform.io/providers/oracle/oci/latest/docs/data-sources/core_services) | data source |
 
 ## Inputs
 
