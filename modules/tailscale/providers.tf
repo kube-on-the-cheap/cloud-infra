@@ -6,7 +6,7 @@ terraform {
     }
     oci = {
       source  = "oracle/oci"
-      version = "~>6.26"
+      version = "~>7.27"
     }
   }
   backend "gcs" {}

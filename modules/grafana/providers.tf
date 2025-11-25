@@ -7,7 +7,7 @@ terraform {
     }
     oci = {
       source  = "oracle/oci"
-      version = "~>6.26"
+      version = "~>7.22"
     }
     dns = {
       source  = "hashicorp/dns"
