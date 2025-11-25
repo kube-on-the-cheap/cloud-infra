@@ -16,4 +16,4 @@ if [ "$?" -ne 0 ]; then
 fi
 %{~ endif }
 echo
-ssh %{ if ssh_node_key_path != "" ~} -i ${ssh_node_key_path} %{ endif ~} -o ProxyCommand="ssh %{ if ssh_session_key_path != "" ~} -i ${ssh_session_key_path} %{ endif ~} -W %h:%p -p 22 ${bastion_user_name}@host.bastion.${region}.oci.oraclecloud.com" -p 22 ${target_resource_operating_system_user_name}@${target_resource_private_ip_address}
+ssh %{ if ssh_node_key_path != "" ~} -i ${ssh_node_key_path} %{ endif ~} -o 'ControlPath=$HOME/.ssh/master-%C' -o IdentitiesOnly=yes -o IdentityAgent=none -o ProxyCommand="ssh %{ if ssh_session_key_path != "" ~} -i ${ssh_session_key_path} %{ endif ~} -W %h:%p -p 22 ${bastion_user_name}@host.bastion.${region}.oci.oraclecloud.com" -p 22 ${target_resource_operating_system_user_name}@${target_resource_private_ip_address}
