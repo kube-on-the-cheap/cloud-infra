@@ -10,11 +10,15 @@ variable "ssh_nodes_key_path" {
 
 # https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm#freetier_topic_Always_Free_Resources_Infrastructure
 locals {
+  nodepool_image_filter = {
+    version      = "Oracle-Linux-8.10"
+    architecture = "aarch64"
+  }
   oke_node_shape = "VM.Standard.A1.Flex"
   oke_node_images = [for i in data.oci_containerengine_node_pool_option.this.sources : i if(
     i.source_type == "IMAGE" &&
-    strcontains(i.source_name, "Oracle-Linux-8.10") &&
-    strcontains(i.source_name, "aarch64") &&
+    strcontains(i.source_name, local.nodepool_image_filter.version) &&
+    strcontains(i.source_name, local.nodepool_image_filter.architecture) &&
     strcontains(i.source_name, var.oke_k8s_workers_version)
   )]
 }
@@ -79,26 +83,13 @@ resource "oci_containerengine_node_pool" "dishonoredcheques" {
     areLegacyImdsEndpointsDisabled = "true"
     # https://blogs.oracle.com/cloud-infrastructure/post/container-engine-for-kubernetes-custom-worker-node-startup-script-support
     # https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingcustomcloudinitscripts.htm
-    user_data = base64encode(<<-EOT
-#!/bin/bash
-# Update the instance config to enable the Bastion plugin
-dnf install --assumeyes python36-oci-cli
-echo '{"areAllPluginsDisabled":false,"isManagementDisabled":false,"isMonitoringDisabled":false,"pluginsConfig":[{"desiredState":"ENABLED","name":"Bastion"}]}' > ./agent_config.json
-export OCI_CLI_AUTH=instance_principal
-oci compute instance update --instance-id $(oci-instanceid) --agent-config file://./agent_config.json --force
-# Enable persistent journal logging
-mkdir -p /var/log/journal
-# Continue with the OKE provisioning
-curl --fail -H "Authorization: Bearer Oracle" -L0 http://169.254.169.254/opc/v2/instance/metadata/oke_init_script | base64 --decode >/var/run/oke-init.sh
-bash /var/run/oke-init.sh
-EOT
-    )
+    user_data = filebase64("${path.module}/scripts/user_data.sh")
   }
   node_eviction_node_pool_settings {
     eviction_grace_duration = "PT1H"
   }
   node_pool_cycling_details {
-    is_node_cycling_enabled = false
+    is_node_cycling_enabled = false # INFO: it would be cool, but this is an enhanced cluster feature
     maximum_surge           = 0
     maximum_unavailable     = 2
   }
@@ -110,7 +101,8 @@ EOT
   node_source_details {
     image_id                = local.oke_node_images[0].image_id
     source_type             = "IMAGE"
-    boot_volume_size_in_gbs = 50 # NOTE: Free Tier gives 200 GB of volume storage, so we can use the 50 GB minimum for boot volume and the rest with the provisioned `oci-bv` StorageClass. https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm#blockvolume
+    boot_volume_size_in_gbs = 100 # NOTE: Free Tier gives 200 GB of volume storage, so we can use the 50 GB minimum for boot volume
+    # NOPE! The rest cannot be provisioned with the `oci-bv` StorageClass because the free tier includes two volumes in total https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm#blockvolume
   }
   ssh_public_key = tls_private_key.node_key.public_key_openssh
 
