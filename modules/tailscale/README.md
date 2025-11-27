@@ -13,7 +13,7 @@ Unfortunately the Tailscale provider is pretty slim in functionalities offered, 
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>6.26 |
+| <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>7.27 |
 | <a name="requirement_tailscale"></a> [tailscale](#requirement\_tailscale) | ~>0.18 |
 
 ## Providers

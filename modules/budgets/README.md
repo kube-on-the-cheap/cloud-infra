@@ -10,7 +10,7 @@ It also maintains users and procedures to integrate [Vantage](https://vantage.sh
 | Name | Version |
 |------|---------|
 | <a name="requirement_google"></a> [google](#requirement\_google) | 6.21.0 |
-| <a name="requirement_oci"></a> [oci](#requirement\_oci) | 6.23.0 |
+| <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>7.27 |
 
 ## Providers
 
@@ -27,13 +27,13 @@ It also maintains users and procedures to integrate [Vantage](https://vantage.sh
 | [google_billing_budget.zero_cost](https://registry.terraform.io/providers/hashicorp/google/6.21.0/docs/resources/billing_budget) | resource |
 | [google_monitoring_notification_channel.email](https://registry.terraform.io/providers/hashicorp/google/6.21.0/docs/resources/monitoring_notification_channel) | resource |
 | [google_project_service.budget_services](https://registry.terraform.io/providers/hashicorp/google/6.21.0/docs/resources/project_service) | resource |
-| [oci_budget_alert_rule.scream_bloody_gore](https://registry.terraform.io/providers/oracle/oci/6.23.0/docs/resources/budget_alert_rule) | resource |
-| [oci_budget_budget.zero_spend](https://registry.terraform.io/providers/oracle/oci/6.23.0/docs/resources/budget_budget) | resource |
-| [oci_identity_api_key.vantage](https://registry.terraform.io/providers/oracle/oci/6.23.0/docs/resources/identity_api_key) | resource |
-| [oci_identity_group.vantage](https://registry.terraform.io/providers/oracle/oci/6.23.0/docs/resources/identity_group) | resource |
-| [oci_identity_policy.vantage](https://registry.terraform.io/providers/oracle/oci/6.23.0/docs/resources/identity_policy) | resource |
-| [oci_identity_user.vantage](https://registry.terraform.io/providers/oracle/oci/6.23.0/docs/resources/identity_user) | resource |
-| [oci_identity_user_group_membership.vantage](https://registry.terraform.io/providers/oracle/oci/6.23.0/docs/resources/identity_user_group_membership) | resource |
+| [oci_budget_alert_rule.scream_bloody_gore](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/budget_alert_rule) | resource |
+| [oci_budget_budget.zero_spend](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/budget_budget) | resource |
+| [oci_identity_api_key.vantage](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_api_key) | resource |
+| [oci_identity_group.vantage](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_group) | resource |
+| [oci_identity_policy.vantage](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_user.vantage](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_user) | resource |
+| [oci_identity_user_group_membership.vantage](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_user_group_membership) | resource |
 | [google_billing_account.this](https://registry.terraform.io/providers/hashicorp/google/6.21.0/docs/data-sources/billing_account) | data source |
 | [google_project.this](https://registry.terraform.io/providers/hashicorp/google/6.21.0/docs/data-sources/project) | data source |
 

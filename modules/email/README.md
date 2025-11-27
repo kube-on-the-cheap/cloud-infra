@@ -33,7 +33,7 @@ TODO: but will probably use [this API call](https://docs.public.oneportal.conten
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_oci"></a> [oci](#requirement\_oci) | 6.35.0 |
+| <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>7.27 |
 | <a name="requirement_tls"></a> [tls](#requirement\_tls) | 4.1.0 |
 
 ## Providers
@@ -48,25 +48,25 @@ TODO: but will probably use [this API call](https://docs.public.oneportal.conten
 
 | Name | Type |
 |------|------|
-| [oci_email_dkim.this](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/email_dkim) | resource |
-| [oci_email_email_domain.this](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/email_email_domain) | resource |
-| [oci_email_sender.do_not_reply](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/email_sender) | resource |
-| [oci_email_sender.notifications](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/email_sender) | resource |
-| [oci_identity_compartment.email](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/identity_compartment) | resource |
-| [oci_identity_customer_secret_key.sender_secret_key](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/identity_customer_secret_key) | resource |
-| [oci_identity_group.sender_group](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/identity_group) | resource |
-| [oci_identity_policy.allow_email_tenancy](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/identity_policy) | resource |
-| [oci_identity_policy.allow_oke_workers_externalsecrets_vault_email](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/identity_policy) | resource |
-| [oci_identity_policy.allow_sender_smtp](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/identity_policy) | resource |
-| [oci_identity_smtp_credential.sender_smtp_credential](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/identity_smtp_credential) | resource |
-| [oci_identity_user.sender](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/identity_user) | resource |
-| [oci_identity_user_group_membership.sender_group_membership](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/identity_user_group_membership) | resource |
-| [oci_kms_key.email_encription_key](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/kms_key) | resource |
-| [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/kms_vault) | resource |
-| [oci_vault_secret.sender_credentials](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/resources/vault_secret) | resource |
+| [oci_email_dkim.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/email_dkim) | resource |
+| [oci_email_email_domain.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/email_email_domain) | resource |
+| [oci_email_sender.do_not_reply](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/email_sender) | resource |
+| [oci_email_sender.notifications](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/email_sender) | resource |
+| [oci_identity_compartment.email](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_compartment) | resource |
+| [oci_identity_customer_secret_key.sender_secret_key](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_customer_secret_key) | resource |
+| [oci_identity_group.sender_group](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_group) | resource |
+| [oci_identity_policy.allow_email_tenancy](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.allow_oke_workers_externalsecrets_vault_email](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.allow_sender_smtp](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_smtp_credential.sender_smtp_credential](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_smtp_credential) | resource |
+| [oci_identity_user.sender](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_user) | resource |
+| [oci_identity_user_group_membership.sender_group_membership](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_user_group_membership) | resource |
+| [oci_kms_key.email_encription_key](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/kms_key) | resource |
+| [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/kms_vault) | resource |
+| [oci_vault_secret.sender_credentials](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/vault_secret) | resource |
 | [random_string.selector](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 | [tls_private_key.dkim_key](https://registry.terraform.io/providers/hashicorp/tls/4.1.0/docs/resources/private_key) | resource |
-| [oci_email_configuration.this](https://registry.terraform.io/providers/oracle/oci/6.35.0/docs/data-sources/email_configuration) | data source |
+| [oci_email_configuration.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/data-sources/email_configuration) | data source |
 
 ## Inputs
 

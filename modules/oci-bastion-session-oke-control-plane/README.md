@@ -11,7 +11,7 @@ TODO: detail the SOCKS method
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_oci"></a> [oci](#requirement\_oci) | 6.23.0 |
+| <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>7.27 |
 
 ## Providers
 
@@ -31,7 +31,7 @@ TODO: detail the SOCKS method
 | [local_file.session_env_vars](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [local_file.session_script](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [local_sensitive_file.pvt_session_key](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/sensitive_file) | resource |
-| [oci_bastion_session.oke_control_plane_access](https://registry.terraform.io/providers/oracle/oci/6.23.0/docs/resources/bastion_session) | resource |
+| [oci_bastion_session.oke_control_plane_access](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/bastion_session) | resource |
 | [time_rotating.session_expire](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/rotating) | resource |
 | [tls_private_key.session_key](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
 

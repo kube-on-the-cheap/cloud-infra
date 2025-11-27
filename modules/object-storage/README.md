@@ -9,7 +9,7 @@ This module is about creating Object Storage buckets, in Oracle Cloud and (futur
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_oci"></a> [oci](#requirement\_oci) | 6.26.0 |
+| <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>7.27 |
 
 ## Providers
 
@@ -21,20 +21,20 @@ This module is about creating Object Storage buckets, in Oracle Cloud and (futur
 
 | Name | Type |
 |------|------|
-| [oci_identity_compartment.object_storage](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_compartment) | resource |
-| [oci_identity_customer_secret_key.bucket_secret_key](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_customer_secret_key) | resource |
-| [oci_identity_policy.allow_oke_workers_buckets](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
-| [oci_identity_policy.allow_oke_workers_externalsecrets_vault_object_storage](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
-| [oci_identity_policy.allow_user_bucket_access](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
-| [oci_identity_policy.objecstorage_allow_kms_access](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
-| [oci_identity_policy.objecstorage_allow_lifecycle_rules](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_policy) | resource |
-| [oci_identity_user.bucket_user](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/identity_user) | resource |
-| [oci_kms_key.object_storage_encription_key](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_key) | resource |
-| [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/kms_vault) | resource |
-| [oci_objectstorage_bucket.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/objectstorage_bucket) | resource |
-| [oci_objectstorage_object_lifecycle_policy.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/objectstorage_object_lifecycle_policy) | resource |
-| [oci_vault_secret.s3_buckets_credentials](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/resources/vault_secret) | resource |
-| [oci_objectstorage_namespace.this](https://registry.terraform.io/providers/oracle/oci/6.26.0/docs/data-sources/objectstorage_namespace) | data source |
+| [oci_identity_compartment.object_storage](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_compartment) | resource |
+| [oci_identity_customer_secret_key.bucket_secret_key](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_customer_secret_key) | resource |
+| [oci_identity_policy.allow_oke_workers_buckets](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.allow_oke_workers_externalsecrets_vault_object_storage](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.allow_user_bucket_access](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.objecstorage_allow_kms_access](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_policy.objecstorage_allow_lifecycle_rules](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_policy) | resource |
+| [oci_identity_user.bucket_user](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/identity_user) | resource |
+| [oci_kms_key.object_storage_encription_key](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/kms_key) | resource |
+| [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/kms_vault) | resource |
+| [oci_objectstorage_bucket.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/objectstorage_bucket) | resource |
+| [oci_objectstorage_object_lifecycle_policy.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/objectstorage_object_lifecycle_policy) | resource |
+| [oci_vault_secret.s3_buckets_credentials](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/vault_secret) | resource |
+| [oci_objectstorage_namespace.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/data-sources/objectstorage_namespace) | data source |
 
 ## Inputs
 

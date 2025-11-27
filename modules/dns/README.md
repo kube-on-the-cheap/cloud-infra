@@ -11,7 +11,7 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 |------|---------|
 | <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | ~>5.1 |
 | <a name="requirement_digitalocean"></a> [digitalocean](#requirement\_digitalocean) | ~>2.49 |
-| <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>6.26 |
+| <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>7.27 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | ~>0.13 |
 
 ## Providers

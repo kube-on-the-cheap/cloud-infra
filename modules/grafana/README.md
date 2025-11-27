@@ -22,7 +22,7 @@ You can choose to limit the execution to a subset of IP address.
 |------|---------|
 | <a name="requirement_dns"></a> [dns](#requirement\_dns) | 3.4.2 |
 | <a name="requirement_grafana"></a> [grafana](#requirement\_grafana) | ~>3.22 |
-| <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>6.26 |
+| <a name="requirement_oci"></a> [oci](#requirement\_oci) | ~>7.22 |
 
 ## Providers
 
