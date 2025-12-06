@@ -24,5 +24,12 @@ inputs = {
       lifecycle            = "60 days, delete"
       create_s3_access_key = true
     }
+    "pgauthentik" = {
+      storage_tier         = "Standard"
+      versioning           = "Disabled"
+      auto_tiering         = "InfrequentAccess"
+      lifecycle            = "90 days, delete"
+      create_s3_access_key = true
+    }
   }
 }
