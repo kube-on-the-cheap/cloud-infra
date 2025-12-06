@@ -13,34 +13,38 @@ variable "externalsecrets_vault_id" {
   type        = string
 }
 
-variable "tailscale_oauth_client_id" {
-  description = "The Tailscale OAuth Application ID"
+variable "oauth_client_name" {
+  description = "Description for the Tailscale OAuth client"
   type        = string
-  sensitive   = true
-
-  validation {
-    condition     = length(var.tailscale_oauth_client_id) > 0
-    error_message = "The OAuth Application ID needs to be not empty."
-  }
 }
 
-variable "tailscale_oauth_client_secret" {
-  description = "The Tailscale OAuth Application secret"
-  type        = string
-  sensitive   = true
-
-  validation {
-    condition     = length(var.tailscale_oauth_client_secret) > 0
-    error_message = "The OAuth Application secret needs to be not empty."
-  }
+locals {
+  oauth_client_scopes = ["devices:core", "auth_keys", "services"]
 }
 
-# TODO: check it's a valid client/secret with
-# data "tailscale_users" "all-users" {}
+variable "oauth_client_tags" {
+  description = "Tags that the OAuth client can assign to devices"
+  type        = list(string)
+}
 
-# resource "time_rotating" "two_years" {
-#   rotation_years = 2
-# }
+resource "tailscale_oauth_client" "this" {
+  description = "OAuth client for ${var.oauth_client_name}"
+  scopes      = local.oauth_client_scopes
+  tags        = var.oauth_client_tags
+
+  depends_on = [tailscale_acl.this]
+}
+
+# INFO: !! UGLY WORKAROUND !! OCI doesn't allow specifying 'name' when updating existing secrets
+data "oci_vault_secrets" "existing" {
+  compartment_id = var.oke_compartment_id
+  vault_id       = var.externalsecrets_vault_id
+  name           = "TailscaleOAuth"
+}
+
+locals {
+  secret_exists = length(data.oci_vault_secrets.existing.secrets) > 0
+}
 
 resource "oci_vault_secret" "tailscale_oauth" {
   compartment_id = var.oke_compartment_id
@@ -50,14 +54,18 @@ resource "oci_vault_secret" "tailscale_oauth" {
   secret_name = "TailscaleOAuth"
   description = "The Tailscale OAuth id and secret"
 
-  # freeform_tags = {"Department"= "Finance"}
+  freeform_tags = {
+    "blacksd_tech/repo" = "github.com/onprem-infra"
+  }
+
   secret_content {
     content_type = "BASE64"
     content = base64encode(jsonencode({
-      clientId     = var.tailscale_oauth_client_id
-      clientSecret = var.tailscale_oauth_client_secret
+      clientId     = tailscale_oauth_client.this.id
+      clientSecret = tailscale_oauth_client.this.key
     }))
-    name  = "tailscale_oauth"
+    # INFO: !! UGLY WORKAROUND !! OCI doesn't allow specifying 'name' when updating existing secrets
+    name  = local.secret_exists ? null : "tailscale_oauth"
     stage = "CURRENT" # INFO: can be CURRENT or PENDING
   }
 

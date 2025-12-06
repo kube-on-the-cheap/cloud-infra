@@ -18,5 +18,7 @@ inputs = merge(
     oke_compartment_id       = dependency.oci-oke.outputs.oke_compartment_ocid
     externalsecrets_key_id   = dependency.oci-oke.outputs.oke_external_secrets_key_ocid
     externalsecrets_vault_id = dependency.oci-oke.outputs.oke_vault_ocid
+    oauth_client_name        = "freeloader"
+    oauth_client_tags        = ["tag:k8s-operator", "tag:cloud"]
   }
 )
