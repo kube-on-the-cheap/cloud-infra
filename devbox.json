@@ -6,7 +6,6 @@
     "gitleaks@8.24.0",
     "jc@1.25.4",
     "jq@1.7.1",
-    "k9s@0.32.7",
     "kubectl@1.30.2",
     "lychee@0.18.1",
     "oci-cli@3.14.0",
@@ -20,7 +19,8 @@
     "terragrunt@0.71.2",
     "trivy@0.59.1",
     "doctl@1.122.0",
-    "go-task@3.41.0"
+    "go-task@3.41.0",
+    "k9s@0.50"
   ],
   "shell": {
     "init_hook": [
