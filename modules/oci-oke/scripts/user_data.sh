@@ -19,6 +19,12 @@ oci compute instance update --instance-id "$(oci-instanceid)" --agent-config fil
 # Enable persistent journal logging
 mkdir -p /var/log/journal
 
+# Expand the disk
+growpart /dev/oracleoci/oraclevda 3
+pvresize /dev/oracleoci/oraclevda3
+lvextend -l +100%FREE /dev/ocivolume/root
+xfs_growfs /
+
 # Continue with the OKE provisioning
 curl --fail -H "Authorization: Bearer Oracle" -L0 http://169.254.169.254/opc/v2/instance/metadata/oke_init_script | base64 --decode >/var/run/oke-init.sh
 bash /var/run/oke-init.sh
