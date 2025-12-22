@@ -3,15 +3,12 @@ variable "project_name" {
   description = "The DigitalOcean project name to create the domain in"
 }
 
-resource "digitalocean_project" "kotc" {
-  name        = var.project_name
-  description = "All resources for KOTC cluster on DigitalOcean"
-  purpose     = "DNS Management"
-  environment = "Production"
+data "digitalocean_project" "kotc" {
+  name = var.project_name
 }
 
 resource "digitalocean_project_resources" "kotc" {
-  project = digitalocean_project.kotc.id
+  project = data.digitalocean_project.kotc.id
   resources = [
     digitalocean_domain.cloud.urn,
     digitalocean_domain.email.urn
