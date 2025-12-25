@@ -12,7 +12,6 @@
     "pre-commit@4.0.1",
     "python312Packages.ruamel-yaml@latest",
     "shellcheck@0.10.0",
-    "sops@3.9.3",
     "terraform-docs@0.19.0",
     "terraform-ls@0.36.4",
     "terraform@1.10.2",
@@ -20,7 +19,8 @@
     "trivy@0.59.1",
     "doctl@1.122.0",
     "go-task@3.41.0",
-    "k9s@0.50"
+    "k9s@0.50",
+    "sops@latest"
   ],
   "shell": {
     "init_hook": [

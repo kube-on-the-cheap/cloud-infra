@@ -28,7 +28,8 @@ resource "helm_release" "flux_instance" {
   namespace  = "flux-system"
   repository = "oci://ghcr.io/controlplaneio-fluxcd/charts"
 
-  chart = "flux-instance"
+  chart   = "flux-instance"
+  version = var.flux_operator_version
 
   depends_on = [
     helm_release.flux_operator

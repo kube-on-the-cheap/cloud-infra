@@ -1,3 +1,7 @@
+variable "domain_name" {
+  description = "The parent OCI domain name"
+}
+
 variable "cloud_domain_name" {
   description = "The domain used to host cloud resources"
 }
