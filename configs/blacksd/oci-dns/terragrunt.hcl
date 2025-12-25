@@ -18,11 +18,6 @@ inputs = {
   # DigitalOcean project
   project_name = "Kube, on the cheap"
 
-  # Cloud domain
-  # cloud_domain_name = "cloud.blacksd.tech"
-
-  # Email domain
-  # email_subdomain_name = "email.cloud.blacksd.tech"
   email_dkim_cname = dependency.email.outputs.dkim_cname
   email_spf_txt    = dependency.email.outputs.spf_txt
 }
