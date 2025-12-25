@@ -1,3 +1,8 @@
+variable "flux_operator_version" {
+  type        = string
+  description = "The Flux Operator version to install"
+}
+
 resource "helm_release" "flux_operator" {
   name       = "flux-operator"
   namespace  = "flux-system"
@@ -6,6 +11,7 @@ resource "helm_release" "flux_operator" {
   chart            = "flux-operator"
   create_namespace = true
   wait             = true
+  version          = var.flux_operator_version
 
   lifecycle {
     precondition {
