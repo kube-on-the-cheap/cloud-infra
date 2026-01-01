@@ -20,17 +20,23 @@ oci compute instance update --instance-id "$(oci-instanceid)" --agent-config fil
 mkdir -p {/var/log/journal,/etc/systemd/journald.conf.d}
 cat > /etc/systemd/journald.conf.d/10-disk-usage.conf <<EOF
 [Journal]
-SystemMaxUse=5G
-SystemKeepFree=10G
+SystemMaxUse=3G
+SystemKeepFree=2G
 MaxRetentionSec=7day
 MaxFileSec=1day
 EOF
 systemctl restart systemd-journald
 
-# Expand the disk
+# LVM thin provisioning
+echo "dm_thin_pool" >> /etc/modules-load.d/lvm-thin.conf
+modprobe dm_thin_pool
+
+# Expand the disk partition and PV
 growpart /dev/oracleoci/oraclevda 3
 pvresize /dev/oracleoci/oraclevda3
-lvextend -l +100%FREE /dev/ocivolume/root
+
+# Extend root to 45GB total, leaving remaining space for OpenEBS LVM PVs
+lvextend -L 45G /dev/ocivolume/root
 xfs_growfs /
 
 # Continue with the OKE provisioning

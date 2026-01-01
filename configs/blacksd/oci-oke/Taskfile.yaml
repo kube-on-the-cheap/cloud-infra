@@ -1,0 +1,35 @@
+# https://taskfile.dev
+
+version: "3"
+
+silent: true
+
+tasks:
+  default:
+    cmds:
+      - task -l
+
+  list-nodes:
+    desc: List nodes in the OKE node pool (ID, AZ, IP)
+    vars:
+      NODE_POOL_OCID:
+        sh: terragrunt output -raw oke_node_pool_ocid
+    cmds:
+      - |
+        oci ce node-pool get --node-pool-id {{.NODE_POOL_OCID}} \
+          --query 'data.nodes[].{id:id, az:"availability-domain", ip:"private-ip", state:"lifecycle-state"}' \
+          --output table
+
+  delete-node:
+    desc: Delete a node from the pool (replaced automatically)
+    requires:
+      vars: [NODE_ID]
+    vars:
+      NODE_POOL_OCID:
+        sh: terragrunt output -raw oke_node_pool_ocid
+    cmds:
+      - |
+        oci ce node-pool delete-node \
+          --node-pool-id {{.NODE_POOL_OCID}} \
+          --node-id {{.NODE_ID}} \
+          --is-decrement-size false
