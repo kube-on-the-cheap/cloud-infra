@@ -5,6 +5,12 @@ version: "3"
 includes:
   bastion-sessions:
     taskfile: bastion-sessions/taskfile.yaml
+  oci-oke:
+    taskfile: configs/blacksd/oci-oke/Taskfile.yaml
+    dir: configs/blacksd/oci-oke
+  object-storage:
+    taskfile: configs/blacksd/object-storage/Taskfile.yaml
+    dir: configs/blacksd/object-storage
   # terragrunt:
   #   taskfile: tasks/Terragrunt.taskfile.yaml
   # dependencies:
