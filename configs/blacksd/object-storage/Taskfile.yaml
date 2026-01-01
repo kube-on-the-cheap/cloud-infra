@@ -1,0 +1,54 @@
+# https://taskfile.dev
+
+version: "3"
+
+silent: true
+
+tasks:
+  default:
+    cmds:
+      - task -l
+
+  list-buckets:
+    desc: List all buckets in the compartment
+    vars:
+      COMPARTMENT_OCID:
+        sh: terragrunt output -raw object_storage_compartment_ocid
+    cmds:
+      - oci os bucket list --compartment-id {{.COMPARTMENT_OCID}} --query 'data[].name' --output table
+
+  abort-multipart-uploads:
+    desc: Abort all pending multipart uploads for a bucket
+    requires:
+      vars: [BUCKET]
+    cmds:
+      - |
+        echo "Aborting multipart uploads for bucket: {{.BUCKET}}"
+        oci os multipart list --bucket-name {{.BUCKET}} --query 'data[].{object:object, "upload-id":"upload-id"}' --output json | \
+          jq -r '.[] | "\(.object) \(."upload-id")"' | \
+          while read obj uid; do
+            echo "  Aborting: $obj"
+            oci os multipart abort --bucket-name {{.BUCKET}} --object-name "$obj" --upload-id "$uid" --force
+          done
+        echo "Done"
+
+  empty-bucket:
+    desc: Delete all objects and versions from a bucket
+    requires:
+      vars: [BUCKET]
+    cmds:
+      - echo "Deleting all objects from bucket {{.BUCKET}}..."
+      - oci os object bulk-delete --bucket-name {{.BUCKET}} --force || true
+      - echo "Deleting all object versions..."
+      - oci os object bulk-delete-versions --bucket-name {{.BUCKET}} --force || true
+      - echo "Done"
+
+  prepare-bucket-deletion:
+    desc: Abort uploads and empty bucket for deletion
+    requires:
+      vars: [BUCKET]
+    cmds:
+      - task: abort-multipart-uploads
+        vars: { BUCKET: "{{.BUCKET}}" }
+      - task: empty-bucket
+        vars: { BUCKET: "{{.BUCKET}}" }

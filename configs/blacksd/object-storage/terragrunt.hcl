@@ -24,7 +24,7 @@ inputs = {
       lifecycle            = "60 days, delete"
       create_s3_access_key = true
     }
-    "pgauthentik" = {
+    "pgzitadel" = {
       storage_tier         = "Standard"
       versioning           = "Disabled"
       auto_tiering         = "InfrequentAccess"
