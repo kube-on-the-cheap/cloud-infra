@@ -11,14 +11,21 @@ dependency "oci-oke" {
   mock_outputs = jsondecode(file("../oci-oke/output-values.mock.json"))
 }
 
-inputs = merge(
-  yamldecode(sops_decrypt_file("tailscale_oauth.sops.yaml")),
-  {
-    # Vault coordinates to store the Tailscale secrets
-    oke_compartment_id       = dependency.oci-oke.outputs.oke_compartment_ocid
-    externalsecrets_key_id   = dependency.oci-oke.outputs.oke_external_secrets_key_ocid
-    externalsecrets_vault_id = dependency.oci-oke.outputs.oke_vault_ocid
-    oauth_client_name        = "freeloader"
-    oauth_client_tags        = ["tag:k8s-operator", "tag:cloud"]
+inputs = {
+  oauth_clients = {
+    freeloader = {
+      tags              = ["tag:k8s-operator-freeloader", "tag:k8s-freeloader", "tag:k8s-exit-node-freeloader"]
+      store_in_vault    = true
+      vault_secret_name = "TailscaleOAuth" # backwards compatible with existing ExternalSecret
+    }
+    understairs = {
+      tags           = ["tag:k8s-operator-understairs", "tag:k8s-understairs", "tag:k8s-exit-node-understairs"]
+      store_in_vault = false
+    }
   }
-)
+  oci_vault_config = {
+    compartment_id = dependency.oci-oke.outputs.oke_compartment_ocid
+    key_id         = dependency.oci-oke.outputs.oke_external_secrets_key_ocid
+    vault_id       = dependency.oci-oke.outputs.oke_vault_ocid
+  }
+}

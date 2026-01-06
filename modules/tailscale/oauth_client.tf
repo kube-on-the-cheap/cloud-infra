@@ -1,86 +1,102 @@
-variable "oke_compartment_id" {
-  description = "The OCID of the compartment to create the OKE resources in"
-  type        = string
+variable "oauth_clients" {
+  description = "Map of OAuth clients to create"
+  type = map(object({
+    tags              = list(string)
+    store_in_vault    = optional(bool, false)
+    vault_secret_name = optional(string) # defaults to "TailscaleOAuth-{key}" if not set
+  }))
+  default = {}
 }
 
-variable "externalsecrets_key_id" {
-  description = "The OCID of the OKE ExternalSecrets encryption key"
-  type        = string
-}
-
-variable "externalsecrets_vault_id" {
-  description = "The OCID of the vault containing the OKE ExternalSecrets encryption key"
-  type        = string
-}
-
-variable "oauth_client_name" {
-  description = "Description for the Tailscale OAuth client"
-  type        = string
+# OCI Vault configuration (only required if any client needs vault storage)
+variable "oci_vault_config" {
+  description = "OCI Vault configuration for storing OAuth secrets"
+  type = object({
+    compartment_id = string
+    vault_id       = string
+    key_id         = string
+  })
+  default = null
 }
 
 locals {
-  oauth_client_scopes = ["devices:core", "auth_keys", "services"]
-}
-
-variable "oauth_client_tags" {
-  description = "Tags that the OAuth client can assign to devices"
-  type        = list(string)
+  oauth_client_scopes   = ["devices:core", "auth_keys", "services"]
+  clients_needing_vault = { for k, v in var.oauth_clients : k => v if v.store_in_vault }
+  vault_secret_names = {
+    for k, v in local.clients_needing_vault :
+    k => coalesce(v.vault_secret_name, "TailscaleOAuth-${k}")
+  }
 }
 
 resource "tailscale_oauth_client" "this" {
-  description = "OAuth client for ${var.oauth_client_name}"
+  for_each = var.oauth_clients
+
+  description = "OAuth client for ${each.key}"
   scopes      = local.oauth_client_scopes
-  tags        = var.oauth_client_tags
+  tags        = each.value.tags
 
   depends_on = [tailscale_acl.this]
 }
 
+# OCI Vault secrets (only for clients that need it)
 # INFO: !! UGLY WORKAROUND !! OCI doesn't allow specifying 'name' when updating existing secrets
 data "oci_vault_secrets" "existing" {
-  compartment_id = var.oke_compartment_id
-  vault_id       = var.externalsecrets_vault_id
-  name           = "TailscaleOAuth"
+  for_each = local.clients_needing_vault
+
+  compartment_id = var.oci_vault_config.compartment_id
+  vault_id       = var.oci_vault_config.vault_id
+  name           = local.vault_secret_names[each.key]
 }
 
 locals {
-  secret_exists = length(data.oci_vault_secrets.existing.secrets) > 0
+  secret_exists = {
+    for k, v in local.clients_needing_vault :
+    k => length(data.oci_vault_secrets.existing[k].secrets) > 0
+  }
 }
 
 resource "oci_vault_secret" "tailscale_oauth" {
-  compartment_id = var.oke_compartment_id
-  key_id         = var.externalsecrets_key_id
-  vault_id       = var.externalsecrets_vault_id
+  for_each = local.clients_needing_vault
 
-  secret_name = "TailscaleOAuth"
-  description = "The Tailscale OAuth id and secret"
+  compartment_id = var.oci_vault_config.compartment_id
+  key_id         = var.oci_vault_config.key_id
+  vault_id       = var.oci_vault_config.vault_id
+
+  secret_name = local.vault_secret_names[each.key]
+  description = "Tailscale OAuth credentials for ${each.key}"
 
   freeform_tags = {
-    "blacksd_tech/repo" = "github.com/onprem-infra"
+    "blacksd_tech/repo" = "github.com/cloud-infra"
   }
 
   secret_content {
     content_type = "BASE64"
     content = base64encode(jsonencode({
-      clientId     = tailscale_oauth_client.this.id
-      clientSecret = tailscale_oauth_client.this.key
+      client_id     = tailscale_oauth_client.this[each.key].id
+      client_secret = tailscale_oauth_client.this[each.key].key
     }))
     # INFO: !! UGLY WORKAROUND !! OCI doesn't allow specifying 'name' when updating existing secrets
-    name  = local.secret_exists ? null : "tailscale_oauth"
-    stage = "CURRENT" # INFO: can be CURRENT or PENDING
+    name  = local.secret_exists[each.key] ? null : "tailscale_oauth_${each.key}"
+    stage = "CURRENT"
   }
-
-  # NOTE: max expiry time is 1y in Oracle Vault
-  #
-  # secret_rules {
-  #   rule_type                                     = "SECRET_EXPIRY_RULE"
-  #   is_secret_content_retrieval_blocked_on_expiry = true
-  #   time_of_absolute_expiry                       = time_rotating.two_years.rotation_rfc3339
-  # }
 }
 
-output "tailscale_oauth" {
+output "oauth_clients" {
+  description = "OAuth client credentials (for clients not stored in vault)"
   value = {
-    secret_name = oci_vault_secret.tailscale_oauth.secret_name
-    secret_key  = one(oci_vault_secret.tailscale_oauth.secret_content.*.name)
+    for k, v in tailscale_oauth_client.this : k => {
+      client_id     = v.id
+      client_secret = v.key
+    } if !var.oauth_clients[k].store_in_vault
+  }
+  sensitive = true
+}
+
+output "vault_secrets" {
+  description = "OCI Vault secrets for OAuth clients"
+  value = {
+    for k, v in oci_vault_secret.tailscale_oauth : k => {
+      secret_name = v.secret_name
+    }
   }
 }

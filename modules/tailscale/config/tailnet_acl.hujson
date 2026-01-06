@@ -5,17 +5,32 @@
   // },
   // Define the tags which can be applied to devices and by which users.
   "tagOwners": {
-    "tag:k8s-operator": [
-      "autogroup:admin"
+    // Per-cluster operator tags (self-owned for OAuth client bootstrap)
+    "tag:k8s-operator-understairs": [
+      "tag:k8s-operator-understairs"
     ],
-    "tag:k8s": [
-      "tag:k8s-operator"
+    "tag:k8s-operator-freeloader": [
+      "tag:k8s-operator-freeloader"
     ],
-    "tag:onprem": [
-      "tag:k8s-operator"
+    // Per-cluster proxy tags (scoped to respective operator)
+    "tag:k8s-understairs": [
+      "tag:k8s-operator-understairs"
     ],
-    "tag:cloud": [
-      "tag:k8s-operator"
+    "tag:k8s-freeloader": [
+      "tag:k8s-operator-freeloader"
+    ],
+    // Per-cluster exit node tags (scoped to respective operator)
+    "tag:k8s-exit-node-understairs": [
+      "tag:k8s-operator-understairs"
+    ],
+    "tag:k8s-exit-node-freeloader": [
+      "tag:k8s-operator-freeloader"
+    ],
+  },
+  // Auto-approve exit nodes (add cluster tags here to enable)
+  "autoApprovers": {
+    "exitNode": [
+      "tag:k8s-exit-node-understairs"
     ],
   },
   // Define postures that will be applied to all rules without any specific
@@ -67,12 +82,14 @@
   //   },
   // ],
   "grants": [
+    // Kubernetes API access via Tailscale operators
     {
       "src": [
         "marco.bulgarini@gmail.com"
       ],
       "dst": [
-        "tag:k8s-operator"
+        "tag:k8s-operator-understairs",
+        "tag:k8s-operator-freeloader",
       ],
       "app": {
         "tailscale.com/cap/kubernetes": [
@@ -80,9 +97,9 @@
             "impersonate": {
               "groups": [
                 "system:masters"
-              ]
-            }
-          }
+              ],
+            },
+          },
         ],
       },
     },

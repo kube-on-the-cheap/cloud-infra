@@ -37,15 +37,13 @@ Unfortunately the Tailscale provider is pretty slim in functionalities offered, 
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_externalsecrets_key_id"></a> [externalsecrets\_key\_id](#input\_externalsecrets\_key\_id) | The OCID of the OKE ExternalSecrets encryption key | `string` | n/a | yes |
-| <a name="input_externalsecrets_vault_id"></a> [externalsecrets\_vault\_id](#input\_externalsecrets\_vault\_id) | The OCID of the vault containing the OKE ExternalSecrets encryption key | `string` | n/a | yes |
-| <a name="input_oauth_client_name"></a> [oauth\_client\_name](#input\_oauth\_client\_name) | Description for the Tailscale OAuth client | `string` | n/a | yes |
-| <a name="input_oauth_client_tags"></a> [oauth\_client\_tags](#input\_oauth\_client\_tags) | Tags that the OAuth client can assign to devices | `list(string)` | n/a | yes |
-| <a name="input_oke_compartment_id"></a> [oke\_compartment\_id](#input\_oke\_compartment\_id) | The OCID of the compartment to create the OKE resources in | `string` | n/a | yes |
+| <a name="input_oauth_clients"></a> [oauth\_clients](#input\_oauth\_clients) | Map of OAuth clients to create | <pre>map(object({<br/>    tags              = list(string)<br/>    store_in_vault    = optional(bool, false)<br/>    vault_secret_name = optional(string) # defaults to "TailscaleOAuth-{key}" if not set<br/>  }))</pre> | `{}` | no |
+| <a name="input_oci_vault_config"></a> [oci\_vault\_config](#input\_oci\_vault\_config) | OCI Vault configuration for storing OAuth secrets | <pre>object({<br/>    compartment_id = string<br/>    vault_id       = string<br/>    key_id         = string<br/>  })</pre> | `null` | no |
 
 ## Outputs
 
 | Name | Description | Value | Sensitive |
 |------|-------------|-------|:---------:|
-| <a name="output_tailscale_oauth"></a> [tailscale\_oauth](#output\_tailscale\_oauth) | n/a | <pre>{<br/>  "secret_key": "tailscale_key",<br/>  "secret_name": "TailscaleSecretName"<br/>}</pre> | no |
+| <a name="output_oauth_clients"></a> [oauth\_clients](#output\_oauth\_clients) | OAuth client credentials (for clients not stored in vault) | `"null"` | no |
+| <a name="output_vault_secrets"></a> [vault\_secrets](#output\_vault\_secrets) | OCI Vault secrets for OAuth clients | `"null"` | no |
 <!-- END_TF_DOCS -->
