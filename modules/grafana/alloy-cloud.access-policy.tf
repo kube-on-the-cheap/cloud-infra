@@ -2,10 +2,10 @@
 #   slug = var.gc_stack_slug
 # }
 
-resource "grafana_cloud_access_policy" "alloy" {
+resource "grafana_cloud_access_policy" "alloy_cloud" {
   region       = var.grafana_cloud_region
-  name         = "alloy"
-  display_name = "Alloy Policy"
+  name         = "alloy-cloud"
+  display_name = "Alloy Cloud Policy"
 
   scopes = ["metrics:write",
     "logs:write",
@@ -30,10 +30,10 @@ resource "time_rotating" "three_years" {
   rotation_years = 3
 }
 
-resource "grafana_cloud_access_policy_token" "alloy" {
+resource "grafana_cloud_access_policy_token" "alloy_cloud" {
   region           = var.grafana_cloud_region
-  access_policy_id = grafana_cloud_access_policy.alloy.policy_id
-  name             = "alloy-token"
-  display_name     = "Alloy Token"
+  access_policy_id = grafana_cloud_access_policy.alloy_cloud.policy_id
+  name             = "alloy-cloud-token"
+  display_name     = "Alloy Cloud Token"
   expires_at       = time_rotating.three_years.rotation_rfc3339
 }

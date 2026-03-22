@@ -13,7 +13,7 @@ variable "externalsecrets_vault_id" {
   type        = string
 }
 
-resource "oci_vault_secret" "alloy_token" {
+resource "oci_vault_secret" "alloy_cloud_token" {
   compartment_id = var.oke_compartment_id
   key_id         = var.externalsecrets_key_id
   vault_id       = var.externalsecrets_vault_id
@@ -21,12 +21,10 @@ resource "oci_vault_secret" "alloy_token" {
   secret_name = "GrafanaCloudAccessPolicyToken"
   description = "The Access Policy Token used for Grafana Alloy deployment"
 
-  # freeform_tags = {"Department"= "Finance"}
   secret_content {
     content_type = "BASE64"
-    content      = base64encode(grafana_cloud_access_policy_token.alloy.token)
-    name         = "alloy-token"
-    stage        = "CURRENT" # INFO: can be CURRENT or PENDING
+    content      = base64encode(grafana_cloud_access_policy_token.alloy_cloud.token)
+    stage        = "CURRENT"
   }
 
   # NOTE: max expiry time is 1y in Oracle Vault
@@ -38,9 +36,9 @@ resource "oci_vault_secret" "alloy_token" {
   # }
 }
 
-output "alloy_token" {
+output "alloy_cloud_token" {
+  # secret_key removed: the OCI secret content version name is not consumed downstream
   value = {
-    secret_name = oci_vault_secret.alloy_token.secret_name
-    secret_key  = one(oci_vault_secret.alloy_token.secret_content.*.name)
+    secret_name = oci_vault_secret.alloy_cloud_token.secret_name
   }
 }
