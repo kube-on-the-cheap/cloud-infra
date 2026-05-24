@@ -24,8 +24,10 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 | Name | Type |
 |------|------|
 | [cloudflare_dns_record.cloud_delegation](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/dns_record) | resource |
+| [cloudflare_dns_record.homelab_delegation](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/dns_record) | resource |
 | [digitalocean_domain.cloud](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/domain) | resource |
 | [digitalocean_domain.email](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/domain) | resource |
+| [digitalocean_domain.homelab](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/domain) | resource |
 | [digitalocean_project_resources.kotc](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/project_resources) | resource |
 | [digitalocean_record.email_delegation](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/record) | resource |
 | [digitalocean_record.email_dkim](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/record) | resource |
@@ -34,6 +36,7 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 | [digitalocean_project.kotc](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/data-sources/project) | data source |
 | [digitalocean_records.cloud_ns](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/data-sources/records) | data source |
 | [digitalocean_records.email_ns](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/data-sources/records) | data source |
+| [digitalocean_records.homelab_ns](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/data-sources/records) | data source |
 
 ## Inputs
 
@@ -44,5 +47,6 @@ This module takes care of creating a zone in DigitalOcean, provide info on how t
 | <a name="input_email_dkim_cname"></a> [email\_dkim\_cname](#input\_email\_dkim\_cname) | The CNAME to configure to set up DKIM in the domain. | <pre>object({<br/>    selector = string<br/>    dst      = string<br/>  })</pre> | n/a | yes |
 | <a name="input_email_spf_txt"></a> [email\_spf\_txt](#input\_email\_spf\_txt) | The TXT record to configure to set up SPF in the domain. | `any` | n/a | yes |
 | <a name="input_email_subdomain_name"></a> [email\_subdomain\_name](#input\_email\_subdomain\_name) | The email domain name. | `string` | n/a | yes |
+| <a name="input_homelab_domain_name"></a> [homelab\_domain\_name](#input\_homelab\_domain\_name) | The domain used to host homelab resources | `any` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | The DigitalOcean project name to create the domain in | `string` | n/a | yes |
 <!-- END_TF_DOCS -->

@@ -32,6 +32,7 @@ inputs = {
 
   domain_name          = local.domain_name
   cloud_domain_name    = format("cloud.%s", local.domain_name)
+  homelab_domain_name  = format("homelab.%s", local.domain_name)
   email_subdomain_name = format("mail.cloud.%s", local.domain_name)
 }
 
