@@ -48,7 +48,9 @@ TODO: but will probably use [this API call](https://docs.public.oneportal.conten
 
 | Name | Type |
 |------|------|
+| [oci_email_dkim.homelab](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/email_dkim) | resource |
 | [oci_email_dkim.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/email_dkim) | resource |
+| [oci_email_email_domain.homelab](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/email_email_domain) | resource |
 | [oci_email_email_domain.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/email_email_domain) | resource |
 | [oci_email_sender.do_not_reply](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/email_sender) | resource |
 | [oci_email_sender.notifications](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/email_sender) | resource |
@@ -65,7 +67,9 @@ TODO: but will probably use [this API call](https://docs.public.oneportal.conten
 | [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/kms_vault) | resource |
 | [oci_vault_secret.sender_credentials](https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/vault_secret) | resource |
 | [random_string.selector](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
+| [random_string.selector_homelab](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 | [tls_private_key.dkim_key](https://registry.terraform.io/providers/hashicorp/tls/4.1.0/docs/resources/private_key) | resource |
+| [tls_private_key.dkim_key_homelab](https://registry.terraform.io/providers/hashicorp/tls/4.1.0/docs/resources/private_key) | resource |
 | [oci_email_configuration.this](https://registry.terraform.io/providers/oracle/oci/latest/docs/data-sources/email_configuration) | data source |
 
 ## Inputs
@@ -73,6 +77,7 @@ TODO: but will probably use [this API call](https://docs.public.oneportal.conten
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_email_subdomain_name"></a> [email\_subdomain\_name](#input\_email\_subdomain\_name) | The email domain name. | `string` | n/a | yes |
+| <a name="input_homelab_email_subdomain_name"></a> [homelab\_email\_subdomain\_name](#input\_homelab\_email\_subdomain\_name) | The homelab email domain name. | `string` | n/a | yes |
 | <a name="input_oke_iam_dynamic_group_workers_name"></a> [oke\_iam\_dynamic\_group\_workers\_name](#input\_oke\_iam\_dynamic\_group\_workers\_name) | The OKE IAM dynamic group name for workers | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The OCI region name | `string` | n/a | yes |
 | <a name="input_tenancy_ocid"></a> [tenancy\_ocid](#input\_tenancy\_ocid) | The OCI Tenancy ID | `string` | n/a | yes |
@@ -85,5 +90,7 @@ TODO: but will probably use [this API call](https://docs.public.oneportal.conten
 | <a name="output_email_submission_credentials_user_sender"></a> [email\_submission\_credentials\_user\_sender](#output\_email\_submission\_credentials\_user\_sender) | Credentials to use for submitting emails with user 'sender'. | `<sensitive>` | yes |
 | <a name="output_email_submission_endpoints"></a> [email\_submission\_endpoints](#output\_email\_submission\_endpoints) | The addresses where to send emails. | <pre>{<br/>  "http": {<br/>    "endpoint": "cell9.submit.email.eu-frankfurt-1.oci.oraclecloud.com"<br/>  },<br/>  "smtp": {<br/>    "endpoint": "smtp.email.eu-frankfurt-1.oci.oraclecloud.com"<br/>  }<br/>}</pre> | no |
 | <a name="output_email_vault"></a> [email\_vault](#output\_email\_vault) | Parameters to configure a [Cluster]SecretStore | <pre>{<br/>  "spec": {<br/>    "provider": {<br/>      "oracle": {<br/>        "compartment": "ocid1.compartment.oc1..aaaaaaaanp72xpoq7fcpw8krcr4i2d2se5jspzgj2izvnfyvsdq43qmqfpy5",<br/>        "encryptionKey": "ocid1.key.oc1.eu-frankfurt-1.uqd6ladtctfiv.kgyzcv0nmueyl1lls31mwbuctvb2chreos5yaql9av7no1b1sscfcz1d7506",<br/>        "principalType": "InstancePrincipal",<br/>        "region": "eu-frankfurt-1",<br/>        "vault": "ocid1.vault.oc1.eu-frankfurt-1.czrs4579k16lh.f1344zj67j739cwo5ka4d3qibagj099s2fckletlhlct2en1leerfqxr1s8k"<br/>      }<br/>    }<br/>  }<br/>}</pre> | no |
+| <a name="output_homelab_dkim_cname"></a> [homelab\_dkim\_cname](#output\_homelab\_dkim\_cname) | The CNAME to configure to set up DKIM in the homelab domain. | `"null"` | no |
+| <a name="output_homelab_spf_txt"></a> [homelab\_spf\_txt](#output\_homelab\_spf\_txt) | The TXT record to configure to set up SPF in the homelab domain. | `"null"` | no |
 | <a name="output_spf_txt"></a> [spf\_txt](#output\_spf\_txt) | The TXT record to configure to set up SPF in the domain. | `"v=spf1 include:eu.rp.oracleemaildelivery.com ~all"` | no |
 <!-- END_TF_DOCS -->

@@ -4,6 +4,11 @@ variable "email_subdomain_name" {
   description = "The email domain name."
 }
 
+variable "homelab_email_subdomain_name" {
+  type        = string
+  description = "The homelab email domain name."
+}
+
 resource "oci_email_email_domain" "this" {
   compartment_id = oci_identity_compartment.email.id
   name           = var.email_subdomain_name
@@ -12,6 +17,13 @@ resource "oci_email_email_domain" "this" {
   description = "The email domain used to send transactional notification."
   # domain_verification_id = oci_email_domain_verification.test_domain_verification.id
   # freeform_tags = {"Department"= "Finance"}
+}
+
+resource "oci_email_email_domain" "homelab" {
+  compartment_id = oci_identity_compartment.email.id
+  name           = var.homelab_email_subdomain_name
+
+  description = "The email domain used to send transactional notification from homelab on-prem apps."
 }
 
 

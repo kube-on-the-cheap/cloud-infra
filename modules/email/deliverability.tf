@@ -28,6 +28,32 @@ output "dkim_cname" {
   description = "The CNAME to configure to set up DKIM in the domain."
 }
 
+resource "tls_private_key" "dkim_key_homelab" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
+}
+
+resource "random_string" "selector_homelab" {
+  length  = 6
+  special = false
+  upper   = false
+}
+
+resource "oci_email_dkim" "homelab" {
+  email_domain_id = oci_email_email_domain.homelab.id
+  name            = format("trnsct-%s", random_string.selector_homelab.result)
+  description     = "Configuration for transactional email from homelab on-prem apps"
+  private_key     = tls_private_key.dkim_key_homelab.private_key_pem
+}
+
+output "homelab_dkim_cname" {
+  value = {
+    selector = oci_email_dkim.homelab.name
+    dst      = format("%s.", oci_email_dkim.homelab.cname_record_value)
+  }
+  description = "The CNAME to configure to set up DKIM in the homelab domain."
+}
+
 # SPF
 
 # INFO: https://docs.oracle.com/en-us/iaas/Content/Email/Tasks/configurespf.htm
@@ -38,4 +64,9 @@ output "dkim_cname" {
 output "spf_txt" {
   value       = "v=spf1 include:${split("-", var.region)[0]}.rp.oracleemaildelivery.com ~all"
   description = "The TXT record to configure to set up SPF in the domain."
+}
+
+output "homelab_spf_txt" {
+  value       = "v=spf1 include:${split("-", var.region)[0]}.rp.oracleemaildelivery.com ~all"
+  description = "The TXT record to configure to set up SPF in the homelab domain."
 }
