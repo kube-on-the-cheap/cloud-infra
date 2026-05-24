@@ -19,7 +19,8 @@ locals {
     region     = "europe-west3"
     project_id = local.project_details.short_form
   }
-  domain_name = "blacksd.tech"
+  domain_name                = "blacksd.tech"
+  cloud_email_subdomain_name = format("mail.cloud.%s", local.domain_name)
 }
 
 inputs = {
@@ -30,10 +31,12 @@ inputs = {
   ssh_nodes_key_path = ".ssh/nodes_key" # INFO: This is the path to the SSH key for the OKE worker nodes; it's created in the `oci-oke` module and consumed in the `oci-oke-bastion-session-workers` module
   proxy_port         = 8000
 
-  domain_name          = local.domain_name
-  cloud_domain_name    = format("cloud.%s", local.domain_name)
-  homelab_domain_name  = format("homelab.%s", local.domain_name)
-  email_subdomain_name = format("mail.cloud.%s", local.domain_name)
+  domain_name                  = local.domain_name
+  cloud_domain_name            = format("cloud.%s", local.domain_name)
+  homelab_domain_name          = format("homelab.%s", local.domain_name)
+  email_subdomain_name         = local.cloud_email_subdomain_name
+  cloud_email_subdomain_name   = local.cloud_email_subdomain_name
+  homelab_email_subdomain_name = format("mail.homelab.%s", local.domain_name)
 }
 
 terraform_version_constraint  = "~> 1.10.0"

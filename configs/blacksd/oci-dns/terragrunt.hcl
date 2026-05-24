@@ -18,6 +18,9 @@ inputs = {
   # DigitalOcean project
   project_name = "Kube, on the cheap"
 
-  email_dkim_cname = dependency.email.outputs.dkim_cname
-  email_spf_txt    = dependency.email.outputs.spf_txt
+  cloud_email_dkim_cname = dependency.email.outputs.dkim_cname
+  cloud_email_spf_txt    = dependency.email.outputs.spf_txt
+
+  homelab_email_dkim_cname = dependency.email.outputs.homelab_dkim_cname
+  homelab_email_spf_txt    = dependency.email.outputs.homelab_spf_txt
 }

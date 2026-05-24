@@ -13,6 +13,25 @@
       "selector": "selector-r4nd0m"
     }
   },
+  "homelab_dkim_cname": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "dst": "string",
+        "selector": "string"
+      }
+    ],
+    "value": {
+      "dst": "selector-r4nd0m.mail.homelab.my.domain.dkim.fra1.oracleemaildelivery.com.",
+      "selector": "selector-r4nd0m"
+    }
+  },
+  "homelab_spf_txt": {
+    "sensitive": false,
+    "type": "string",
+    "value": "v=spf1 include:eu.rp.oracleemaildelivery.com ~all"
+  },
   "email_submission_credentials_user_sender": {
     "sensitive": true,
     "type": [

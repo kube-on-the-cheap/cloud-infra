@@ -11,7 +11,8 @@ resource "digitalocean_project_resources" "kotc" {
   project = data.digitalocean_project.kotc.id
   resources = [
     digitalocean_domain.cloud.urn,
-    digitalocean_domain.email.urn,
-    digitalocean_domain.homelab.urn
+    digitalocean_domain.cloud_email.urn,
+    digitalocean_domain.homelab.urn,
+    digitalocean_domain.homelab_email.urn,
   ]
 }

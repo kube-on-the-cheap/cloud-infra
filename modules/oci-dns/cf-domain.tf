@@ -13,13 +13,9 @@ resource "cloudflare_dns_record" "cloud_delegation" {
   content = data.digitalocean_records.cloud_ns.records[count.index].value
   name    = var.cloud_domain_name
   proxied = false
-  settings = {
-    ipv4_only = true
-    ipv6_only = false
-  }
-  tags = []
-  ttl  = 1
-  type = "NS"
+  tags    = []
+  ttl     = 1
+  type    = "NS"
 }
 
 resource "cloudflare_dns_record" "homelab_delegation" {
@@ -31,11 +27,7 @@ resource "cloudflare_dns_record" "homelab_delegation" {
   content = data.digitalocean_records.homelab_ns.records[count.index].value
   name    = var.homelab_domain_name
   proxied = false
-  settings = {
-    ipv4_only = true
-    ipv6_only = false
-  }
-  tags = []
-  ttl  = 1
-  type = "NS"
+  tags    = []
+  ttl     = 1
+  type    = "NS"
 }
