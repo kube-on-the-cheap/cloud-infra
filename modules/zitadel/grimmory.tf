@@ -22,7 +22,7 @@ resource "zitadel_application_oidc" "grimmory" {
 }
 
 output "grimmory_client_id" {
-  description = "Client ID for the Grimmory OIDC application. Paste into Grimmory Settings → OIDC."
+  description = "Client ID for the Grimmory OIDC application. Paste into Grimmory Settings → OIDC. Marked sensitive because the Zitadel provider schema flags `client_id` as sensitive; read with `terragrunt output -raw grimmory_client_id`."
   value       = zitadel_application_oidc.grimmory.client_id
-  sensitive   = false
+  sensitive   = true
 }

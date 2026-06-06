@@ -85,5 +85,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_grimmory_client_id"></a> [grimmory\_client\_id](#output\_grimmory\_client\_id) | Client ID for the Grimmory OIDC application. Paste into Grimmory Settings → OIDC. |
+| <a name="output_grimmory_client_id"></a> [grimmory\_client\_id](#output\_grimmory\_client\_id) | Client ID for the Grimmory OIDC application. Paste into Grimmory Settings → OIDC. Marked sensitive because the Zitadel provider schema flags `client_id` as sensitive; read with `terragrunt output -raw grimmory_client_id`. |
 <!-- END_TF_DOCS -->
