@@ -70,6 +70,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [zitadel_application_oidc.grimmory](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/application_oidc) | resource |
 | [zitadel_project.homelab](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project) | resource |
 | [zitadel_orgs.default](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/data-sources/orgs) | data source |
 
@@ -82,5 +83,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_grimmory_client_id"></a> [grimmory\_client\_id](#output\_grimmory\_client\_id) | Client ID for the Grimmory OIDC application. Paste into Grimmory Settings → OIDC. |
 <!-- END_TF_DOCS -->
