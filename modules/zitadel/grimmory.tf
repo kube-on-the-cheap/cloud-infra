@@ -19,10 +19,6 @@ resource "zitadel_application_oidc" "grimmory" {
   id_token_userinfo_assertion = true
   dev_mode                    = false
   clock_skew                  = "0s"
-
-  login_version {
-    login_v2 {}
-  }
 }
 
 output "grimmory_client_id" {
