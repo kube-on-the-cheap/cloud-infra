@@ -9,7 +9,9 @@
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_zitadel"></a> [zitadel](#provider\_zitadel) | 1.3.0 |
 
 ## Modules
 
@@ -17,7 +19,9 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [zitadel_orgs.default](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/data-sources/orgs) | data source |
 
 ## Inputs
 
