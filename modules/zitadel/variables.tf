@@ -9,3 +9,15 @@ variable "zitadel_jwt_profile_json" {
   type        = string
   sensitive   = true
 }
+
+variable "google_client_id" {
+  description = "Client ID of the Google OAuth web-application client used for the Google IdP. Provided by Terragrunt via SOPS decrypt of google-oauth.sops.yaml."
+  type        = string
+  sensitive   = true
+}
+
+variable "google_client_secret" {
+  description = "Client secret of the Google OAuth web-application client used for the Google IdP. Provided by Terragrunt via SOPS decrypt of google-oauth.sops.yaml."
+  type        = string
+  sensitive   = true
+}
