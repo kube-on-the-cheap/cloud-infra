@@ -54,13 +54,13 @@ follow-up specs. Reference `local.org_id` for the org context.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_zitadel"></a> [zitadel](#requirement\_zitadel) | ~> 1.2 |
+| <a name="requirement_zitadel"></a> [zitadel](#requirement\_zitadel) | ~> 2.12 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_zitadel"></a> [zitadel](#provider\_zitadel) | 1.3.0 |
+| <a name="provider_zitadel"></a> [zitadel](#provider\_zitadel) | 2.12.8 |
 
 ## Modules
 
