@@ -9,6 +9,6 @@ terraform {
 }
 
 provider "zitadel" {
-  domain       = var.zitadel_domain
-  access_token = var.zitadel_access_token
+  domain           = var.zitadel_domain
+  jwt_profile_json = var.zitadel_jwt_profile_json
 }

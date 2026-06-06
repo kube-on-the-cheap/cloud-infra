@@ -23,8 +23,8 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_zitadel_access_token"></a> [zitadel\_access\_token](#input\_zitadel\_access\_token) | Personal access token of the Terraform machine user. Provided by Terragrunt via SOPS decrypt of zitadel-pat.sops.yaml. | `string` | n/a | yes |
 | <a name="input_zitadel_domain"></a> [zitadel\_domain](#input\_zitadel\_domain) | Hostname of the self-hosted Zitadel instance. | `string` | `"auth.cloud.blacksd.tech"` | no |
+| <a name="input_zitadel_jwt_profile_json"></a> [zitadel\_jwt\_profile\_json](#input\_zitadel\_jwt\_profile\_json) | Service-account JSON key (whole document, inline) for the Terraform machine user. Provided by Terragrunt via SOPS decrypt of zitadel-key.sops.json. | `string` | n/a | yes |
 
 ## Outputs
 

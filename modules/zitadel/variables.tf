@@ -4,8 +4,8 @@ variable "zitadel_domain" {
   default     = "auth.cloud.blacksd.tech"
 }
 
-variable "zitadel_access_token" {
-  description = "Personal access token of the Terraform machine user. Provided by Terragrunt via SOPS decrypt of zitadel-pat.sops.yaml."
+variable "zitadel_jwt_profile_json" {
+  description = "Service-account JSON key (whole document, inline) for the Terraform machine user. Provided by Terragrunt via SOPS decrypt of zitadel-key.sops.json."
   type        = string
   sensitive   = true
 }
