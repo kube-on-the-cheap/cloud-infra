@@ -71,6 +71,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [zitadel_application_oidc.grimmory](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/application_oidc) | resource |
+| [zitadel_default_login_policy.default](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/default_login_policy) | resource |
 | [zitadel_idp_google.google](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/idp_google) | resource |
 | [zitadel_project.homelab](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project) | resource |
 | [zitadel_orgs.default](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/data-sources/orgs) | data source |
