@@ -70,6 +70,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [zitadel_project.homelab](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project) | resource |
 | [zitadel_orgs.default](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/data-sources/orgs) | data source |
 
 ## Inputs
