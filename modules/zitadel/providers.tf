@@ -4,6 +4,10 @@ terraform {
       source  = "zitadel/zitadel"
       version = "~> 2.12"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.6"
+    }
   }
   backend "gcs" {}
 }

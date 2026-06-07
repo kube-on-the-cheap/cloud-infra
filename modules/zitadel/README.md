@@ -54,6 +54,7 @@ follow-up specs. Reference `local.org_id` for the org context.
 
 | Name | Version |
 |------|---------|
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.6 |
 | <a name="requirement_zitadel"></a> [zitadel](#requirement\_zitadel) | ~> 2.12 |
 
 ## Providers
@@ -82,6 +83,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_google_client_id"></a> [google\_client\_id](#input\_google\_client\_id) | Client ID of the Google OAuth web-application client used for the Google IdP. Provided by Terragrunt via SOPS decrypt of google-oauth.sops.yaml. | `string` | n/a | yes |
 | <a name="input_google_client_secret"></a> [google\_client\_secret](#input\_google\_client\_secret) | Client secret of the Google OAuth web-application client used for the Google IdP. Provided by Terragrunt via SOPS decrypt of google-oauth.sops.yaml. | `string` | n/a | yes |
+| <a name="input_users"></a> [users](#input\_users) | Map of Zitadel human users keyed by username. Provided by Terragrunt via SOPS decrypt of users.sops.yaml. | <pre>map(object({<br/>    first_name         = string<br/>    last_name          = string<br/>    email              = string<br/>    display_name       = optional(string)<br/>    preferred_language = optional(string)<br/>  }))</pre> | n/a | yes |
 | <a name="input_zitadel_domain"></a> [zitadel\_domain](#input\_zitadel\_domain) | Hostname of the self-hosted Zitadel instance. | `string` | `"auth.cloud.blacksd.tech"` | no |
 | <a name="input_zitadel_jwt_profile_json"></a> [zitadel\_jwt\_profile\_json](#input\_zitadel\_jwt\_profile\_json) | Service-account JSON key (whole document, inline) for the Terraform machine user. Provided by Terragrunt via SOPS decrypt of zitadel-key.sops.json. | `string` | n/a | yes |
 

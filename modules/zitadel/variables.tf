@@ -21,3 +21,15 @@ variable "google_client_secret" {
   type        = string
   sensitive   = true
 }
+
+variable "users" {
+  description = "Map of Zitadel human users keyed by username. Provided by Terragrunt via SOPS decrypt of users.sops.yaml."
+  sensitive   = true
+  type = map(object({
+    first_name         = string
+    last_name          = string
+    email              = string
+    display_name       = optional(string)
+    preferred_language = optional(string)
+  }))
+}
