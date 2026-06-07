@@ -8,10 +8,11 @@ include "general" {
 
 locals {
   google_oauth = yamldecode(sops_decrypt_file("./google-oauth.sops.yaml"))
-  # users.sops.yaml is encrypted in binary mode, so SOPS wraps the original
-  # YAML under a `data:` key. Two layers of yamldecode unwrap it back to the
-  # original `users:` map.
-  users_data = yamldecode(yamldecode(sops_decrypt_file("./users.sops.yaml")).data)
+  # users.sops.yaml is SOPS-encrypted with the original YAML wrapped under a
+  # top-level `data:` key (so SOPS doesn't leak the map structure / usernames
+  # via cleartext YAML keys). One yamldecode parses the SOPS output; .data
+  # then exposes the original users map.
+  users_data = yamldecode(sops_decrypt_file("./users.sops.yaml")).data
 }
 
 inputs = {
