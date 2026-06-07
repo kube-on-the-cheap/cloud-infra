@@ -30,6 +30,7 @@ variable "users" {
     last_name          = string
     email              = string
     display_name       = optional(string)
+    nick_name          = optional(string)
     preferred_language = optional(string)
   }))
 }

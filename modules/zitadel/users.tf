@@ -24,6 +24,7 @@ resource "zitadel_human_user" "users" {
   email      = each.value.email
 
   display_name       = coalesce(each.value.display_name, format("%s %s", each.value.first_name, each.value.last_name))
+  nick_name          = each.value.nick_name
   preferred_language = each.value.preferred_language
 
   initial_password             = random_password.user_initial[each.key].result
