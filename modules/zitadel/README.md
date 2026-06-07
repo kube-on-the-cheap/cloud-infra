@@ -61,6 +61,7 @@ follow-up specs. Reference `local.org_id` for the org context.
 
 | Name | Version |
 |------|---------|
+| <a name="provider_random"></a> [random](#provider\_random) | 3.9.0 |
 | <a name="provider_zitadel"></a> [zitadel](#provider\_zitadel) | 2.12.8 |
 
 ## Modules
@@ -71,8 +72,10 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [random_password.user_initial](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [zitadel_application_oidc.grimmory](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/application_oidc) | resource |
 | [zitadel_default_login_policy.default](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/default_login_policy) | resource |
+| [zitadel_human_user.users](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/human_user) | resource |
 | [zitadel_idp_google.google](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/idp_google) | resource |
 | [zitadel_project.homelab](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project) | resource |
 | [zitadel_orgs.default](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/data-sources/orgs) | data source |
