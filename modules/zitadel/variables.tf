@@ -34,3 +34,31 @@ variable "users" {
     preferred_language = optional(string)
   }))
 }
+
+variable "users_group" {
+  description = "Usernames who get the 'users' role on the Homelab project. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.users`)."
+  sensitive   = true
+  type        = list(string)
+  default     = []
+}
+
+variable "admins" {
+  description = "Usernames who get the 'admins' role on the Homelab project. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.admins`)."
+  sensitive   = true
+  type        = list(string)
+  default     = []
+}
+
+variable "grownups" {
+  description = "Usernames who get the 'grownups' role on the Homelab project. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.grownups`)."
+  sensitive   = true
+  type        = list(string)
+  default     = []
+}
+
+variable "kids" {
+  description = "Usernames who get the 'kids' role on the Homelab project. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.kids`)."
+  sensitive   = true
+  type        = list(string)
+  default     = []
+}

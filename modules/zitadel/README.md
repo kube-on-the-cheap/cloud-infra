@@ -78,15 +78,23 @@ No modules.
 | [zitadel_human_user.users](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/human_user) | resource |
 | [zitadel_idp_google.google](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/idp_google) | resource |
 | [zitadel_project.homelab](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project) | resource |
+| [zitadel_project_role.admins](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project_role) | resource |
+| [zitadel_project_role.grownups](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project_role) | resource |
+| [zitadel_project_role.kids](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project_role) | resource |
+| [zitadel_project_role.users](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project_role) | resource |
 | [zitadel_orgs.default](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/data-sources/orgs) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_admins"></a> [admins](#input\_admins) | Usernames who get the 'admins' role on the Homelab project. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.admins`). | `list(string)` | `[]` | no |
 | <a name="input_google_client_id"></a> [google\_client\_id](#input\_google\_client\_id) | Client ID of the Google OAuth web-application client used for the Google IdP. Provided by Terragrunt via SOPS decrypt of google-oauth.sops.yaml. | `string` | n/a | yes |
 | <a name="input_google_client_secret"></a> [google\_client\_secret](#input\_google\_client\_secret) | Client secret of the Google OAuth web-application client used for the Google IdP. Provided by Terragrunt via SOPS decrypt of google-oauth.sops.yaml. | `string` | n/a | yes |
+| <a name="input_grownups"></a> [grownups](#input\_grownups) | Usernames who get the 'grownups' role on the Homelab project. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.grownups`). | `list(string)` | `[]` | no |
+| <a name="input_kids"></a> [kids](#input\_kids) | Usernames who get the 'kids' role on the Homelab project. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.kids`). | `list(string)` | `[]` | no |
 | <a name="input_users"></a> [users](#input\_users) | Map of Zitadel human users keyed by username. Provided by Terragrunt via SOPS decrypt of users.sops.yaml. | <pre>map(object({<br/>    first_name         = string<br/>    last_name          = string<br/>    email              = string<br/>    display_name       = optional(string)<br/>    nick_name          = optional(string)<br/>    preferred_language = optional(string)<br/>  }))</pre> | n/a | yes |
+| <a name="input_users_group"></a> [users\_group](#input\_users\_group) | Usernames who get the 'users' role on the Homelab project. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.users`). | `list(string)` | `[]` | no |
 | <a name="input_zitadel_domain"></a> [zitadel\_domain](#input\_zitadel\_domain) | Hostname of the self-hosted Zitadel instance. | `string` | `"auth.cloud.blacksd.tech"` | no |
 | <a name="input_zitadel_jwt_profile_json"></a> [zitadel\_jwt\_profile\_json](#input\_zitadel\_jwt\_profile\_json) | Service-account JSON key (whole document, inline) for the Terraform machine user. Provided by Terragrunt via SOPS decrypt of zitadel-key.sops.json. | `string` | n/a | yes |
 
