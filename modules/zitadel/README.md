@@ -84,10 +84,7 @@ No modules.
 | [zitadel_project_role.kids](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project_role) | resource |
 | [zitadel_project_role.users](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project_role) | resource |
 | [zitadel_trigger_actions.customise_token](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/trigger_actions) | resource |
-| [zitadel_user_grant.admins](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/user_grant) | resource |
-| [zitadel_user_grant.grownups](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/user_grant) | resource |
-| [zitadel_user_grant.kids](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/user_grant) | resource |
-| [zitadel_user_grant.users](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/user_grant) | resource |
+| [zitadel_user_grant.homelab](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/user_grant) | resource |
 | [zitadel_orgs.default](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/data-sources/orgs) | data source |
 
 ## Inputs
