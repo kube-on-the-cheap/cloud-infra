@@ -15,7 +15,7 @@ resource "zitadel_application_oidc" "grimmory" {
   version                     = "OIDC_VERSION_1_0"
   access_token_type           = "OIDC_TOKEN_TYPE_BEARER"
   access_token_role_assertion = false
-  id_token_role_assertion     = false
+  id_token_role_assertion     = true
   id_token_userinfo_assertion = true
   dev_mode                    = false
   clock_skew                  = "0s"
