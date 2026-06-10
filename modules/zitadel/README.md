@@ -73,6 +73,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [random_password.user_initial](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
+| [zitadel_action.set_groups_claim](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/action) | resource |
 | [zitadel_application_oidc.grimmory](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/application_oidc) | resource |
 | [zitadel_default_login_policy.default](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/default_login_policy) | resource |
 | [zitadel_human_user.users](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/human_user) | resource |
@@ -82,6 +83,7 @@ No modules.
 | [zitadel_project_role.grownups](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project_role) | resource |
 | [zitadel_project_role.kids](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project_role) | resource |
 | [zitadel_project_role.users](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/project_role) | resource |
+| [zitadel_trigger_actions.customise_token](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/trigger_actions) | resource |
 | [zitadel_user_grant.admins](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/user_grant) | resource |
 | [zitadel_user_grant.grownups](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/user_grant) | resource |
 | [zitadel_user_grant.kids](https://registry.terraform.io/providers/zitadel/zitadel/latest/docs/resources/user_grant) | resource |
