@@ -23,10 +23,12 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [authentik_application.grimmory](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/application) | resource |
 | [authentik_group.admins](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
 | [authentik_group.grownups](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
 | [authentik_group.kids](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
 | [authentik_group.users](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
+| [authentik_provider_oauth2.grimmory](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/provider_oauth2) | resource |
 | [authentik_source_oauth.google](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/source_oauth) | resource |
 | [authentik_user.users](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/user) | resource |
 | [random_password.user_initial](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
@@ -34,6 +36,9 @@ No modules.
 | [authentik_flow.invalidation](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
 | [authentik_flow.source_authentication](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
 | [authentik_flow.source_enrollment](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
+| [authentik_property_mapping_provider_scope.email](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/property_mapping_provider_scope) | data source |
+| [authentik_property_mapping_provider_scope.openid](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/property_mapping_provider_scope) | data source |
+| [authentik_property_mapping_provider_scope.profile](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/property_mapping_provider_scope) | data source |
 
 ## Inputs
 
@@ -51,5 +56,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_grimmory_client_id"></a> [grimmory\_client\_id](#output\_grimmory\_client\_id) | Client ID for the Authentik-side Grimmory OIDC application. Read with `terragrunt output -raw grimmory_client_id`. Not wired into Grimmory yet — the app continues using the Zitadel client until a separate apps-repo PR cuts it over. |
 <!-- END_TF_DOCS -->
