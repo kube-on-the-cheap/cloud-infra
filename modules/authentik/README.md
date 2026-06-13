@@ -13,6 +13,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_authentik"></a> [authentik](#provider\_authentik) | 2024.12.1 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.9.0 |
 
 ## Modules
 
@@ -22,6 +23,12 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [authentik_group.admins](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
+| [authentik_group.grownups](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
+| [authentik_group.kids](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
+| [authentik_group.users](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
+| [authentik_user.users](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/user) | resource |
+| [random_password.user_initial](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [authentik_flow.authorization](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
 | [authentik_flow.invalidation](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
 | [authentik_flow.source_authentication](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
