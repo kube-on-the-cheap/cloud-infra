@@ -10,7 +10,9 @@
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_authentik"></a> [authentik](#provider\_authentik) | 2024.12.1 |
 
 ## Modules
 
@@ -18,7 +20,12 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [authentik_flow.authorization](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
+| [authentik_flow.invalidation](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
+| [authentik_flow.source_authentication](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
+| [authentik_flow.source_enrollment](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
 
 ## Inputs
 
