@@ -1,0 +1,25 @@
+terraform {
+  source = "../../..//modules/authentik"
+}
+
+include "general" {
+  path = find_in_parent_folders("general.include.hcl")
+}
+
+locals {
+  google_oauth    = yamldecode(sops_decrypt_file("./google-oauth.sops.yaml"))
+  users_data      = yamldecode(sops_decrypt_file("./users.sops.yaml"))
+  authentik_token = yamldecode(sops_decrypt_file("./authentik-token.sops.yaml")).token
+}
+
+inputs = {
+  authentik_url        = "https://login.cloud.blacksd.tech"
+  authentik_token      = local.authentik_token
+  google_client_id     = local.google_oauth.client_id
+  google_client_secret = local.google_oauth.client_secret
+  users                = local.users_data.users
+  users_group          = try(local.users_data.groups.users, [])
+  admins               = try(local.users_data.groups.admins, [])
+  grownups             = try(local.users_data.groups.grownups, [])
+  kids                 = try(local.users_data.groups.kids, [])
+}
