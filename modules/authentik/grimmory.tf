@@ -14,6 +14,14 @@ data "authentik_property_mapping_provider_scope" "email" {
   managed = "goauthentik.io/providers/oauth2/scope-email"
 }
 
+# Custom scope that flattens the user's Authentik groups into a `groups`
+# claim — same shape as the Zitadel module's setGroupsClaim action.
+resource "authentik_property_mapping_provider_scope" "groups" {
+  name       = "Grimmory: groups"
+  scope_name = "groups"
+  expression = "return {\"groups\": [group.name for group in request.user.ak_groups.all()]}"
+}
+
 resource "random_id" "grimmory_client_id" {
   byte_length = 20
 }
@@ -37,10 +45,13 @@ resource "authentik_provider_oauth2" "grimmory" {
     data.authentik_property_mapping_provider_scope.openid.id,
     data.authentik_property_mapping_provider_scope.profile.id,
     data.authentik_property_mapping_provider_scope.email.id,
+    authentik_property_mapping_provider_scope.groups.id,
   ]
 
   sub_mode                   = "user_username"
   include_claims_in_id_token = true
+  logout_uri                 = "https://library.homelab.blacksd.tech/api/v1/auth/oidc/backchannel-logout"
+  logout_method              = "backchannel"
 
   # Without a signing_key, the JWKS endpoint publishes no keys and the
   # provider falls back to HMAC-with-client-secret signing — which can't

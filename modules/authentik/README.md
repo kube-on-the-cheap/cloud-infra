@@ -90,6 +90,7 @@ No modules.
 | [authentik_group.grownups](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
 | [authentik_group.kids](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
 | [authentik_group.users](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
+| [authentik_property_mapping_provider_scope.groups](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/property_mapping_provider_scope) | resource |
 | [authentik_provider_oauth2.grimmory](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/provider_oauth2) | resource |
 | [authentik_source_oauth.google](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/source_oauth) | resource |
 | [authentik_stage_identification.identification](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/stage_identification) | resource |
