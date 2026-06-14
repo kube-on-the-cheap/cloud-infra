@@ -19,7 +19,7 @@ data "authentik_property_mapping_provider_scope" "email" {
 resource "authentik_property_mapping_provider_scope" "groups" {
   name       = "Grimmory: groups"
   scope_name = "groups"
-  expression = "return {\"groups\": [group.name for group in request.user.ak_groups.all()]}"
+  expression = "return {\"groups\": [group.name for group in request.user.groups.all()]}"
 }
 
 resource "random_id" "grimmory_client_id" {
