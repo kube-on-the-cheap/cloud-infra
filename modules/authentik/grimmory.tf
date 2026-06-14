@@ -46,3 +46,8 @@ output "grimmory_client_id" {
   value       = authentik_provider_oauth2.grimmory.client_id
   sensitive   = true
 }
+
+output "grimmory_issuer_url" {
+  description = "OIDC issuer URL for the Authentik-side Grimmory application. Paste into Grimmory Settings → OIDC alongside `grimmory_client_id`. The discovery document lives at `<issuer>/.well-known/openid-configuration`. Read with `terragrunt output -raw grimmory_issuer_url`."
+  value       = format("%s/application/o/%s/", trimsuffix(var.authentik_url, "/"), authentik_application.grimmory.slug)
+}

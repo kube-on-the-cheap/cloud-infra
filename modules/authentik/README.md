@@ -124,4 +124,5 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_grimmory_client_id"></a> [grimmory\_client\_id](#output\_grimmory\_client\_id) | Client ID for the Authentik-side Grimmory OIDC application. Read with `terragrunt output -raw grimmory_client_id`. Not wired into Grimmory yet — the app continues using the Zitadel client until a separate apps-repo PR cuts it over. |
+| <a name="output_grimmory_issuer_url"></a> [grimmory\_issuer\_url](#output\_grimmory\_issuer\_url) | OIDC issuer URL for the Authentik-side Grimmory application. Paste into Grimmory Settings → OIDC alongside `grimmory_client_id`. The discovery document lives at `<issuer>/.well-known/openid-configuration`. Read with `terragrunt output -raw grimmory_issuer_url`. |
 <!-- END_TF_DOCS -->
