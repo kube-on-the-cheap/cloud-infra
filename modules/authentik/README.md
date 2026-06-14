@@ -66,14 +66,14 @@ time-boxed tech debt.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_authentik"></a> [authentik](#requirement\_authentik) | ~> 2024.0 |
+| <a name="requirement_authentik"></a> [authentik](#requirement\_authentik) | ~> 2026.5 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.6 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_authentik"></a> [authentik](#provider\_authentik) | 2024.12.1 |
+| <a name="provider_authentik"></a> [authentik](#provider\_authentik) | 2026.5.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.9.0 |
 
 ## Modules
