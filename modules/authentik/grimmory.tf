@@ -67,6 +67,16 @@ resource "authentik_provider_oauth2" "grimmory" {
   logout_uri                 = "https://library.homelab.blacksd.tech/api/v1/auth/oidc/backchannel-logout"
   logout_method              = "backchannel"
 
+  # Authentik 2026.5 defaults grant_types to an empty list on API-created
+  # providers regardless of client_type. Without this, the authorize
+  # endpoint rejects every request with "Invalid grant_type for provider"
+  # → "The request is otherwise malformed". The Terraform provider docs
+  # don't list this field but the schema accepts it.
+  grant_types = [
+    "authorization_code",
+    "refresh_token",
+  ]
+
   # Without a signing_key, the JWKS endpoint publishes no keys and the
   # provider falls back to HMAC-with-client-secret signing — which can't
   # work for a public PKCE client. Wire the stock self-signed cert so
