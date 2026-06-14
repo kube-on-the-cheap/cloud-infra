@@ -22,6 +22,19 @@ resource "authentik_property_mapping_provider_scope" "groups" {
   expression = "return {\"groups\": [group.name for group in request.user.groups.all()]}"
 }
 
+# Authentik 2026.x stopped auto-advertising offline_access in
+# scopes_supported. The OIDC spec defines offline_access as the standard
+# way to request refresh tokens, and Grimmory's client builds it into the
+# default authorization request. Without an explicit scope mapping the
+# authorize endpoint rejects the entire request as "otherwise malformed".
+# The expression is a no-op (returns {}); the side effect is that the
+# scope is registered and the discovery doc lists it.
+resource "authentik_property_mapping_provider_scope" "offline_access" {
+  name       = "Grimmory: offline_access"
+  scope_name = "offline_access"
+  expression = "return {}"
+}
+
 resource "random_id" "grimmory_client_id" {
   byte_length = 20
 }
@@ -46,6 +59,7 @@ resource "authentik_provider_oauth2" "grimmory" {
     data.authentik_property_mapping_provider_scope.profile.id,
     data.authentik_property_mapping_provider_scope.email.id,
     authentik_property_mapping_provider_scope.groups.id,
+    authentik_property_mapping_provider_scope.offline_access.id,
   ]
 
   sub_mode                   = "user_username"
