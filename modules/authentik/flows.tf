@@ -13,3 +13,7 @@ data "authentik_flow" "authorization" {
 data "authentik_flow" "invalidation" {
   slug = "default-provider-invalidation-flow"
 }
+
+data "authentik_flow" "authentication" {
+  slug = "default-authentication-flow"
+}
