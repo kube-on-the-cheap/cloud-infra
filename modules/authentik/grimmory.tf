@@ -1,3 +1,7 @@
+data "authentik_certificate_key_pair" "default" {
+  name = "authentik Self-signed Certificate"
+}
+
 data "authentik_property_mapping_provider_scope" "openid" {
   managed = "goauthentik.io/providers/oauth2/scope-openid"
 }
@@ -37,6 +41,13 @@ resource "authentik_provider_oauth2" "grimmory" {
 
   sub_mode                   = "user_username"
   include_claims_in_id_token = true
+
+  # Without a signing_key, the JWKS endpoint publishes no keys and the
+  # provider falls back to HMAC-with-client-secret signing — which can't
+  # work for a public PKCE client. Wire the stock self-signed cert so
+  # id_tokens are RS256-signed and the JWKS endpoint actually exposes
+  # the public key for clients to validate against.
+  signing_key = data.authentik_certificate_key_pair.default.id
 }
 
 resource "authentik_application" "grimmory" {
