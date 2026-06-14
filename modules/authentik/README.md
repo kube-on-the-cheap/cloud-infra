@@ -95,6 +95,7 @@ No modules.
 | [authentik_stage_identification.identification](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/stage_identification) | resource |
 | [authentik_stage_password.password](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/stage_password) | resource |
 | [authentik_user.users](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/user) | resource |
+| [random_id.grimmory_client_id](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
 | [random_password.user_initial](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [authentik_flow.authentication](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
 | [authentik_flow.authorization](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |

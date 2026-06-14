@@ -10,9 +10,13 @@ data "authentik_property_mapping_provider_scope" "email" {
   managed = "goauthentik.io/providers/oauth2/scope-email"
 }
 
+resource "random_id" "grimmory_client_id" {
+  byte_length = 20
+}
+
 resource "authentik_provider_oauth2" "grimmory" {
   name               = "Grimmory"
-  client_id          = "grimmory"
+  client_id          = random_id.grimmory_client_id.hex
   client_type        = "public"
   authorization_flow = data.authentik_flow.authorization.id
   invalidation_flow  = data.authentik_flow.invalidation.id
