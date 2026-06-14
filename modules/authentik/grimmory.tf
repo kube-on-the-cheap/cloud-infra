@@ -18,7 +18,11 @@ resource "authentik_provider_oauth2" "grimmory" {
   invalidation_flow  = data.authentik_flow.invalidation.id
 
   allowed_redirect_uris = [
-    { matching_mode = "strict", url = "https://library.homelab.blacksd.tech/oauth2-callback" },
+    {
+      matching_mode     = "strict"
+      url               = "https://library.homelab.blacksd.tech/oauth2-callback"
+      redirect_uri_type = "authorization"
+    },
   ]
 
   property_mappings = [
