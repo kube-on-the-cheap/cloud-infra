@@ -7,7 +7,11 @@ data "authentik_flow" "source_enrollment" {
 }
 
 data "authentik_flow" "authorization" {
-  slug = "default-provider-authorization-implicit-consent"
+  # Explicit consent (not implicit) so the flow includes a consent stage —
+  # required by Authentik 2026.x when the client requests offline_access
+  # (refresh tokens). Implicit-consent flows reject offline_access as
+  # "otherwise malformed".
+  slug = "default-provider-authorization-explicit-consent"
 }
 
 data "authentik_flow" "invalidation" {
