@@ -11,10 +11,11 @@ resource "authentik_stage_password" "password" {
 }
 
 resource "authentik_stage_identification" "identification" {
-  name           = "homelab-identification"
-  user_fields    = ["username", "email"]
-  sources        = [authentik_source_oauth.google.uuid]
-  password_stage = authentik_stage_password.password.id
+  name               = "homelab-identification"
+  user_fields        = ["username", "email"]
+  sources            = [authentik_source_oauth.google.uuid]
+  password_stage     = authentik_stage_password.password.id
+  show_source_labels = true
 }
 
 resource "authentik_flow_stage_binding" "authentication_identification" {
