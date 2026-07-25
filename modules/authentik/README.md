@@ -87,15 +87,18 @@ No modules.
 | [authentik_application.grimmory](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/application) | resource |
 | [authentik_flow_stage_binding.authentication_identification](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/flow_stage_binding) | resource |
 | [authentik_group.admins](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
+| [authentik_group.family](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
 | [authentik_group.grownups](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
 | [authentik_group.kids](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
-| [authentik_group.users](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/group) | resource |
+| [authentik_policy_binding.grimmory_family](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/policy_binding) | resource |
 | [authentik_property_mapping_provider_scope.groups](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/property_mapping_provider_scope) | resource |
 | [authentik_property_mapping_provider_scope.offline_access](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/property_mapping_provider_scope) | resource |
 | [authentik_provider_oauth2.grimmory](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/provider_oauth2) | resource |
 | [authentik_source_oauth.google](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/source_oauth) | resource |
 | [authentik_stage_identification.identification](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/stage_identification) | resource |
 | [authentik_stage_password.password](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/stage_password) | resource |
+| [authentik_system_settings.default](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/system_settings) | resource |
+| [authentik_user.akadmin](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/user) | resource |
 | [authentik_user.users](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/resources/user) | resource |
 | [random_id.grimmory_client_id](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
 | [random_password.user_initial](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
@@ -105,6 +108,7 @@ No modules.
 | [authentik_flow.invalidation](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
 | [authentik_flow.source_authentication](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
 | [authentik_flow.source_enrollment](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/flow) | data source |
+| [authentik_group.builtin_admins](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/group) | data source |
 | [authentik_property_mapping_provider_scope.email](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/property_mapping_provider_scope) | data source |
 | [authentik_property_mapping_provider_scope.openid](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/property_mapping_provider_scope) | data source |
 | [authentik_property_mapping_provider_scope.profile](https://registry.terraform.io/providers/goauthentik/authentik/latest/docs/data-sources/property_mapping_provider_scope) | data source |
@@ -116,12 +120,12 @@ No modules.
 | <a name="input_admins"></a> [admins](#input\_admins) | Usernames who get added to the 'admins' Authentik group. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.admins`). | `list(string)` | `[]` | no |
 | <a name="input_authentik_token"></a> [authentik\_token](#input\_authentik\_token) | API token for the Terraform-owned admin user. Provided by Terragrunt via SOPS decrypt of authentik-token.sops.yaml. | `string` | n/a | yes |
 | <a name="input_authentik_url"></a> [authentik\_url](#input\_authentik\_url) | Base URL of the Authentik instance. | `string` | `"https://login.cloud.blacksd.tech"` | no |
+| <a name="input_family"></a> [family](#input\_family) | Usernames who get added to the 'family' Authentik group (kids ∪ grownups — the household-wide catch-all used for shared apps like the library). Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.family`). | `list(string)` | `[]` | no |
 | <a name="input_google_client_id"></a> [google\_client\_id](#input\_google\_client\_id) | Client ID of the Google OAuth client used for the Google source. Provided by Terragrunt via SOPS decrypt of google-oauth.sops.yaml. | `string` | n/a | yes |
 | <a name="input_google_client_secret"></a> [google\_client\_secret](#input\_google\_client\_secret) | Client secret of the Google OAuth client used for the Google source. Provided by Terragrunt via SOPS decrypt of google-oauth.sops.yaml. | `string` | n/a | yes |
 | <a name="input_grownups"></a> [grownups](#input\_grownups) | Usernames who get added to the 'grownups' Authentik group. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.grownups`). | `list(string)` | `[]` | no |
 | <a name="input_kids"></a> [kids](#input\_kids) | Usernames who get added to the 'kids' Authentik group. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.kids`). | `list(string)` | `[]` | no |
 | <a name="input_users"></a> [users](#input\_users) | Map of Authentik human users keyed by username. Provided by Terragrunt via SOPS decrypt of users.sops.yaml. `nick_name` and `preferred_language` are accepted to match the Zitadel module's variable shape (the SOPS file is bit-for-bit reusable) but are silently ignored — Authentik's `authentik_user` resource has no equivalent fields. | <pre>map(object({<br/>    first_name         = string<br/>    last_name          = string<br/>    email              = string<br/>    display_name       = optional(string)<br/>    nick_name          = optional(string)<br/>    preferred_language = optional(string)<br/>  }))</pre> | n/a | yes |
-| <a name="input_users_group"></a> [users\_group](#input\_users\_group) | Usernames who get added to the 'users' Authentik group. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.users`). | `list(string)` | `[]` | no |
 
 ## Outputs
 

@@ -18,7 +18,7 @@ locals {
   user_group_ids = nonsensitive({
     for username in keys(var.users) :
     username => compact([
-      contains(var.users_group, username) ? authentik_group.users.id : null,
+      contains(var.family, username) ? authentik_group.family.id : null,
       contains(var.admins, username) ? authentik_group.admins.id : null,
       contains(var.grownups, username) ? authentik_group.grownups.id : null,
       contains(var.kids, username) ? authentik_group.kids.id : null,

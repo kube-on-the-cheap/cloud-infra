@@ -1,9 +1,9 @@
 groups:
-    users:
-        - ENC[AES256_GCM,data:zCyOAr4=,iv:AOkwzScYUG7bQHezo8EhxqNfxuN/Wq0ZX+uc7vhSarI=,tag:Sz7J2EPEFSwmqi/O+WylLQ==,type:str]
-        - ENC[AES256_GCM,data:P/beNjKiWg==,iv:CM6vuYMJWCWYrmt0qwGTXlNHz3frdSi/uZK35eL7tRY=,tag:ylc+VqK4QSASXCDkm3qXsw==,type:str]
-        - ENC[AES256_GCM,data:Xc5LNKo=,iv:rD8x+mB5Xegrr2jBIJg1xRndjq272sXVHDmkw1WbR6M=,tag:4hjyornUJvomwp54ah0bfg==,type:str]
-        - ENC[AES256_GCM,data:XNzCMEM=,iv:xTLWFBojhuldN8jgCQKoUw5u8iZjBkBTq9U+Vi0z65A=,tag:Hy0FjntEXU8ickzenzFg/A==,type:str]
+    family:
+        - ENC[AES256_GCM,data:l9ixXMM=,iv:5vbyTczRYKX+HoNCnBmEemXV3fRXtDPfCaISEiKG3Jw=,tag:flIAEjK3DuIadzkPuSSrtQ==,type:str]
+        - ENC[AES256_GCM,data:tmaZj/6BjA==,iv:gzBqcMqzPHsXisnEXEToLb/jSmM7fidvPJv3zLRzw80=,tag:E85/UR/Mn1Ao7PKRFmLe+g==,type:str]
+        - ENC[AES256_GCM,data:crrnu5k=,iv:ARRxK75N73IQ0FI3wkOOiSPVsk6MptcC6oP3A5tBd9g=,tag:RMy1tKG/QgAsFZkqsurHNQ==,type:str]
+        - ENC[AES256_GCM,data:JnTNz0s=,iv:W/vVgODxpTLMu0Ga/m5J5f5Y0kDe3Wse/aQ/HXRVdfQ=,tag:EBDSvZdQGKFvzzZJ7qr6MA==,type:str]
     admins:
         - ENC[AES256_GCM,data:8UXUkyI=,iv:yInyYOtdyvHwgf5XOrjtCEF+yqq5M4e2ubuwt7ZMDsc=,tag:Drk0vcfTIj9B/vLZzM+TUA==,type:str]
     grownups:
@@ -52,8 +52,8 @@ sops:
             OHVyS2U1ODBSRkpZU2dKOHJNYUVNaGMKApidBZvVI8uvWsHcVN6Hylo9sQj+yYHX
             y/bSGwhOOMrxpiQdVXfD55l1vg1u8je2TRAPe5O/grSX9KlzN54t1g==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-06-08T06:54:22Z"
-    mac: ENC[AES256_GCM,data:0xQDxQLy1E9SmxpqqpjIFOk6B6+hpDKJ0ViUQ+xkpHFDYrKtSzM1uuqBshLcTNIDBcS9WVrKFWqxoTAoJFD0A+oKlt+H0In9Gg5gnJ8eEOFEOufQoOyOmqb1il1uLR3oe2vK/4+yqCnT0xQNrnc8VmFquNlSmWaxJbfCriGFGV0=,iv:Wz/umtjnaUTrG0DpwZpWayfJ0TJJWaMBiUxcDUod+q0=,tag:4gwC5r9HX7niQfilq/ElLw==,type:str]
+    lastmodified: "2026-07-25T09:25:01Z"
+    mac: ENC[AES256_GCM,data:JVuO/12UhBaMMxnPDjGXuVxhcA/a5JSLWsHS/xaZAMxUFF/Fq94KVY4nAoTYli4XfAbevrxtnTomAr3azns1Nkj5LvS4Y2QQ2yMSu8XKGOviMC7zx+dMXKvKy8GQttSUIUK43c499qAPsL/3Nx3CpFFAEDV7ZUkHRu2FPwTwlto=,iv:Wy2Bf7c+iGdY6qAJHHC1xErA95rGMY66wBCa/j2ZjGg=,tag:2KOPKRityBadztuNQ0x0ug==,type:str]
     pgp:
         - created_at: "2026-06-07T08:41:25Z"
           enc: |-

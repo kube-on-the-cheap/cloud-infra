@@ -35,8 +35,8 @@ variable "users" {
   }))
 }
 
-variable "users_group" {
-  description = "Usernames who get added to the 'users' Authentik group. Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.users`)."
+variable "family" {
+  description = "Usernames who get added to the 'family' Authentik group (kids ∪ grownups — the household-wide catch-all used for shared apps like the library). Each must be a key in `users`. Provided by Terragrunt via SOPS decrypt of users.sops.yaml (`groups.family`)."
   type        = list(string)
   default     = []
   sensitive   = true

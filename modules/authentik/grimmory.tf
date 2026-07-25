@@ -91,6 +91,19 @@ resource "authentik_application" "grimmory" {
   protocol_provider = authentik_provider_oauth2.grimmory.id
 }
 
+# Grant the household-wide `family` group access to the Grimmory
+# application. Without an explicit policy binding, Authentik defaults
+# to denying every user with a "Request has been denied" error page.
+#
+# `authentik_policy_binding` supports either a `policy`, `user`, or
+# `group` target — we use `group` and leave `policy` unset. Semantics:
+# "member of this group ⇒ policy passes."
+resource "authentik_policy_binding" "grimmory_family" {
+  target = authentik_application.grimmory.uuid
+  group  = authentik_group.family.id
+  order  = 0
+}
+
 output "grimmory_client_id" {
   description = "Client ID for the Authentik-side Grimmory OIDC application. Read with `terragrunt output -raw grimmory_client_id`. Not wired into Grimmory yet — the app continues using the Zitadel client until a separate apps-repo PR cuts it over."
   value       = authentik_provider_oauth2.grimmory.client_id

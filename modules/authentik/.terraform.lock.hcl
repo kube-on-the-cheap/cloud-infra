@@ -5,7 +5,10 @@ provider "registry.terraform.io/goauthentik/authentik" {
   version     = "2026.5.0"
   constraints = "~> 2026.5"
   hashes = [
+    "h1:0uyEY3Pv2BwFGTKmKmzYjZJTNWgqR2zK9INfGh4z14U=",
+    "h1:SeznjPKBzSrgo8WasRnuxiGMDSeQHEKsv3U/xw8bhQE=",
     "h1:V8nQUa7FpHo5eNJmt5OLfFmfEyzEbKtQJVhgQ9Hdwoc=",
+    "h1:db5oMNuPhgNOYZH8HgMGGJmoqaqKYkPgl4gkx4OlgSc=",
     "zh:0dc1706f6fbff866f4a96de56a4934b9a277954bcdd0713549a29a9b8ec85153",
     "zh:218417ec4e864f2d7e585d6c08d39bccb96d8f3bca16c6f762be15365e434234",
     "zh:24f9afa7a1174316da3478811848cd76ef348d8a983310b8d75ed6f45abe1a92",
@@ -26,6 +29,9 @@ provider "registry.terraform.io/hashicorp/random" {
   version     = "3.9.0"
   constraints = "~> 3.6"
   hashes = [
+    "h1:OO+IuvQJSPmWdN8AyyIEvPJbLvDQpgX/zbktoa9KsJE=",
+    "h1:UlBuNVuCGJ39tTv2c5gz2NRZnQbXfbIWbTzWcth5o74=",
+    "h1:lVDv+0AjDjrLfpmaJbWqUmIw/k3/AHXLc3N4m55SNdo=",
     "h1:o0s5Mk9NXMP60nlheO1r0LsDGGratFb3oL0t7bD2QnM=",
     "zh:161ad0bd9a75768c82f53fb6e7172a9d8be2d4889b012645a34795031aaf1bf1",
     "zh:19dc9a5b17729725ccfc4f45b0500af0ee5bc6b6b160c7adb8f2bf617d2c80ea",
