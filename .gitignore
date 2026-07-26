@@ -20,5 +20,8 @@ configs/**/.terraform.lock.hcl
 .vscode/*
 # Taskfile checksum ignores
 .task/checksum/**
+# Superpowers plans and specs are local-only artifacts
+docs/superpowers/plans/
+docs/superpowers/specs/
 bastion-sessions/*/**
 !bastion-sessions/**/.gitkeep
